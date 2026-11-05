@@ -1,0 +1,12 @@
+sea bench check: arm64-macos, session 20261105T180509Z-85cec080, sea commit 669ca18b5f38f515a6dfc768053926ac42ec67c0, 2026-11-05T18:07:08Z
+machine: Mac14,9 (Apple M2 Pro); baseline Mac14,9 (Apple M2 Pro): ok
+load average before 1.72 2.04 1.86; after 2.41 2.17 1.91
+warning: load average above 2.0
+w1_shaft_design  wall 0.0390040005 < 0.573154 ok   compute 0.0285 < 0.510777 ok
+w2_truss_fem     wall 0.4979370005 < 0.956495 ok   compute 0.4935 < 0.935686 ok
+w3_quarter_car   wall 0.0823260005 < 0.720325 ok   compute 0.0665 < 0.630949 ok
+w4_heat_plate    wall 0.5125640005 < 0.907414 ok   compute 0.5105 < 0.902413 ok
+w5_tolerance_mc  wall 0.3509350005 < 0.768041 ok   compute 0.3455 < 0.764003 ok
+w7_drivetrain    wall 0.1417240005 < 8.625048 ok   compute 0.1365 < 8.601566 ok
+w8_ev_can        wall 0.1559410005 < 0.625959 ok   compute 0.1525 < 0.617082 ok
+PASS: 7 of 7 workloads faster than MATLAB on both measures

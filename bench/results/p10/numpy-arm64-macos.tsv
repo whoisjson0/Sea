@@ -1,0 +1,8 @@
+target	cpu	workload	numpy	python	reps	first_s	median5_s	best5_s
+arm64-macos	Apple M2 Pro	w1_shaft_design	2.5.4	3.12.8	5	0.475676083	0.471324000	0.469171042
+arm64-macos	Apple M2 Pro	w2_truss_fem	2.5.4	3.12.8	5	1.204015750	1.192350292	1.187460334
+arm64-macos	Apple M2 Pro	w3_quarter_car	2.5.4	3.12.8	5	2.193200834	2.184374250	2.179332833
+arm64-macos	Apple M2 Pro	w4_heat_plate	2.5.4	3.12.8	5	3.889624417	3.889624417	3.885139333
+arm64-macos	Apple M2 Pro	w5_tolerance_mc	2.5.4	3.12.8	5	1.890006250	1.801611292	1.769479833
+arm64-macos	Apple M2 Pro	w7_drivetrain	2.5.4	3.12.8	5	3.373333500	3.377976542	3.373333500
+arm64-macos	Apple M2 Pro	w8_ev_can	2.5.4	3.12.8	5	1.136963958	1.127122667	1.115155542

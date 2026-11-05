@@ -1,0 +1,19 @@
+target	arm64-macos
+mode	final
+session	20261105T180509Z-85cec080
+date	2026-11-05T18:09:42Z
+machine_model	Mac14,9
+cpu	Apple M2 Pro
+os	macOS 26.6.2 (Darwin 25.6.0)
+sea_commit	669ca18b5f38f515a6dfc768053926ac42ec67c0
+sea_dirty	no
+baysick_commit	9d18800236386513d186cdc9b5b5d7ac5d6b43c5
+baysick_dirty	no
+nice	0
+power	ac
+lowpower	0
+variants	neon
+tools	Apple clang version 21.0.0 (clang-2100.1.1.101)
+settle_waited_s	140
+load_before	1.95 2.17 1.98
+load_after	3.95 3.04 2.37

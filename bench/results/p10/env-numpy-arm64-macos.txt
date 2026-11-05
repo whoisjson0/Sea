@@ -1,0 +1,21 @@
+target	arm64-macos
+mode	final
+session	20261105T180509Z-85cec080
+date	2026-11-05T18:23:48Z
+machine_model	Mac14,9
+cpu	Apple M2 Pro
+os	macOS 26.6.2 (Darwin 25.6.0)
+sea_commit	669ca18b5f38f515a6dfc768053926ac42ec67c0
+sea_dirty	no
+baysick_commit	9d18800236386513d186cdc9b5b5d7ac5d6b43c5
+baysick_dirty	no
+nice	0
+power	ac
+lowpower	0
+variants	-
+tools	numpy 2.5.4, Python 3.12.8
+numpy_blas	accelerate unknown
+numpy_threads	VECLIB_MAXIMUM_THREADS=unset OPENBLAS_NUM_THREADS=unset OMP_NUM_THREADS=unset
+settle_waited_s	190
+load_before	2.00 2.41 2.47
+load_after	2.70 2.54 2.51

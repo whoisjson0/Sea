@@ -1,0 +1,19 @@
+target	x86_64-linux
+mode	final
+session	20261105T180509Z-85cec080
+date	2026-11-05T18:35:59Z
+machine_model	HP EliteDesk 800 G1 SFF
+cpu	Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz
+os	Linux 7.1.8-arch1-3
+sea_commit	669ca18b5f38f515a6dfc768053926ac42ec67c0
+sea_dirty	no
+baysick_commit	9d18800236386513d186cdc9b5b5d7ac5d6b43c5
+baysick_dirty	no
+nice	0
+power	-
+lowpower	-
+variants	avx2 sse2
+tools	gcc (GCC) 16.2.1 20260810
+settle_waited_s	0
+load_before	0.28 0.40 0.27
+load_after	0.96 0.68 0.41
