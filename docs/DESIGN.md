@@ -10868,7 +10868,8 @@ baseline (§1.2, §6.5), reports kernel, micro-benchmark, NumPy and Linux number
 added after the independent review, which also revised §2.17.3–§2.17.11), were decided by the user
 on 2026-11-04 with the agreement, each as option (a). The readings taken because one answer is
 clearly right are the lead decisions **L-ow – L-qa** (§2.17.13, mirrored in §9 as "Lead decisions
-of phase 10"), agreed with the text. No code, test, contract file or result changes with 10a; the
+of phase 10"), agreed with the text; **L-qb – L-qu** were added in 10b, the readings its tools took
+where the text left a detail open. No code, test, contract file or result changes with 10a; the
 document sections it changes, with the draft, with the agreement and with the later sub-phases, are
 listed in §2.17.14. §6.5 stays the rule; this
 section refines it by reference and never contradicts it.
@@ -11003,8 +11004,9 @@ seconds waited after the cool-down) and the three load averages at its end, whic
 **Preconditions** (checked by each driver before it builds or measures; a failure is a setup error,
 exit 2, with a message naming it):
 
-* the driver's own process has nice value 0 (`ps -o nice= -p $$`; Decision 163's "unniced"); on the
-  host the remote script checks its own nice value the same way;
+* in final mode: the driver's own process has nice value 0 (`ps -o nice= -p $$`; Decision 163's
+  "unniced"); on the host the remote script checks its own nice value the same way; the nice value
+  is recorded in both modes, and a quick run may be niced (L-qm);
 * on the Mac in final mode: on AC power (`pmset -g batt`'s first line names `AC Power`) and Low
   Power Mode off (`pmset -g`'s `lowpowermode` is 0 or absent) (L-pa);
 * in final mode: the Sea working tree is clean apart from the results, checked from the driver's own
@@ -11021,6 +11023,45 @@ exit 2, with a message naming it):
 
 The host has no git tree: its record carries the Mac's commits and dirty flags, and its own nice
 value, load and start condition.
+
+**As built in 10b** (the review fixes C1–C6, applied in every phase-10 driver):
+
+* **C1, the build stamp.** `sh bench/stamp.sh` (from any directory; exit 2 when a listed file is
+  missing or a commit cannot be read) prints `key<TAB>value` lines in this order: `sea_commit`,
+  `baysick_commit`, `sea_dirty`, `baysick_dirty` (by the rules of the preconditions above), then one
+  `file<TAB><cksum output>` line for each of `build/sea`, `build/std.sea`, `build/libsea.a`,
+  `build/libbaysickrt.a`, `build/errors.inc`, `build/limits.inc` and every pass executable
+  `build/sea?*` that exists, sorted by name (paths relative to the Sea repository). Each driver's
+  `build` writes it to `build/bench/<tool>/stamp.txt` (`<tool>` `workloads`, `kernels`, `micro`);
+  each `measure` and the `--cross` runs of `workloads.sh` and `kernels.sh` recompute it, `cmp` it
+  with the saved one and refuse with exit 2 `stale build: …` when they differ, in both modes, in
+  addition to the per-source staleness checks. `micro.sh --current --cross`, which has no separate
+  build, compares the stamp taken before its compile and pack with the one taken after them
+  (L-qk).
+* **C2, one attempt per tool and session** (final mode only). After the preconditions and the
+  staleness and stamp checks, and before the start condition, `ssh` or any measured process, a
+  final-mode `measure` or `--cross` creates `DIR/.attempt-<tool>-<target>` with `mkdir` (atomic;
+  `<tool>` `workloads`, `kernels`, `micro`, `numpy`; `<target>` `arm64-macos` or `x86_64-linux`)
+  and stops with exit 2 `already attempted in this session` when it already exists. The tools never
+  remove a marker. `workloads.sh --cross` creates its marker after packing the bundle and
+  `micro.sh --current --cross` before the Mac compile (L-ql). `check.py` requires the marker of every
+  result it reads (§2.17.8).
+* **C3, quick mode never touches a final session.** `session.sh --quick` and every driver in quick
+  mode stop with exit 2 (`refusing to overwrite a final session`) when `DIR/session.txt` holds a
+  final session (an id without the `quick-` prefix). `workloads.sh` and `numpy.sh` also refuse the
+  mirror case: a final-mode run on a directory whose session is a quick one (L-qq).
+* **C4, the locale.** Every bench script sets `LC_ALL=C` for its own processing; the measured
+  processes (and the compiler run of `workloads.sh build`) are started with `LC_ALL` unset.
+* **C5, remote cleanup.** Every phase-10 remote one-liner traps `HUP INT TERM PIPE` as well as
+  `EXIT` to remove its `mktemp -d` directory (the 5d form of `micro.sh --cross` is unchanged).
+* **C6, preconditions before a build.** A final-mode `build` checks the same preconditions as
+  `measure` (all but the start condition and the attempt marker) before it builds; a quick build
+  therefore needs `--quick` or `BENCH_QUICK=1`.
+
+**Starting the final run.** zsh's `BG_NICE` option gives a background job nice value 5, so a driver
+started with `&` from an interactive zsh (an agent's shell included) refuses as niced. The final
+measurement is therefore started in the foreground, or through `/bin/sh -c '… &'` when it must run
+in the background (L-qu).
 
 **The machine record.** Each driver writes `DIR/env-<tool>-<target>.txt` (`<tool>` one of
 `workloads`, `kernels`, `micro`, `numpy`; `<target>` `arm64-macos` or `x86_64-linux`), one
@@ -11180,6 +11221,22 @@ missing host, `uv` or fixture, an existing output file in final mode). Outputs:
 `DIR/workloads-runs-<target>.tsv`, `DIR/workloads-<target>.tsv` and
 `DIR/env-workloads-<target>.txt` (§2.17.9).
 
+**As built in 10b.** The driver checks, in this order, before any precondition: in final mode,
+that none of its three output files exists in `DIR`; for `measure` and `--cross`, that
+`DIR/session.txt` exists and is not empty; and, whenever `DIR/session.txt` exists, that its kind
+matches the mode (a quick session refuses final mode, a final session refuses `--quick`, C3), so a
+mistaken invocation stops before anything is built or measured (L-qn). `build` needs no session
+and records none: it depends only on the trees, which its stamp (C1, §2.17.3) records (L-qo).
+`build` writes the resolved ports directory (`pwd -P` of `PORTS`) to
+`build/bench/workloads/ports.txt`; a build from another directory first removes everything the
+previous build left (binaries, fixtures, compile times and kept run 1), a rebuilt port's kept run 1
+is deleted, and `measure` and `--cross` refuse (exit 2) when `ports.txt` is missing or names
+another directory than the current `PORTS` (L-qp). `measure` keeps run 1 together with
+`build/bench/workloads/run1/stamp.txt` (the lines `session` and `sea_commit`); kept files of
+another session or commit are removed first, so `run1/` always holds one measurement, and
+`--cross` refuses (exit 2) when that stamp is missing or names another session or Sea commit
+than the cross run's.
+
 #### 2.17.5 The NumPy column (Decision 167)
 
 **The NumPy version is pinned**: `numpy==2.5.4` (L-px), the release `uv` resolves on the Mac
@@ -11246,16 +11303,34 @@ parity is P = `BATCH` mod 2, then `seconds %.9e` (the batch time divided by `BAT
 `BATCH` is 0), and exits 0. The runner `bench/kernels/run.sh` then, for each kernel, size and
 implementation:
 
-1. **calibrates**: one run with `BATCH` = 1 gives `t₁`; `BATCH` is 1 if `t₁` ≥ 100 µs, else
-   ⌈100 µs / t₁⌉, at most 100 000 (Baysick BENCH.md §3.1's batching; every call costs the same);
+1. **calibrates with a reference batch** (as built in 10b, L-qs, L-qt): b starts at 2 and grows ×4
+   (2, 8, 32, …, at most 100 000); at each b it makes 3 runs with `BATCH` = b, each validated, and
+   stops at the first b whose minimum per-call time × b is at least `REFSECS` = 10 µs. Then
+   `t_ref` = that minimum per-call time and `b_ref` = b. (A b that reaches 100 000 still under
+   10 µs is a validation failure.) `BATCH` = ⌈`TARGETSECS` / `t_ref`⌉, at least 1 and at most
+   100 000, with `TARGETSECS` = 5 ms of timed calls per process in final mode and 1 ms in quick mode
+   (so the 200-process cap reaches 1.0 s, quick 0.2 s);
 2. **repeats**: one process per repetition (L-pf) with that `BATCH` until at least 5 repetitions
    and at least 1.0 s of timed calls (Σ seconds × `BATCH`; `--quick`: 0.2 s), at most 200;
-3. **validates** every run's `check` line (the calibration's included) against the expected line for
-   its parity, as below, and, when `BATCH` > 1, requires the median per-call time to be at least
-   t₁ / 2 (a batched call more than twice as fast as a single one means work was skipped or
-   merged; Decision 171 (a)); a failure is a validation
-   failure (exit 1, no file written);
+3. **validates** every run's `check` line (the reference runs' included) against the expected line
+   for its parity, as below, and, whenever `BATCH` > `b_ref`, requires the median per-call time to
+   be at least `t_ref` / 2 (a batched call more than twice as fast as the reference means work was
+   skipped or merged; Decision 171 (a)); a failure is a validation failure (exit 1, no file
+   written);
 4. reports the median of the repetitions' `seconds` with their minimum and maximum.
+
+A single call, as the first draft calibrated, cannot be timed reliably: macOS's `CLOCK_MONOTONIC`
+(which `now()` uses) ticks in 1 µs, the two clock reads cost more than an `axpby` of 1 000 elements,
+and one run is noisy; and the first timed call of a process can cost a steady 2× the later ones
+(gemm 64 Sea on the i7-4790: about 29 µs against 14.5 µs), which a reference of 2 calls tolerates up
+to 3×. **The guard's window**, stated honestly: kernels whose `BATCH` is at most `b_ref` (calls of
+about 2.5 ms and more, `BATCH` 1 or 2) are not guarded; a program that skips all but the last call
+escapes wherever its real call costs less than `REFSECS`, because `b_ref` then grows until the
+loop's own overhead fills the reference (`axpby` N = 1 000, for example); it is caught where its
+call costs at least `REFSECS` and `BATCH` exceeds 2 `b_ref` (from `axpby` N = 100 000 and gemm
+N = 64 up to calls of about 1 ms; 10b showed both injected skips caught there on both platforms).
+Outside the window the per-call input change (no call is loop-invariant) and the check line (the
+last call ran, on its own input) still hold.
 
 The C calls go through a `noinline` function ending in an empty `asm volatile` with a `"memory"`
 clobber (§2.17.2, L-pt). There is no allocation-count check: the fused `axpby` reuses `w`'s buffer
@@ -11412,7 +11487,12 @@ build/bench/kernels/vendor K/vendor.c -framework Accelerate`; `xcrun cc -O2 -ffp
 build/bench/kernels/axpby_ref K/axpby_ref.c` and the same for `expect.c`. Linux (`kernels.sh
 --cross`): the Sea programs compiled on the Mac with `--target x86_64-linux -S` and linked on the
 host by the remote script's build step as `bench/micro.sh --cross` does; `gcc -O2 -ffp-contract=off
--o vendor vendor.c -lopenblas -lm`, and `axpby_ref.c` and `expect.c` with `gcc -O2
+-o vendor vendor.c -lopenblas -lm` with OpenBLAS's own header directory first on the include path
+(`pkg-config --cflags-only-I openblas`, else `/usr/include/openblas`,
+`/usr/include/x86_64-linux-gnu/openblas-pthread`, `/usr/include/openblas-base`, and last no extra
+flag, tried in order until the harness builds and `vendor config` confirms OpenBLAS through
+`openblas_get_config()`, so a build against the reference `cblas.h` is never accepted, L-qr), and
+`axpby_ref.c` and `expect.c` with `gcc -O2
 -ffp-contract=off`. The cross bundle, the single `ssh`, the host's preconditions and start condition
 follow §2.17.4; the remote standard output holds exactly two blocks, in this order: the line
 `@@SEA-KERN-ENV-BEGIN@@`, the host's machine record, `@@SEA-KERN-ENV-END@@`; then
@@ -11445,6 +11525,14 @@ machine record, `@@SEA-MICRO-ENV-END@@`; then `@@SEA-MICRO-TSV-BEGIN@@`, `run.sh
 `--current` and `--out`, `micro.sh` behaves exactly as in 5d,
 and the 5d files `bench/results/micro-*.tsv` are never overwritten by phase 10.
 
+As built in 10b, with `--current`: the record's `variants` line is `variants	none` (the
+micro-benchmarks use no kernels, L-qg); `load_before` and `load_after` are `uptime`'s three numbers
+with the commas removed and the spaces squeezed, as in the other records (L-qh); a relative `--out`
+is taken relative to the Sea repository, like `BENCH_OUT`, and the default is `bench/results/p10`
+(L-qi); final mode forces §5.9's rules, `BENCH_MIN_SECONDS=1.0` and `BENCH_MIN_REPS=5`, whatever the
+environment holds, while quick mode uses `BENCH_MIN_SECONDS` (default 0.2) and `BENCH_MIN_REPS`
+(default 5) from the environment (L-qj).
+
 #### 2.17.8 The pass check
 
 `uv run --no-project python -I bench/check.py [DIR]` (`make bench-check`; `DIR` default
@@ -11459,8 +11547,11 @@ and the 5d files `bench/results/micro-*.tsv` are never overwritten by phase 10.
 * **setup errors** (exit 2, one line `check: <reason>` on standard error, nothing on standard
   output): a missing or malformed file; in `env-workloads-arm64-macos.txt`, `mode` not `final`,
   `sea_dirty` or `baysick_dirty` not `no`, or `target` not `arm64-macos`; an env file present whose
-  `session` differs from `session.txt` or whose `sea_commit` differs from the workloads record's
-  (one measurement, L-ps); a workload of the seven missing, repeated, or without exactly runs 1–15
+  `session` differs from `session.txt` or whose `sea_commit` or `baysick_commit` differs from the
+  workloads record's (one measurement, L-ps); a missing attempt marker (C2, §2.17.3): the
+  workloads record needs `DIR/.attempt-workloads-arm64-macos`, and every other
+  `env-<tool>-<target>.txt` present needs `DIR/.attempt-<tool>-<target>` (checked after the mode,
+  so a quick directory fails on its mode first); a workload of the seven missing, repeated, or without exactly runs 1–15
   with status 0; a summary value that differs from the one recomputed from the runs file (L-pb). The
   recomputation reads the runs file's values as decimal strings and computes with Python's
   `decimal` module, so it is exact: firsts, bests, medians of 5, minima and maxima are the run
@@ -11485,22 +11576,34 @@ holds, else `>=`; `<v>` is `ok` or `MISS`):
     … (one line per workload, in the order W1, W2, W3, W4, W5, W7, W8)
     <verdict>
 
-(the wall column prints `wu`; the loads are the workloads record's) with, when the 1-minute load
-average before or after exceeds 2.0, the line `warning: load average above 2.0` after the load line.
+(the wall column prints `wu`; the loads are the workloads record's, printed verbatim) with, when
+the 1-minute load average (as built in 10b, L-qc: the first number of the recorded field, so both
+the `uptime` and the `/proc/loadavg` forms read) before or after exceeds 2.0, the line `warning: load average above 2.0` after the load line.
 `<verdict>` is `PASS: 7 of 7 workloads faster than MATLAB on both
 measures` (exit 0), or `FAIL: K of 7 workloads miss: <name> (<wall|compute|wall, compute>), …`
 listing every missing workload in order (exit 1), or, on a machine mismatch, `FAIL: measured on
 another machine than the MATLAB baseline` (exit 1; the workload lines are still printed). The
-compute column prints `cu`, so a reader sees the value actually compared.
+compute column prints `cu`, so a reader sees the value actually compared. On the machine line
+(as built in 10b, L-qb) the baseline's model and CPU are the distinct values over the MATLAB
+files, the single-thread file included, in file order, joined by `/`: one value when they all
+agree, as they must for `ok`, and every value seen when they do not.
 
 `check.py --self-test` builds result directories in a temporary directory and checks: all seven
 passing → exit 0 and the `PASS` line; a best wall equal to `Mt` rounded to 9 decimals → `MISS`,
-exit 1; a printed compute time of 0.617 against W8's 0.61708195833333335 → `cu` 0.6175, `MISS`;
+exit 1; a printed compute time of 0.617 against W8's best compute 0.6170819583333333 (the double the
+JSON writes as `0.61708195833333335`) → `cu` 0.6175, `MISS`;
 0.616 → `cu` 0.6165, `ok`; a missing workload, `mode quick`, `sea_dirty yes`, `baysick_dirty yes`,
 an `env-kernels` file with another session or commit, a summary disagreeing with the runs (and a
 median of 10 written with 3 decimals instead of 4) → exit 2; a machine model `Mac15,7` → `MISMATCH`
 and exit 1; load 2.5 → the warning line and no change of verdict; the W7 and W8 files read as
-scalars.
+scalars. As built in 10b it runs 29 cases, adding: a best wall one unit below → `ok`; misses on
+both measures and on one, listed in workload order; a target other than `arm64-macos`, an
+`env-kernels` file with another `baysick_commit`, a missing attempt marker of the workloads record
+or of an `env-kernels` file, a workloads record of another session, 14 runs, a summary best that
+differs from the runs' minimum → exit 2; an `env-kernels` file of the same session and commit →
+accepted; another CPU name → `MISMATCH`; load exactly 2.0 → no warning; and two real command-line
+invocations (a passing directory → exit 0 and the header line; a quick directory → exit 2, nothing
+on standard output, one `check: ` line on standard error).
 It prints `check self-test: P passed, F failed` and exits 0 only when F is 0.
 
 #### 2.17.9 Output formats, `make` targets and `docs/BENCH.md`
@@ -11533,7 +11636,7 @@ passed as `--out`), `BENCH_QUICK` (`1` passes `--quick`), `BENCH_CROSS_ARGS` (pa
 | `bench-kernels` | `sh bench/kernels.sh measure` |
 | `bench-micro` | `sh bench/micro.sh --current measure` |
 | `bench-numpy` | `sh bench/numpy.sh measure` |
-| `bench-check` | `uv run --no-project python -I bench/check.py $(BENCH_OUT)` with its standard output written to `$(BENCH_OUT)/check.txt`, then that file printed, and the target's exit status the checker's (below) |
+| `bench-check` | `uv run --no-project python -I bench/check.py $(BENCH_OUT)` with its standard output written to `$(BENCH_OUT)/check.txt`, then that file printed; the recipe exits with the checker's status, which make reports as `Error N` (below) |
 | `bench` | `bench-session`, `bench-build`, `bench-workloads`, `bench-kernels`, `bench-micro`, `bench-numpy`, in this order (L-pl), then, in final mode only, `bench-check`; with `BENCH_QUICK=1` it ends after `bench-numpy` and exits 0 when they all did |
 | `bench-cross` | `sh bench/workloads.sh --cross`, `sh bench/kernels.sh --cross`, `sh bench/micro.sh --current --cross`, in this order, into the session of `$(BENCH_OUT)` |
 | `bench-report` | `uv run --no-project python -I bench/report.py $(BENCH_OUT)` |
@@ -11542,8 +11645,12 @@ passed as `--out`), `BENCH_QUICK` (`1` passes `--quick`), `BENCH_CROSS_ARGS` (pa
 `bench-check`'s recipe keeps the checker's status without a pipe (POSIX sh has no `pipefail`): `st=0;
 uv run … check.py "$(BENCH_OUT)" >"$(BENCH_OUT)/check.txt" || st=$$?; if [ $$st -eq 2 ]; then rm -f
 "$(BENCH_OUT)/check.txt"; else cat "$(BENCH_OUT)/check.txt"; fi; exit $$st`. So `check.txt` exists
-only for a verdict (0 or 1), and a setup error (2) leaves none; `check.txt` is the one file rewritten
-on a re-run, since the check is deterministic on the committed files.
+only after a verdict (0 or 1), and a setup error (2) leaves none; `check.txt` is the one file
+rewritten on a re-run, since the check is deterministic on the committed files. GNU make itself
+exits 2 for any failed recipe, so `make bench-check`'s own exit status is 0 or 2 and cannot pass
+the checker's 1 against 2 through; the checker's status shows in make's `*** [bench-check] Error N`
+line, and whether `check.txt` exists tells a verdict (1, a miss) from a setup error (2). A script
+that needs the status itself runs `uv run --no-project python -I bench/check.py DIR` directly.
 
 **`bench/report.py DIR`** prints, from the files of `DIR` and the MATLAB files, the Markdown of
 `BENCH.md` §2 and §4–§8 (the headings and tables below, every number formatted from the files: walls
@@ -11553,6 +11660,15 @@ No number in those sections is typed by hand (L-pn). `report.py --readme DIR` pr
 table of Decision 169 (a) instead (per workload: Sea's best of 5 and MATLAB's best on both measures,
 and one line naming the machine); WP-CHECK writes it in 10b, and 10d pastes its output into
 `README.md`.
+
+As built in 10b: the headings are `## 2. Machines`, `## 4. Workloads against MATLAB`, `## 5. The
+pass check`, `## 6. Sea-level kernels`, `## 7. Micro-benchmarks` and `## 8. Linux x86_64`, each
+with `###` subsections per target or table, so 10c pastes them under BENCH.md's own numbering
+(L-qd); the micro tables print median, minimum and maximum to 3 decimals like every other time
+and the rate as `%.2f` (L-qe); `pct_vendor` is printed as the TSV holds it (`kernels/run.sh`
+writes it `%.2f`); `--readme` prints the table and the one sentence after it, with no heading, so
+10d chooses where in `README.md` it goes (L-qf). Errors go to standard error as one `report: `
+line, exit 2.
 
 **`docs/BENCH.md`** (written in 10c by WP-DOC from this section and `report.py`'s output; normative
 for the methodology as Baysick BENCH.md is for Baysick's):
@@ -11619,7 +11735,7 @@ cross` passing; 10o ends with them before its 10c.
 | Sub-phase | Contents | Done when |
 |-----------|----------|-----------|
 | 10a | **Phase-10 specification** (documents only): §2.17, §8 (row 10 and these rows), §9 (Decisions 162–172, lead decisions L-ow – L-qa) | `make check-contracts` passes; the user has agreed the text and decided Decisions 168–172; the amendments of §2.17.14 that come with the agreement are made. **Done** (2026-11-04): the specification revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed with the text; next 10b |
-| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py` (to `spawn_time`'s interface of §2.17.4, so it can run in parallel with WP-SPAWN); **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (§2.17.6, the Sea programs verbatim); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (§2.17.7); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile`, `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | `make bench-selftest` passes; `uv run --no-project --with numpy==2.5.4 python -c 'import numpy; print(numpy.__version__)'` prints `2.5.4`; quick trial runs into a scratch directory (`make bench BENCH_QUICK=1 BENCH_OUT=<scratch>`, then `make bench-cross BENCH_QUICK=1 BENCH_OUT=<scratch>`) exit 0 and write every file of §2.17.9 with its header except `check.txt`, and then `make bench-check BENCH_OUT=<scratch>` exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses an existing output file and a non-empty session directory (exit 2, shown in a scratch directory with a fake session, measuring nothing); a validation failure is shown to stop each driver with exit 1 and no file written, through the overrides (`PORTS=<scratch ports>` with a copy of one port printing a changed number for `workloads.sh`; `KERNELS=<scratch kernels>` with a program printing a wrong `check` line, and one whose timed loop skips its call when `BATCH` > 1, for `kernels.sh`; both quick mode, by hand, not committed); for `gemm` and `axpby`, `expect`'s line equals the `sea`, `vendor` and `c-O2` lines at every size and both parities on both platforms; `solve`'s `E` ≤ 10⁻⁹ for `sea` and `vendor` at every size and both parities on both platforms; `bench/micro.sh` without `--current` is unchanged (its usage text and its 5d command line still work); nothing is written under `bench/results/`; `make test` and `make cross` pass unchanged. **The lead verifies** by running `make bench-selftest` and one quick Mac trial itself, and reads the diff |
+| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py` (to `spawn_time`'s interface of §2.17.4, so it can run in parallel with WP-SPAWN); **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (§2.17.6, the Sea programs verbatim); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (§2.17.7); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile`, `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | `make bench-selftest` passes; `uv run --no-project --with numpy==2.5.4 python -c 'import numpy; print(numpy.__version__)'` prints `2.5.4`; quick trial runs into a scratch directory (`make bench BENCH_QUICK=1 BENCH_OUT=<scratch>`, then `make bench-cross BENCH_QUICK=1 BENCH_OUT=<scratch>`) exit 0 and write every file of §2.17.9 with its header except `check.txt`, and then `make bench-check BENCH_OUT=<scratch>` exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses an existing output file and a non-empty session directory (exit 2, shown in a scratch directory with a fake session, measuring nothing); a validation failure is shown to stop each driver with exit 1 and no file written, through the overrides (`PORTS=<scratch ports>` with a copy of one port printing a changed number for `workloads.sh`; `KERNELS=<scratch kernels>` with a program printing a wrong `check` line, and one whose timed loop skips its call when `BATCH` > 1, for `kernels.sh`; both quick mode, by hand, not committed); for `gemm` and `axpby`, `expect`'s line equals the `sea`, `vendor` and `c-O2` lines at every size and both parities on both platforms; `solve`'s `E` ≤ 10⁻⁹ for `sea` and `vendor` at every size and both parities on both platforms; `bench/micro.sh` without `--current` is unchanged (its usage text and its 5d command line still work); nothing is written under `bench/results/`; `make test` and `make cross` pass unchanged. **The lead verifies** by running `make bench-selftest` and one quick Mac trial itself, and reads the diff. **Done** (2026-11-04) except the lead's verification, which the lead confirms before committing: the tools built and reviewed, with the review fixes C1–C6 (the build stamp `bench/stamp.sh`, the attempt markers `DIR/.attempt-<tool>-<target>` that `check.py` requires, §2.17.3), the kernel guard's reference batch (§2.17.6) and lead decisions L-qb – L-qu (§2.17.13) |
 | 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent; then **WP-DOC** `docs/BENCH.md` (§2.17.9; the generated sections pasted from `make bench-report` unchanged) | `bench/results/p10/` holds every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (§6.5 passes; go to 10d) or 1 (go to 10o); `BENCH.md` §2 and §4–§8 equal `report.py`'s output. **The lead verifies** by running `make bench-check` and `make bench-report` on the files and diffing them against `check.txt` and `BENCH.md`, then commits the results and `BENCH.md` (also when the check fails: a miss is recorded) |
 | 10o | **Targeted optimisation** (only after a 10c whose check exits 1; Decisions 164, 168). The lead finds the cause of each miss with a read-only investigation (profiles, the emitted code); a short specification (a subsection §2.17.15 "Optimisation attempt K", with its own decisions and lead decisions) is agreed with the user before any code; the work packages it names, in the scope Decision 168 allows; `make test` and `make cross` pass; then the lead moves `bench/results/p10/` to `p10-attempt-K/` (L-pk) and 10c is repeated in full | the agreed changes are built and `make test` and `make cross` pass; 10c's done criteria hold for the new measurement |
 | 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md` (its version sentence and the results table of Decision 169 (a), from `report.py --readme`), `sea/CLAUDE.md` (status and the version line); the lead: §0, §1.2's versions paragraph, §2.2's `sea --version` text, row 10's status | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp). **Phase 10 is complete and Sea v1 is done** (§1.2) |
@@ -11828,6 +11944,64 @@ Readings taken because one answer is clearly right, agreed by the user with the 
 * **L-qa** (fixed program texts) The three Sea programs are written verbatim in §2.17.6, so their
   input change, check computation and output format are part of the agreed text; a text the
   compiler rejects is corrected in the document with the lead, never silently in `bench/`.
+
+Added in 10b (2026-11-04): the readings the 10b tools took where the agreed text left a detail
+open, written into §2.17 where it says "as built in 10b"; the lead confirms them with the 10b
+verification before committing:
+
+* **L-qb** (the machine line's baseline) `check.py` prints the distinct models and CPUs of the
+  MATLAB files joined by `/`, so a mismatch inside the baseline itself is visible on the line
+  instead of being hidden behind one file's values (§2.17.8).
+* **L-qc** (reading a load average) The 1-minute load is the first number of the recorded field,
+  so the record's exact spacing and separators never make the check fail (§2.17.8).
+* **L-qd** (report headings) `report.py` prints BENCH.md's section numbers and titles with `###`
+  subsections, so 10c pastes the output unchanged (§2.17.9).
+* **L-qe** (micro precision) The micro tables print times to 3 decimals and rates as `%.2f`, the
+  formats of every other generated table (§2.17.9).
+* **L-qf** (a bare README table) `report.py --readme` prints no heading, so the README keeps its
+  own heading levels (§2.17.9).
+* **L-qg** (micro variants) The micro record's `variants` is `none`: the micro-benchmarks call no
+  kernel, and every record keeps the same fields (§2.17.7).
+* **L-qh** (micro loads) The micro record writes the loads as the other records do, three numbers
+  separated by single spaces (§2.17.7).
+* **L-qi** (micro `--out`) A relative `--out` is taken from the Sea repository, as `BENCH_OUT` is,
+  so `make` and a direct call write to the same directory (§2.17.7).
+* **L-qj** (micro rules in final mode) Final mode forces §5.9's 1.0 s and 5 repetitions whatever
+  the environment holds, so an exported quick setting can never shorten a final measurement
+  (§2.17.7).
+* **L-qk** (the micro cross stamp) `micro.sh --current --cross` builds and measures in one call, so
+  it compares the stamp taken before the remote run with the one taken after it instead of a
+  `stamp.txt` from an earlier `build` (§2.17.3, C1).
+* **L-ql** (marker placement) The attempt marker is made after the checks that need no
+  measurement and just before the first step that measures or could leave a partial result: for
+  workloads `--cross` after the bundle is packed, for micro `--cross` before the compile (§2.17.3,
+  C2).
+* **L-qm** (nice in quick mode) Nice 0 is required in final mode only; the nice value is recorded
+  in both modes, so a quick trial may run niced without blocking development (§2.17.3).
+* **L-qn** (check order) The output-file, session and mode checks run before the preconditions,
+  so a mistaken invocation is refused before anything is built or measured (§2.17.4).
+* **L-qo** (build without a session) `workloads.sh build` needs no session: it depends only on the
+  trees, which its stamp records (§2.17.4).
+* **L-qp** (`ports.txt`) The build records its resolved ports directory, and `measure` refuses
+  binaries built from another one, so an injected `PORTS` can never be measured as the committed
+  ports (§2.17.4).
+* **L-qq** (the mirror refusal) `workloads.sh` and `numpy.sh` also refuse a final-mode run into a
+  quick session's directory, so a final measurement is never mixed with quick records; C3 itself
+  requires only the quick-into-final refusal, and `kernels.sh` and `micro.sh` do not add the
+  mirror (§2.17.3, C3).
+* **L-qr** (the OpenBLAS header) `kernels.sh --cross` probes the include directory with
+  `pkg-config` and then the Debian/Ubuntu paths, and accepts a directory only when the vendor
+  harness's `config` line confirms `openblas_get_config`, so a wrong header is never linked
+  silently (§2.17.6).
+* **L-qs** (minimum of three) The reference time is the minimum of three validated runs, the
+  least disturbed estimate of one call's cost (§2.17.6).
+* **L-qt** (the reference batch) The kernel calibration times a batch of b ≥ 2 calls, growing ×4
+  until it lasts 10 µs, instead of one call, because one call is below the macOS clock's tick and
+  carries the first-call cost; the guard then allows a factor of 2 against that reference
+  (§2.17.6).
+* **L-qu** (starting the final run) The final run is started in the foreground or through
+  `/bin/sh -c '… &'`, because zsh's `BG_NICE` gives a background job nice 5 and final mode
+  refuses it (§2.17.3).
 
 #### 2.17.14 Sections amended with the agreement
 
@@ -20850,7 +21024,7 @@ against hand-written goldens (stage.sh). Each starts from its specification text
 | W8c | **MATLAB reference** (after W8b; Decisions 152, 156, 157, 159). **WP-MATLAB** `workloads/w8_ev_can.m` (§2.16.8, written from this text, never from the simulator's code); **WP-RULES** `workloads/reference_py/compare.py` (`RULES["w8_ev_can"]` of §2.16.8), `workloads/run_all.m` (`w8_ev_can` in its workload lists, as `w7_drivetrain` is), `workloads/README.md` (W8's row, its feature-matrix column, its run commands and its separate baseline); with Decision 159 (a) **WP-NUMPY** `workloads/reference_py/w8_ev_can.py` and `run_all.py`'s list (by an agent that did not write `w8_ev_can.m`), run to write `reference/w8_ev_can.py.json`; then the hand-over to the user, who runs §2.16.8's two `run_all` calls and commits `reference/w8_ev_can.json`, `reference/w8_ev_can.txt` and `reference/baseline_timings_matlab_w8_ev_can.json` | the three MATLAB files are committed and §1.2 records W8's timing table; `compare.py` (NumPy mode) reports every W8 key `ok` (with Decision 159 (a)); `compare.py --self-test` passes; `make test` passes unchanged | **Done** (2026-11-04). Files: `workloads/w8_ev_can.m` (659 lines), `workloads/reference_py/w8_ev_can.py` (531), `workloads/reference_py/compare.py` (+31: `RULES["w8_ev_can"]`, 55 keys), `run_all.m`, `run_all.py`, `workloads/README.md`. Decision 161 (the traces retuned, the log regenerated, independently re-simulated byte for byte); lead decisions L-oj–L-on. The user ran MATLAB on 2026-11-04 (R2026a Update 5, Apple M2 Pro, 10 threads, 5 repetitions): total first 1.195 s, median 0.638 s, best 0.626 s; compute first 1.114 s, median 0.629 s, best 0.617 s (§1.2); the three MATLAB files and the figure `workloads/output/w8_ev_can.png` were written. The NumPy cross-check reports every W8 key `ok` (max abs diff 0 on every float key, bit-identical), "ALL COMPARED KEYS PASS", and `compare.py --self-test` passes. `make test` (rt 305, stage 1 354, shape 8, fusion 2, protocol 56, programs 2 536, plots 34, accept 2 + 6, lib_check 366, check_data 114, math 122) and `make cross` (1 340 cases packed, 0 failed to compile; default variant 1 053/0, `sse2` 1 053/0, once-only 285/0; host 2 391 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed) pass. Next W8d. |
 | W8d | **Port and acceptance** (after W8c; Decisions 157, 158). **WP-PORT** `ports/w8_ev_can.sea` (with its `// fixture:` line; §2.16.9); **WP-TOKENS** `ports/w8_ev_can.tokens`; **WP-STRUCT** `ports/w8_ev_can.struct` (§2.16.8, by an author who does not write the port); **WP-ACCEPT** `tests/accept.sh` (fixtures and the amended run-directory rule) and `tests/cross_pack.sh` (fixtures into `NAME.files/`), each with its setup errors tested; the compile and compute times recorded in §6.3 | `tests/accept.sh` passes W1, W2, W3, W4, W5, W7 and W8 (every key of `reference/w8_ev_can.json`, the report equivalent, the structural check); the port run with `--log workloads/w8_ev_can/bench_serial.txt` exits 0 (its report recorded, not compared); `make cross` passes W8 under both variants, byte-identical to the Mac but for the `Compute time` line; `make test` and `make cross` pass; W8 is accepted | **Done** (2026-11-04; verified by the lead). Files: `ports/w8_ev_can.sea` (896 lines, with its `// fixture: workloads/w8_ev_can/w8_ev_can.log` line), `ports/w8_ev_can.tokens` (106), `ports/w8_ev_can.struct` (50; §2.16.8's text verbatim, by an author who did not write the port), `tests/accept.sh` (fixtures, the amended run-directory rule, every setup error exit 2, a `PORTS` variable), `tests/cross_pack.sh` (fixtures packed into `NAME.files/`); `cross_run.sh` is unchanged. The port: compile time 31.1 s, within the 120 s limit; compute time best of 3 0.150 s (MATLAB's best 0.617 s); all 55 keys pass `compare.py --candidate`, every float bit-identical (max abs diff 0); the report is EQUIVALENT under `compare_report.py` and byte-identical to `reference/w8_ev_can.txt` apart from the `Compute time` line; `plot_struct.py` PASS; `heap: 0 live objects`; the run with `--log workloads/w8_ev_can/bench_serial.txt` exits 0 (its report is recorded, not compared: 2 055 frames on `twai0`, 507 overlaps, as expected for handling times); no compiler or runtime defect found. Setup errors tested by hand with throwaway ports, each exit 2: a missing source, a directory as source, a malformed line, a `..` component, a repeated line, the same base name, the reserved names `NAME.json`, `NAME` and `output`; a program that changes its fixture fails ("the program changed fixture"), and so does one that leaves a stray file. Lead decisions L-oo–L-ov. The lead's runs: `sh tests/accept.sh -v w8` passed 1 (31.8 s); `make test` (rt 305, stage 1 354, shape 8, fusion 2, protocol 56, programs 2 536, plots 34, accept 2 + 7, lib_check 366, check_data 114, math 122) and `make cross` (1 341 cases packed, 0 failed to compile; default variant 1 054/0, `sse2` 1 054/0, once-only 285/0; host 2 393 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed) pass; W8 is byte-identical to the Mac apart from the `Compute time` line, its 3.6 MB log carried as `NAME.files/`. W8 is accepted on both targets; **W8 is complete**. Next phase 10. |
 | 10a | **Phase-10 specification** (documents only): §2.17 (scope, files and ownership, the common rules, the workload benchmark refining §6.5, the NumPy column, the Sea-level kernel benchmarks, the micro-benchmarks in phase 10, the pass check, the output formats, `make` targets and `docs/BENCH.md`, the final measurement, these rows, Decisions 162–172, lead decisions L-ow – L-qa); no code, test, contract file or result changes | `make check-contracts` passes; the user has agreed the text and decided Decisions 168–172; the amendments of §2.17.14 that come with the agreement are made. **Done** (2026-11-04): the specification revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed with the text; next 10b |
-| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py`; **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (the Sea programs verbatim from §2.17.6); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (`--current`, `--out`, `build`/`measure`); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile` (the `bench*` targets of §2.17.9, none in `make test`), `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | as §2.17.11's row 10b: `make bench-selftest` passes; the NumPy pin resolves to 2.5.4; quick trials on the Mac and the host into a scratch directory exit 0 and write every file of §2.17.9 but `check.txt`, after which `make bench-check` on them exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses existing outputs; failures injected through `PORTS` and `KERNELS` stop the drivers with exit 1 and no file written; `expect`'s lines equal every implementation's for `gemm` and `axpby`, and `solve`'s `E` ≤ 10⁻⁹, at every size and both parities on both platforms; `micro.sh`'s 5d behaviour unchanged; nothing written under `bench/results/`; `make test` and `make cross` pass unchanged |
+| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py`; **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (the Sea programs verbatim from §2.17.6); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (`--current`, `--out`, `build`/`measure`); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile` (the `bench*` targets of §2.17.9, none in `make test`), `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | as §2.17.11's row 10b: `make bench-selftest` passes; the NumPy pin resolves to 2.5.4; quick trials on the Mac and the host into a scratch directory exit 0 and write every file of §2.17.9 but `check.txt`, after which `make bench-check` on them exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses existing outputs; failures injected through `PORTS` and `KERNELS` stop the drivers with exit 1 and no file written; `expect`'s lines equal every implementation's for `gemm` and `axpby`, and `solve`'s `E` ≤ 10⁻⁹, at every size and both parities on both platforms; `micro.sh`'s 5d behaviour unchanged; nothing written under `bench/results/`; `make test` and `make cross` pass unchanged. **Done** (2026-11-04) except the lead's verification, which the lead confirms before committing: the tools built and reviewed, with the review fixes C1–C6 (the build stamp `bench/stamp.sh`, the attempt markers `DIR/.attempt-<tool>-<target>` that `check.py` requires, §2.17.3), the kernel guard's reference batch (§2.17.6) and lead decisions L-qb – L-qu (§2.17.13) |
 | 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent (`make bench`, then `make bench-cross`); **WP-DOC** `docs/BENCH.md` (§2.17.9, its §2 and §4–§8 from `make bench-report` unchanged); the lead commits `bench/results/p10/` and `BENCH.md` | every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (next 10d) or 1 (next 10o, the miss committed and recorded); the lead's own `make bench-check` and `make bench-report` reproduce `check.txt` and `BENCH.md` §2 and §4–§8 |
 | 10o | **Targeted optimisation** (conditional: only after a 10c whose check exits 1; Decisions 164, 168). A read-only investigation of each miss; a specification §2.17.15 "Optimisation attempt K" agreed with the user before code, in the scope of Decision 168; its work packages; `make test` and `make cross`; `bench/results/p10/` moved to `p10-attempt-K/`; then 10c in full again | the agreed changes are built, `make test` and `make cross` pass, and 10c's done criteria hold for the new measurement |
 | 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md`, `sea/CLAUDE.md`'s status and version line; the lead: §0, §1.2, §2.2, row 10 | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp); **phase 10 is complete and Sea v1 is done** (§1.2) |
@@ -24785,3 +24959,61 @@ after one independent review, and agreed by the user with the text and Decisions
 * **L-qa** (fixed program texts) The three Sea programs are written verbatim in §2.17.6, so their
   input change, check computation and output format are part of the agreed text; a text the
   compiler rejects is corrected in the document with the lead, never silently in `bench/`.
+
+Added in 10b (2026-11-04): the readings the 10b tools took where the agreed text left a detail
+open, written into §2.17 where it says "as built in 10b"; the lead confirms them with the 10b
+verification before committing:
+
+* **L-qb** (the machine line's baseline) `check.py` prints the distinct models and CPUs of the
+  MATLAB files joined by `/`, so a mismatch inside the baseline itself is visible on the line
+  instead of being hidden behind one file's values (§2.17.8).
+* **L-qc** (reading a load average) The 1-minute load is the first number of the recorded field,
+  so the record's exact spacing and separators never make the check fail (§2.17.8).
+* **L-qd** (report headings) `report.py` prints BENCH.md's section numbers and titles with `###`
+  subsections, so 10c pastes the output unchanged (§2.17.9).
+* **L-qe** (micro precision) The micro tables print times to 3 decimals and rates as `%.2f`, the
+  formats of every other generated table (§2.17.9).
+* **L-qf** (a bare README table) `report.py --readme` prints no heading, so the README keeps its
+  own heading levels (§2.17.9).
+* **L-qg** (micro variants) The micro record's `variants` is `none`: the micro-benchmarks call no
+  kernel, and every record keeps the same fields (§2.17.7).
+* **L-qh** (micro loads) The micro record writes the loads as the other records do, three numbers
+  separated by single spaces (§2.17.7).
+* **L-qi** (micro `--out`) A relative `--out` is taken from the Sea repository, as `BENCH_OUT` is,
+  so `make` and a direct call write to the same directory (§2.17.7).
+* **L-qj** (micro rules in final mode) Final mode forces §5.9's 1.0 s and 5 repetitions whatever
+  the environment holds, so an exported quick setting can never shorten a final measurement
+  (§2.17.7).
+* **L-qk** (the micro cross stamp) `micro.sh --current --cross` builds and measures in one call, so
+  it compares the stamp taken before the remote run with the one taken after it instead of a
+  `stamp.txt` from an earlier `build` (§2.17.3, C1).
+* **L-ql** (marker placement) The attempt marker is made after the checks that need no
+  measurement and just before the first step that measures or could leave a partial result: for
+  workloads `--cross` after the bundle is packed, for micro `--cross` before the compile (§2.17.3,
+  C2).
+* **L-qm** (nice in quick mode) Nice 0 is required in final mode only; the nice value is recorded
+  in both modes, so a quick trial may run niced without blocking development (§2.17.3).
+* **L-qn** (check order) The output-file, session and mode checks run before the preconditions,
+  so a mistaken invocation is refused before anything is built or measured (§2.17.4).
+* **L-qo** (build without a session) `workloads.sh build` needs no session: it depends only on the
+  trees, which its stamp records (§2.17.4).
+* **L-qp** (`ports.txt`) The build records its resolved ports directory, and `measure` refuses
+  binaries built from another one, so an injected `PORTS` can never be measured as the committed
+  ports (§2.17.4).
+* **L-qq** (the mirror refusal) `workloads.sh` and `numpy.sh` also refuse a final-mode run into a
+  quick session's directory, so a final measurement is never mixed with quick records; C3 itself
+  requires only the quick-into-final refusal, and `kernels.sh` and `micro.sh` do not add the
+  mirror (§2.17.3, C3).
+* **L-qr** (the OpenBLAS header) `kernels.sh --cross` probes the include directory with
+  `pkg-config` and then the Debian/Ubuntu paths, and accepts a directory only when the vendor
+  harness's `config` line confirms `openblas_get_config`, so a wrong header is never linked
+  silently (§2.17.6).
+* **L-qs** (minimum of three) The reference time is the minimum of three validated runs, the
+  least disturbed estimate of one call's cost (§2.17.6).
+* **L-qt** (the reference batch) The kernel calibration times a batch of b ≥ 2 calls, growing ×4
+  until it lasts 10 µs, instead of one call, because one call is below the macOS clock's tick and
+  carries the first-call cost; the guard then allows a factor of 2 against that reference
+  (§2.17.6).
+* **L-qu** (starting the final run) The final run is started in the foreground or through
+  `/bin/sh -c '… &'`, because zsh's `BG_NICE` gives a background job nice 5 and final mode
+  refuses it (§2.17.3).

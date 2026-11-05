@@ -14,12 +14,38 @@
 # `target cpu bench compiler reps median_s min_s max_s unit rate`); the machine record on stderr.
 # Environment: BENCH_MIN_REPS (5), BENCH_MIN_SECONDS (1.0).
 # Exit status: 0 all rows written, 1 a validation failure, 2 setup error.
+#
+# Phase 10 (docs/DESIGN.md 2.17.7), all optional; unset, the behaviour above is unchanged:
+#   MICRO_COMPILERS   the compilers measured, in order, from p5 p4 c (default "p5 p4 c"); DIR need
+#                     hold only those executables
+#   MICRO_SEA_LABEL   the `compiler` column of the p5 rows (default sea-phase5)
+#   MICRO_RECORD      a file to write the machine record of 2.17.3 into (key<TAB>value lines), at
+#                     the end of a run in which every row was written. It needs MICRO_MODE (final
+#                     or quick), MICRO_SESSION, MICRO_DATE, MICRO_SEA_COMMIT, MICRO_SEA_DIRTY,
+#                     MICRO_BAYSICK_COMMIT, MICRO_BAYSICK_DIRTY and MICRO_SETTLE_WAITED (seconds,
+#                     or - when no start condition ran), all set by bench/micro.sh --current; the
+#                     rest (nice, power, loads before the first and after the last measured process,
+#                     compiler, ...) is read here.
 
 TARGET=${1:-}; DIR=${2:-}
 [ -n "$TARGET" ] && [ -d "$DIR" ] || { echo "run.sh: usage: sh run.sh TARGET DIR" >&2; exit 2; }
 MINREPS=${BENCH_MIN_REPS:-5}
 MINSECS=${BENCH_MIN_SECONDS:-1.0}
 MAXREPS=200
+COMPILERS=${MICRO_COMPILERS:-p5 p4 c}
+SEALABEL=${MICRO_SEA_LABEL:-sea-phase5}
+RECORD=${MICRO_RECORD:-}
+# the compiler list: only p5, p4 and c, at least one
+[ -n "$COMPILERS" ] || { echo "run.sh: MICRO_COMPILERS is empty" >&2; exit 2; }
+for comp in $COMPILERS; do
+    case $comp in p5 | p4 | c) ;; *) echo "run.sh: MICRO_COMPILERS: unknown compiler '$comp'" >&2; exit 2 ;; esac
+done
+if [ -n "$RECORD" ]; then
+    for v in MICRO_MODE MICRO_SESSION MICRO_DATE MICRO_SEA_COMMIT MICRO_SEA_DIRTY MICRO_BAYSICK_COMMIT \
+        MICRO_BAYSICK_DIRTY MICRO_SETTLE_WAITED; do
+        eval "[ -n \"\${$v:-}\" ]" || { echo "run.sh: MICRO_RECORD needs $v" >&2; exit 2; }
+    done
+fi
 T=$(mktemp -d "${TMPDIR:-/tmp}/sea-micro.XXXXXX") || exit 2
 trap 'rm -rf "$T"' EXIT
 trap 'rm -rf "$T"; exit 2' HUP INT TERM PIPE
@@ -63,11 +89,13 @@ check() {
 }
 
 STATUS=0
+# the three load averages just before the first measured process (the record of 2.17.3)
+LOAD_BEFORE=$(uptime | sed 's/.*load averages*: *//; s/,/ /g' | tr -s ' ')
 for bench in lcg sor; do
-    for comp in p5 p4 c; do
+    for comp in $COMPILERS; do
         exe=$DIR/$bench.$comp
         [ -x "$exe" ] || { echo "run.sh: $exe missing" >&2; exit 2; }
-        case $comp in p5) cname=sea-phase5 ;; p4) cname=sea-phase4 ;; c) cname=c-O2 ;; esac
+        case $comp in p5) cname=$SEALABEL ;; p4) cname=sea-phase4 ;; c) cname=c-O2 ;; esac
         # validation + warm-up: the first run, untimed
         "$exe" >"$T/out" 2>"$T/err" </dev/null || { echo "run.sh: $bench.$comp failed: $(head -2 "$T/err")" >&2; exit 1; }
         if ! why=$(check "$bench" "$T/out"); then
@@ -104,4 +132,43 @@ for bench in lcg sor; do
             }'
     done
 done
+
+# ---- the machine record of 2.17.3 (MICRO_RECORD only); every row was written when STATUS is 0
+if [ -n "$RECORD" ] && [ $STATUS -eq 0 ]; then
+    LOAD_AFTER=$(uptime | sed 's/.*load averages*: *//; s/,/ /g' | tr -s ' ')
+    NICE=$(ps -o nice= -p $$ | tr -d ' ')
+    if [ "$(uname -s)" = Darwin ]; then
+        MODEL=$(sysctl -n hw.model)
+        if pmset -g batt | head -1 | grep 'AC Power' >/dev/null; then POWER=ac; else POWER=battery; fi
+        LOWP=$(pmset -g | awk '$1 == "lowpowermode" { print $2 }')
+        LOWP=${LOWP:-0}
+        TOOLS=$(xcrun cc --version 2>&1 | head -1)
+    else
+        MODEL=$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null) || MODEL=-
+        [ -n "$MODEL" ] || MODEL=-
+        POWER=-; LOWP=-
+        TOOLS=$(gcc --version 2>&1 | head -1)
+    fi
+    {
+        printf 'target\t%s\n' "$TARGET"
+        printf 'mode\t%s\n' "$MICRO_MODE"
+        printf 'session\t%s\n' "$MICRO_SESSION"
+        printf 'date\t%s\n' "$MICRO_DATE"
+        printf 'machine_model\t%s\n' "$MODEL"
+        printf 'cpu\t%s\n' "$CPU"
+        printf 'os\t%s\n' "$OSV"
+        printf 'sea_commit\t%s\n' "$MICRO_SEA_COMMIT"
+        printf 'sea_dirty\t%s\n' "$MICRO_SEA_DIRTY"
+        printf 'baysick_commit\t%s\n' "$MICRO_BAYSICK_COMMIT"
+        printf 'baysick_dirty\t%s\n' "$MICRO_BAYSICK_DIRTY"
+        printf 'nice\t%s\n' "$NICE"
+        printf 'power\t%s\n' "$POWER"
+        printf 'lowpower\t%s\n' "$LOWP"
+        printf 'variants\tnone\n'
+        printf 'tools\t%s\n' "$TOOLS"
+        printf 'settle_waited_s\t%s\n' "$MICRO_SETTLE_WAITED"
+        printf 'load_before\t%s\n' "$LOAD_BEFORE"
+        printf 'load_after\t%s\n' "$LOAD_AFTER"
+    } >"$RECORD" || { echo "run.sh: cannot write $RECORD" >&2; exit 2; }
+fi
 exit $STATUS

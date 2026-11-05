@@ -1,0 +1,29 @@
+// bench/kernels/axpby.sea -- Sea-level kernel benchmark: the fused element-wise w = 0.75 * x - 1.25 * y (docs/DESIGN.md 2.17.6,
+// Decision 162). The program text below is fixed by the specification (L-pg, L-qa) and copied
+// verbatim from it; usage: axpby N BATCH. A measuring tool, never part of Sea.
+// axpby.sea
+let av = args()
+let n = parse_i64(av[0])
+let batch = parse_i64(av[1])
+var x = zeros(n)
+var y = zeros(n)
+for i in 0..n {
+    x[i] = f64(i % 2047 - 1023)
+    y[i] = f64(5 * i % 2039 - 1019)
+}
+let x0 = x[0]
+var w = 0.75 * x - 1.25 * y
+let t0 = now()
+for r in 1..=batch {
+    x[0] = x0 + f64(r % 2)
+    w = 0.75 * x - 1.25 * y
+}
+let secs = now() - t0
+var s1 = 0.0
+var s2 = 0.0
+for i in 0..n {
+    s1 = s1 + w[i]
+    s2 = s2 + w[i] * f64(i % 17 - 8)
+}
+printf("check %.2f %.2f\n", s1, s2)
+if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }

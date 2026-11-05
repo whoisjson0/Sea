@@ -338,6 +338,25 @@ Versions 0.y.z are alpha; 1.0.0 = v1
   floating-point checks; `make w8-log-update` overwrites those three files (only with the user's
   agreement: a new log needs a new MATLAB run); `make w8-sketch` is the `arduino-cli compile`
   check for `esp32:esp32:esp32` (no warning in the sketch or `w8_can_msgs.h`; no upload).
+- Benchmarks (DESIGN.md §2.17; Mac; each target depends on `all`; none is part of `make test`,
+  `make cross` or any other target): `make bench` = `bench-session` (`bench/session.sh`),
+  `bench-build` (`bench/workloads.sh build`, `bench/kernels.sh build`, `bench/micro.sh --current
+  build`), `bench-workloads`, `bench-kernels`, `bench-micro`, `bench-numpy` (each `… measure`,
+  after the start condition `bench/settle.sh` in final mode), then `bench-check` (`bench/check.py`
+  into `$(BENCH_OUT)/check.txt`, the checker's exit status; skipped with `BENCH_QUICK=1`);
+  `make bench-cross` (`workloads.sh --cross`, `kernels.sh --cross`, `micro.sh --current --cross`
+  on the host into the same session; `BENCH_CROSS_ARGS='-H HOST'`), `make bench-report`
+  (`bench/report.py`, the Markdown of `docs/BENCH.md`), `make bench-selftest`
+  (`bench/spawn_test.sh` and `check.py --self-test`). Variables: `BENCH_OUT` (default
+  `bench/results/p10`; passed as `--out`), `BENCH_QUICK=1` (passes `--quick`: a smoke run whose
+  records say `mode quick`, refused by `check.py`). Final mode (no `--quick`) refuses an existing
+  result file, a non-empty session directory, a niced driver, battery or Low Power Mode, a dirty
+  Sea or Baysick tree (`bench/results` excluded), the `PORTS`/`KERNELS` overrides and a second
+  attempt of a tool in one session (`DIR/.attempt-<tool>-<target>`); every `measure`/`--cross`
+  refuses a stale build (`bench/stamp.sh` differs from `build/bench/<tool>/stamp.txt`), and a
+  quick run refuses a directory holding a final session; trial runs
+  go into a scratch `BENCH_OUT`, never `bench/results/`. Python tools via `uv` only; NumPy pinned
+  `numpy==2.5.4`.
 - Never set a bogus `SDKROOT`/`DEVELOPER_DIR` on the Mac. Python, if ever needed, via `uv` only.
 
 ## Repo layout (DESIGN.md §2.10)

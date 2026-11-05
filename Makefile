@@ -70,6 +70,27 @@
 #   make w8-sketch        arduino-cli compile of the sketch for esp32:esp32:esp32, no warning in it
 #                         (none of the w8-* targets is part of make test or make cross, L-nx)
 #
+# Benchmarks (DESIGN.md 2.17.9; Mac; each depends on all; none is part of make test, make cross or
+# any other target). BENCH_OUT is the results directory (default bench/results/p10, relative to
+# this repository; passed as --out), BENCH_QUICK=1 passes --quick (a smoke run whose records say
+# mode quick, which bench/check.py refuses), BENCH_CROSS_ARGS passes -H HOST to the --cross runs:
+#   make bench-session    sh bench/session.sh $(BENCH_OUT): the session id (2.17.3, L-ps)
+#   make bench-build      sh bench/workloads.sh build, sh bench/kernels.sh build,
+#                         sh bench/micro.sh --current build (no measurement)
+#   make bench-workloads  sh bench/workloads.sh measure (2.17.4)
+#   make bench-kernels    sh bench/kernels.sh measure (2.17.6)
+#   make bench-micro      sh bench/micro.sh --current measure (2.17.7)
+#   make bench-numpy      sh bench/numpy.sh measure (2.17.5)
+#   make bench-check      uv run bench/check.py $(BENCH_OUT) into $(BENCH_OUT)/check.txt, then the
+#                         file printed; the checker's exit status, and no check.txt after a setup
+#                         error (2.17.8)
+#   make bench            bench-session, bench-build, bench-workloads, bench-kernels, bench-micro,
+#                         bench-numpy (L-pl), then, in final mode only, bench-check
+#   make bench-cross      sh bench/workloads.sh --cross, sh bench/kernels.sh --cross,
+#                         sh bench/micro.sh --current --cross, into the session of $(BENCH_OUT)
+#   make bench-report     uv run bench/report.py $(BENCH_OUT): the Markdown of docs/BENCH.md
+#   make bench-selftest   sh bench/spawn_test.sh and uv run bench/check.py --self-test
+#
 # BAYSICK is the Baysick checkout (default: the parent repository, Sea being its submodule
 # at sea/); its build/baysick and build/libbaysickrt.a must exist for the passes (run make
 # there first). The include check works in a temporary directory and leaves no files behind.
@@ -115,7 +136,9 @@ BAYSICK_INC := $(wildcard $(BAYSICK)/include/runtime.inc $(BAYSICK)/include/limi
         test test-programs test-accept test-rt test-stage test-shape test-fusion test-protocol test-driver test-lib test-arith test-math test-la test-plots math-tables \
         check-data lines check-limits clean \
         check-includes check-contracts cross-includes cross cross-pack \
-        w8-sim w8-log w8-log-update w8-sketch
+        w8-sim w8-log w8-log-update w8-sketch \
+        bench bench-session bench-build bench-workloads bench-kernels bench-micro bench-numpy \
+        bench-check bench-cross bench-report bench-selftest
 .DEFAULT_GOAL := all
 
 all: install runtime tools passes
@@ -513,3 +536,88 @@ w8-sketch:
 	  echo "w8-sketch: warnings in the sketch" >&2; exit 1; \
 	fi; \
 	echo "w8-sketch: compiles, no warning in the sketch or w8_can_msgs.h"
+
+# ---- benchmarks (DESIGN.md 2.17.9) ----------------------------------------------------------------
+# Mac only; each target depends on all; none is part of make test, make cross or any other target.
+# BENCH_OUT (relative to this repository, the working directory of make) is passed as --out,
+# BENCH_QUICK=1 as --quick, BENCH_CROSS_ARGS (-H HOST) to the --cross runs. make bench runs the
+# steps in the order of L-pl and stops at the first failing one; with BENCH_QUICK=1 it ends after
+# bench-numpy (check.py refuses quick records), else it ends with bench-check.
+BENCH_OUT        ?= bench/results/p10
+BENCH_QUICK      ?=
+BENCH_CROSS_ARGS ?=
+BENCH_Q := $(if $(filter 1,$(BENCH_QUICK)),--quick,)
+
+define bench-session-cmd
+sh bench/session.sh "$(BENCH_OUT)" $(BENCH_Q)
+endef
+define bench-build-cmd
+sh bench/workloads.sh build --out "$(BENCH_OUT)" $(BENCH_Q)
+sh bench/kernels.sh build --out "$(BENCH_OUT)" $(BENCH_Q)
+sh bench/micro.sh --current build --out "$(BENCH_OUT)" $(BENCH_Q)
+endef
+define bench-workloads-cmd
+sh bench/workloads.sh measure --out "$(BENCH_OUT)" $(BENCH_Q)
+endef
+define bench-kernels-cmd
+sh bench/kernels.sh measure --out "$(BENCH_OUT)" $(BENCH_Q)
+endef
+define bench-micro-cmd
+sh bench/micro.sh --current measure --out "$(BENCH_OUT)" $(BENCH_Q)
+endef
+define bench-numpy-cmd
+sh bench/numpy.sh measure --out "$(BENCH_OUT)" $(BENCH_Q)
+endef
+# The checker's status is kept without a pipe (POSIX sh has no pipefail): check.txt exists only
+# for a verdict (0 or 1); a setup error (2) leaves none.
+define bench-check-cmd
+@[ -d "$(BENCH_OUT)" ] || { echo "bench-check: '$(BENCH_OUT)' is not a directory" >&2; exit 2; }; \
+st=0; uv run --no-project python -I bench/check.py "$(BENCH_OUT)" >"$(BENCH_OUT)/check.txt" || st=$$?; \
+if [ $$st -eq 2 ]; then rm -f "$(BENCH_OUT)/check.txt"; else cat "$(BENCH_OUT)/check.txt"; fi; exit $$st
+endef
+
+bench-session: all
+	$(bench-session-cmd)
+
+bench-build: all
+	$(bench-build-cmd)
+
+bench-workloads: all
+	$(bench-workloads-cmd)
+
+bench-kernels: all
+	$(bench-kernels-cmd)
+
+bench-micro: all
+	$(bench-micro-cmd)
+
+bench-numpy: all
+	$(bench-numpy-cmd)
+
+bench-check: all
+	$(bench-check-cmd)
+
+bench: all
+	$(bench-session-cmd)
+	$(bench-build-cmd)
+	$(bench-workloads-cmd)
+	$(bench-kernels-cmd)
+	$(bench-micro-cmd)
+	$(bench-numpy-cmd)
+ifeq ($(BENCH_Q),)
+	$(bench-check-cmd)
+else
+	@echo "bench: quick mode: every step done; no pass check (check.py refuses quick records)"
+endif
+
+bench-cross: all
+	sh bench/workloads.sh --cross --out "$(BENCH_OUT)" $(BENCH_Q) $(BENCH_CROSS_ARGS)
+	sh bench/kernels.sh --cross --out "$(BENCH_OUT)" $(BENCH_Q) $(BENCH_CROSS_ARGS)
+	sh bench/micro.sh --current --cross --out "$(BENCH_OUT)" $(BENCH_Q) $(BENCH_CROSS_ARGS)
+
+bench-report: all
+	uv run --no-project python -I bench/report.py "$(BENCH_OUT)"
+
+bench-selftest: all
+	sh bench/spawn_test.sh
+	uv run --no-project python -I bench/check.py --self-test

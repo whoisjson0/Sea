@@ -1,0 +1,33 @@
+// bench/kernels/gemm.sea -- Sea-level kernel benchmark: the matrix product c = a @ b (docs/DESIGN.md 2.17.6,
+// Decision 162). The program text below is fixed by the specification (L-pg, L-qa) and copied
+// verbatim from it; usage: gemm N BATCH. A measuring tool, never part of Sea.
+// gemm.sea
+let av = args()
+let n = parse_i64(av[0])
+let batch = parse_i64(av[1])
+var a = zeros(n, n)
+var b = zeros(n, n)
+for i in 0..n {
+    for j in 0..n {
+        a[i, j] = f64((3 * i + 5 * j) % 17 - 8)
+        b[i, j] = f64((7 * i + 2 * j) % 13 - 6)
+    }
+}
+let a00 = a[0, 0]
+var c = a @ b
+let t0 = now()
+for r in 1..=batch {
+    a[0, 0] = a00 + f64(r % 2)
+    c = a @ b
+}
+let secs = now() - t0
+var s1 = 0.0
+var s2 = 0.0
+for i in 0..n {
+    for j in 0..n {
+        s1 = s1 + c[i, j]
+        s2 = s2 + c[i, j] * f64((7 * i + 13 * j) % 17 - 8)
+    }
+}
+printf("check %.0f %.0f\n", s1, s2)
+if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }

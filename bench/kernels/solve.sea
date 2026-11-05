@@ -1,0 +1,36 @@
+// bench/kernels/solve.sea -- Sea-level kernel benchmark: the LU solve x = solve(a, b) (docs/DESIGN.md 2.17.6,
+// Decision 162). The program text below is fixed by the specification (L-pg, L-qa) and copied
+// verbatim from it; usage: solve N BATCH. A measuring tool, never part of Sea.
+// solve.sea
+let av = args()
+let n = parse_i64(av[0])
+let batch = parse_i64(av[1])
+var a = zeros(n, n)
+var xt = zeros(n)
+for i in 0..n {
+    for j in 0..n {
+        a[i, j] = f64((3 * i + 5 * j) % 17 - 8)
+    }
+    a[i, i] = a[i, i] + f64(9 * n)
+    xt[i] = f64(i % 9 - 4)
+}
+let b0 = a @ xt
+var b = b0
+var x = solve(a, b)
+let t0 = now()
+for r in 1..=batch {
+    for i in 0..n {
+        b[i] = b0[i] + f64(r % 2) * a[i, 0]
+    }
+    x = solve(a, b)
+}
+let secs = now() - t0
+var e = 0.0
+for i in 0..n {
+    var want = xt[i]
+    if i == 0 { want = want + f64(batch % 2) }
+    let d = abs(x[i] - want)
+    if d > e { e = d }
+}
+printf("check maxerr %.3e\n", e)
+if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }
