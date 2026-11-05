@@ -569,7 +569,7 @@ guarantee), §9.2 (`format` in the out-of-memory row), §10.10 (`make_dir` creat
 above 7 000 built lines at the upper end of phase 6 even after the compaction its `SUB`/`CALL` style
 allows, but within both 9 000 conditions, so Decision 82 gates it as Decision 50 gates
 `sealower`; `sealoop` passes 9 000 at the stress view only with phase 7's fusion, which the gate
-after phase 6 decides (Decision 88), or the measurement after 6c earlier. Sub-phase 6b is done (2026-10-28; sizes in §2.7, "Measured after 6b"; the readings its integration fixed are the lead decisions L-cy–L-dh, agreed 2026-10-28). Sub-phase 6c is done (2026-10-28; sizes in §2.7, "Measured after 6c"; lead decisions L-di–L-dq, agreed 2026-10-28); the measurement after 6c triggers no relief, so 6b-0 is not run (Decisions 82 and 87). Sub-phase 6d is done (2026-10-28; sizes in §2.7, "Measured after 6d"; lead decisions L-dr–L-ec, agreed 2026-10-28). Sub-phase 6e is done (2026-10-29; the ports W1 and W5 accepted, §6.3 "Measured at 6e"; lead decisions L-ed–L-eg, agreed 2026-10-29), and the gate after phase 6 passes every program with no relief, phase 7's fusion staying in `sealoop` (§2.7, "Measured at the gate after phase 6"): phase 6 is complete. Next: phase 7 (fusion and SIMD, §8 row 7), starting with its specification: sub-phase 7a is done (2026-10-29, revised after two reviews and agreed: §2.12, Decisions 94–113 each decided as option (a), lead decisions L-eh–L-fl agreed with the text). Sub-phase 7b is done (2026-10-29; sizes in §2.7, "Measured after 7b"; lead decisions L-fm–L-fu). Sub-phase 7d is done (2026-10-29, in parallel with 7c; §2.12.8). Sub-phase 7c is done (2026-10-30; §2.12.3 and §2.12.4 amended with its readings; sizes in §2.7, "Measured after 7c", which calls for no relief under Decision 112; lead decisions L-fv–L-gj, of which L-fv–L-fy were decided by the user on 2026-10-29 and 2026-10-30). Sub-phase 7e is done (2026-10-31; sizes in §2.7, "Measured after 7e"; lead decisions L-gk–L-hp, of which L-gk is Decision 116's; Decisions 115–117 were decided by the user). Sub-phase 7f is done (2026-11-01; the W4 port accepted, §6.3 "Measured at 7f"; sizes in §2.7, "Measured after 7f", and the gate after phase 7 passes every program with no relief, "Measured at the gate after phase 7"; lead decisions L-hq–L-ib; Decisions 118 and 119 were decided by the user). Sub-phase 7g is done (2026-11-01; the W7 port accepted, §6.3 "Measured at 7g"; port-only by Decision 120, decided by the user; lead decisions L-ic–L-ii): the user added W7 (`w7_drivetrain`) to the acceptance set on 2026-10-29 (Decision 114), and phase 7 is complete. Phase 8 (linear algebra, §8 row 8) has started: sub-phase 8a is done (2026-11-01, revised after one independent review and agreed: §2.13, Decisions 121–129 each decided as option (a), lead decisions L-ij–L-jf agreed with the text). Sub-phase 8b is done (2026-11-01; the contract changes and `@`; sizes in §2.7, "Measured after 8b"; lead decisions L-jg–L-jl), and WP-BSK-OVERLAP, the precondition of 8c, has landed in the Baysick repo (commit 8c8dee3). Sub-phase 8c is done (2026-11-01; factorizations, solves, `rcond`, `eig_sym` and the handles; sizes in §2.7, "Measured after 8c", which calls for no relief; Decision 130, amending `rcond`'s overflow rule, decided by the user; lead decisions L-jm–L-jv). Sub-phase 8d is done (2026-11-02; the ports W2 and W3 accepted, port-only with no compiler or runtime defect found, §6.3 "Measured at 8d"; the cross rule of Decision 127 with `tests/cross_accept.sh`; the gate after phase 8 passes every program with no relief, §2.7 "Measured at the gate after phase 8"; lead decisions L-jw–L-kd), and phase 8 is complete. Phase 9 (plotting, §8 row 9) has started: sub-phase 9a is done (2026-11-02, revised after one independent review and agreed: §2.14, Decisions 131–142 each as the recommended option (133 (b), the others (a)), lead decisions L-ke–L-lf agreed with the text). Sub-phase 9b is done (2026-11-03; the contract, the front end and the runtime core: the 21 plotting calls through every pass, `rt_plot.s` in both runtimes, the plot tests and the cross case kind `plots/`; sizes in §2.7, "Measured after 9b", which calls for no relief; lead decisions L-lg–L-lq). Sub-phase 9c is done (2026-11-03; bars, contours, images and PNG: `rt_plot2.s` and `rt_png.s` in both runtimes; runtime sizes in §2.7, "Runtime sizes at 9c"; lead decisions L-lr–L-lz). Sub-phase 9d is done (2026-11-03; the six ports' figures with their `.struct` files, accepted by `tests/accept.sh` and the cross run, W2's SVG by Decision 138; §6.3 "Measured at 9d"; §2.7 "Measured at the gate after phase 9", which passes every program with no relief; lead decisions L-ma–L-md): phase 9 is complete. Phase L (the text library the user agreed on 2026-11-02, §8 row L) has started: sub-phase La is done (2026-11-03, revised after one independent review and agreed: §2.15, Decisions 143–149 each decided as option (a), Decision 150 the user's four rulings, lead decisions L-me–L-mx agreed with the text). Sub-phase Lb is done (2026-11-04; the contract, the front end of the twelve names, the bitwise functions and `%x`/`%X` with their tests, the rt `NAME.files/` sidecar; sizes in §2.7, "Measured after Lb", which calls for no relief; lead decision L-my). Sub-phase Lc is done (2026-11-04; the text runtime on both targets, `rt_text.s` and `READ_LINES`, with its tests; runtime sizes in §2.7, "Runtime sizes at Lc"; the gate after phase L passes every program with no relief, §2.7 "Measured at the gate after phase L"; lead decisions L-mz–L-ne): phase L is complete. Sub-phase W8a, the specification of the W8 workload (an ESP32 controller sketch simulated on the host, writing a CAN log that a Sea port reads, decodes and plots), is done (2026-11-04, revised after one independent review and agreed: §2.16, Decisions 151–160 each decided by the user as option (a), lead decisions L-nf–L-ny agreed with the text). W8c done (2026-11-04); next W8d (the Sea port and its acceptance).
+after phase 6 decides (Decision 88), or the measurement after 6c earlier. Sub-phase 6b is done (2026-10-28; sizes in §2.7, "Measured after 6b"; the readings its integration fixed are the lead decisions L-cy–L-dh, agreed 2026-10-28). Sub-phase 6c is done (2026-10-28; sizes in §2.7, "Measured after 6c"; lead decisions L-di–L-dq, agreed 2026-10-28); the measurement after 6c triggers no relief, so 6b-0 is not run (Decisions 82 and 87). Sub-phase 6d is done (2026-10-28; sizes in §2.7, "Measured after 6d"; lead decisions L-dr–L-ec, agreed 2026-10-28). Sub-phase 6e is done (2026-10-29; the ports W1 and W5 accepted, §6.3 "Measured at 6e"; lead decisions L-ed–L-eg, agreed 2026-10-29), and the gate after phase 6 passes every program with no relief, phase 7's fusion staying in `sealoop` (§2.7, "Measured at the gate after phase 6"): phase 6 is complete. Next: phase 7 (fusion and SIMD, §8 row 7), starting with its specification: sub-phase 7a is done (2026-10-29, revised after two reviews and agreed: §2.12, Decisions 94–113 each decided as option (a), lead decisions L-eh–L-fl agreed with the text). Sub-phase 7b is done (2026-10-29; sizes in §2.7, "Measured after 7b"; lead decisions L-fm–L-fu). Sub-phase 7d is done (2026-10-29, in parallel with 7c; §2.12.8). Sub-phase 7c is done (2026-10-30; §2.12.3 and §2.12.4 amended with its readings; sizes in §2.7, "Measured after 7c", which calls for no relief under Decision 112; lead decisions L-fv–L-gj, of which L-fv–L-fy were decided by the user on 2026-10-29 and 2026-10-30). Sub-phase 7e is done (2026-10-31; sizes in §2.7, "Measured after 7e"; lead decisions L-gk–L-hp, of which L-gk is Decision 116's; Decisions 115–117 were decided by the user). Sub-phase 7f is done (2026-11-01; the W4 port accepted, §6.3 "Measured at 7f"; sizes in §2.7, "Measured after 7f", and the gate after phase 7 passes every program with no relief, "Measured at the gate after phase 7"; lead decisions L-hq–L-ib; Decisions 118 and 119 were decided by the user). Sub-phase 7g is done (2026-11-01; the W7 port accepted, §6.3 "Measured at 7g"; port-only by Decision 120, decided by the user; lead decisions L-ic–L-ii): the user added W7 (`w7_drivetrain`) to the acceptance set on 2026-10-29 (Decision 114), and phase 7 is complete. Phase 8 (linear algebra, §8 row 8) has started: sub-phase 8a is done (2026-11-01, revised after one independent review and agreed: §2.13, Decisions 121–129 each decided as option (a), lead decisions L-ij–L-jf agreed with the text). Sub-phase 8b is done (2026-11-01; the contract changes and `@`; sizes in §2.7, "Measured after 8b"; lead decisions L-jg–L-jl), and WP-BSK-OVERLAP, the precondition of 8c, has landed in the Baysick repo (commit 8c8dee3). Sub-phase 8c is done (2026-11-01; factorizations, solves, `rcond`, `eig_sym` and the handles; sizes in §2.7, "Measured after 8c", which calls for no relief; Decision 130, amending `rcond`'s overflow rule, decided by the user; lead decisions L-jm–L-jv). Sub-phase 8d is done (2026-11-02; the ports W2 and W3 accepted, port-only with no compiler or runtime defect found, §6.3 "Measured at 8d"; the cross rule of Decision 127 with `tests/cross_accept.sh`; the gate after phase 8 passes every program with no relief, §2.7 "Measured at the gate after phase 8"; lead decisions L-jw–L-kd), and phase 8 is complete. Phase 9 (plotting, §8 row 9) has started: sub-phase 9a is done (2026-11-02, revised after one independent review and agreed: §2.14, Decisions 131–142 each as the recommended option (133 (b), the others (a)), lead decisions L-ke–L-lf agreed with the text). Sub-phase 9b is done (2026-11-03; the contract, the front end and the runtime core: the 21 plotting calls through every pass, `rt_plot.s` in both runtimes, the plot tests and the cross case kind `plots/`; sizes in §2.7, "Measured after 9b", which calls for no relief; lead decisions L-lg–L-lq). Sub-phase 9c is done (2026-11-03; bars, contours, images and PNG: `rt_plot2.s` and `rt_png.s` in both runtimes; runtime sizes in §2.7, "Runtime sizes at 9c"; lead decisions L-lr–L-lz). Sub-phase 9d is done (2026-11-03; the six ports' figures with their `.struct` files, accepted by `tests/accept.sh` and the cross run, W2's SVG by Decision 138; §6.3 "Measured at 9d"; §2.7 "Measured at the gate after phase 9", which passes every program with no relief; lead decisions L-ma–L-md): phase 9 is complete. Phase L (the text library the user agreed on 2026-11-02, §8 row L) has started: sub-phase La is done (2026-11-03, revised after one independent review and agreed: §2.15, Decisions 143–149 each decided as option (a), Decision 150 the user's four rulings, lead decisions L-me–L-mx agreed with the text). Sub-phase Lb is done (2026-11-04; the contract, the front end of the twelve names, the bitwise functions and `%x`/`%X` with their tests, the rt `NAME.files/` sidecar; sizes in §2.7, "Measured after Lb", which calls for no relief; lead decision L-my). Sub-phase Lc is done (2026-11-04; the text runtime on both targets, `rt_text.s` and `READ_LINES`, with its tests; runtime sizes in §2.7, "Runtime sizes at Lc"; the gate after phase L passes every program with no relief, §2.7 "Measured at the gate after phase L"; lead decisions L-mz–L-ne): phase L is complete. Sub-phase W8a, the specification of the W8 workload (an ESP32 controller sketch simulated on the host, writing a CAN log that a Sea port reads, decodes and plots), is done (2026-11-04, revised after one independent review and agreed: §2.16, Decisions 151–160 each decided by the user as option (a), lead decisions L-nf–L-ny agreed with the text). W8c and W8d done (2026-11-04): W8 is complete (accepted on both targets). Phase 10 (benchmarks, §8 row 10) is specified: sub-phase 10a is done (2026-11-04, revised after one independent review and agreed: §2.17, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow–L-qa agreed with the text); next 10b (the tools and the kernel benchmarks).
 
 **Scope of Sea v1.** LANGUAGE.md §1.2: what the seven acceptance workloads (W1–W5, W7 and W8, `sea/workloads/`)
 need, done well, plus the generality that keeps the language coherent; the non-goals are
@@ -10855,6 +10855,1012 @@ With the later sub-phases:
   (W8c); `sea/Makefile`, `.gitattributes`, `sea/CLAUDE.md`'s command list (W8b); `tests/accept.sh`,
   `tests/cross_pack.sh` (W8d).
 
+### 2.17 Phase 10: benchmarks (sub-phase 10a)
+
+**Status: agreed 2026-11-04** (drafted that day, revised after one independent review, and agreed
+by the user with Decisions 168–172 each as option (a)). This section is the specification of phase
+10 (§8 row 10), written as sub-phase 10a in the way W8a specified W8 (§2.16). Phase 10 builds the
+measuring tools, takes the final measurement of the seven acceptance workloads against the MATLAB
+baseline (§1.2, §6.5), reports kernel, micro-benchmark, NumPy and Linux numbers beside it, and, when
+§6.5 passes, makes Sea 1.0.0 (Decision 79). The user decided the six design questions on
+2026-11-04, each as option (a): they are **Decisions 162–167** (§2.17.12, mirrored in §9 as
+"Decisions of phase 10"). The questions the draft left to the user, **Decisions 168–172** (170–172
+added after the independent review, which also revised §2.17.3–§2.17.11), were decided by the user
+on 2026-11-04 with the agreement, each as option (a). The readings taken because one answer is
+clearly right are the lead decisions **L-ow – L-qa** (§2.17.13, mirrored in §9 as "Lead decisions
+of phase 10"), agreed with the text. No code, test, contract file or result changes with 10a; the
+document sections it changes, with the draft, with the agreement and with the later sub-phases, are
+listed in §2.17.14. §6.5 stays the rule; this
+section refines it by reference and never contradicts it.
+
+#### 2.17.1 Scope
+
+**What exists today** (sea commit 382ebe8, W8 complete):
+
+* *The micro-benchmarks* (§5.9): `bench/micro.sh`, `bench/micro/run.sh`, `lcg.sea`, `sor.sea`
+  and their C references; measured in 5d into `bench/results/micro-arm64-macos.tsv` and
+  `micro-x86_64-linux.tsv`. `micro.sh` requires the phase-4 compiler (`SEA4`) for every run.
+* *The MATLAB baseline* (§1.2): `workloads/reference/baseline_timings_matlab.json` (W1–W5, default
+  threads, the pass criterion), `baseline_timings_matlab_1thread.json` (W1–W5, reported),
+  `baseline_timings_matlab_w7_drivetrain.json` and `baseline_timings_matlab_w8_ev_can.json` (each
+  workload's pass criterion). Each file names `machine_model` `Mac14,9` and `cpu_brand` `Apple M2
+  Pro`, holds `total_seconds` and `compute_seconds` (five runs; a list of lists, one per entry of
+  `workloads`, in the multi-workload files) and their `_median` and `_best`. Only the user runs
+  MATLAB (Decision 7); no agent re-runs it in phase 10.
+* *The NumPy cross-checks* (`workloads/reference_py/`): `run_all.py` times each module's `main()`
+  with `time.perf_counter` and prints the times, but records them nowhere, and `main()` writes the
+  committed `reference/<name>.py.json` through `common.write_reference` (into `common.REF_DIR`).
+  There is no NumPy timing to read; §2.17.5 specifies how one is taken.
+* *Acceptance* (§6.3): `tests/accept.sh` builds each port (`sea build -o T/run/NAME` in `ports/`,
+  with the prelude), copies its `// fixture:` files (Decision 158, L-oo) and runs it once with
+  `--export-reference --figures`. Every port prints `Compute time: %.3f s` (`printf("Compute
+  time: %.3f s\n", computeSeconds)`), the time of the same region as the MATLAB script's
+  `tic`/`toc`. Without `--figures` a port writes only `NAME.json` into its working directory (its
+  `make_dir("output")` is inside the `--figures` arm).
+* *Baysick's harness* (Baysick BENCH.md): `bench/bench.c` against Accelerate and OpenBLAS, the
+  timing rules of Baysick BENCH.md §3.1 (warm-up, at least 5 repetitions and 1 s, batching of calls
+  under 100 µs, the median with min and max), the one-thread settings of Baysick BENCH.md §1, the
+  OpenBLAS check of Baysick BENCH.md §4, and the one-ssh cross driver. Phase 10 reuses this
+  methodology; it edits no Baysick file.
+
+**What phase 10 adds** (sub-phases 10b–10d, §2.17.11):
+
+* the measurement session and the start condition (`bench/session.sh`, `bench/settle.sh`;
+  §2.17.3);
+* the workload benchmark of §6.5 as tools: `bench/workloads.sh`, its per-target runner and the
+  exec-and-wait helper `bench/spawn_time.c` (§2.17.4);
+* the NumPy column (`bench/numpy.sh`, `bench/numpy_time.py`; §2.17.5, Decision 167);
+* three Sea-level matrix benchmarks written in Sea, against Accelerate and OpenBLAS (§2.17.6,
+  Decision 162);
+* a current-compiler mode of the micro-benchmarks (§2.17.7);
+* the pass check `bench/check.py` and the table generator `bench/report.py` (§2.17.8, §2.17.9);
+* the `make` targets, the committed results under `bench/results/p10/` and `docs/BENCH.md`
+  (§2.17.9);
+* the final measurement (§2.17.10, Decision 163), the conditional optimisation sub-phase 10o
+  (Decision 164) and the version 1.0.0 (Decision 166).
+
+**Not in phase 10**: a MATLAB run (the baseline is committed); multithreading in Sea; a language,
+pass, runtime, prelude or contract change, except inside an agreed 10o; benchmarks in `make test`,
+`make cross` or any CI; vendor libraries anywhere but `bench/` (§1.1, Baysick BENCH.md); NumPy or
+MATLAB numbers on Linux.
+
+**Contract changes**: none. No `include/*.inc`, `passes.txt`, error code, runtime entry or limit
+changes; the tools take no name from a contract file.
+
+#### 2.17.2 Files and ownership
+
+All files are in the Sea repository; `build/bench/` (inside `build/`, not committed) holds what the
+tools build. "WP" is the 10b work package that writes the file (§2.17.11).
+
+| Path | Content | WP |
+|------|---------|----|
+| `bench/spawn_time.c` | the exec-and-wait helper of §6.5 (C, both systems) | WP-SPAWN |
+| `bench/spawn_test.sh` | the helper's self-test (§2.17.4, "The helper") | WP-SPAWN |
+| `bench/session.sh` | creates the measurement session (§2.17.3) | WP-MAKE |
+| `bench/settle.sh` | the start condition before each measurement (§2.17.3, Decision 170) | WP-MAKE |
+| `bench/workloads.sh` | workload driver, Mac and `--cross` (§2.17.4) | WP-WORK |
+| `bench/workloads/run.sh` | per-target runner of the timed runs, run on the Mac and on the host | WP-WORK |
+| `bench/numpy.sh`, `bench/numpy_time.py` | the NumPy column (§2.17.5) | WP-WORK |
+| `bench/kernels.sh` | kernel driver, Mac and `--cross` (§2.17.6) | WP-KERN |
+| `bench/kernels/gemm.sea`, `solve.sea`, `axpby.sea` | the Sea-level benchmarks | WP-KERN |
+| `bench/kernels/vendor.c` | Accelerate / OpenBLAS harness, the same protocol | WP-KERN |
+| `bench/kernels/axpby_ref.c` | the C loop of the fused benchmark | WP-KERN |
+| `bench/kernels/expect.c` | the exact expected check values, in `int64_t` | WP-KERN |
+| `bench/kernels/run.sh` | per-target runner of the kernel measurements | WP-KERN |
+| `bench/micro.sh`, `bench/micro/run.sh` | `--current` and `--out` (§2.17.7); default behaviour unchanged | WP-MICRO |
+| `bench/check.py` | the pass check (§2.17.8), with `--self-test` | WP-CHECK |
+| `bench/report.py` | the Markdown of `docs/BENCH.md` §2 and §4–§8, and `--readme` (§2.17.9) | WP-CHECK |
+| `Makefile` | the targets of §2.17.9; none of them in `make test` | WP-MAKE |
+| `sea/CLAUDE.md` | the command list (the `bench` targets) | WP-MAKE |
+| `bench/results/p10/*` | the committed results of the final measurement (§2.17.9) | 10c |
+| `docs/BENCH.md` | the published methodology and results (§2.17.9) | 10c (WP-DOC) |
+
+The C files are measuring instruments, never part of Sea (§5.7, Baysick BENCH.md §4): built with
+`xcrun cc -O2 -ffp-contract=off` on the Mac and `gcc -O2 -ffp-contract=off` on the host, they
+contain no Sea logic. Every timed call in them goes through a function declared
+`__attribute__((noinline))` whose body ends with `__asm__ volatile("" ::: "memory")`, so the compiler
+can neither merge nor hoist calls (L-pt). `bench/check.py`, `bench/report.py` and
+`bench/numpy_time.py` are Python run only through `uv` (`uv run --no-project [--with numpy==2.5.4]
+python -I …`); `check.py` and `report.py` use the standard library only.
+
+#### 2.17.3 Common rules
+
+**Modes.** Every driver takes `--out DIR` (default `bench/results/p10`) and `--quick`. The
+**final** mode (no `--quick`) is the one the pass check accepts; `--quick` (also `BENCH_QUICK=1`)
+is a smoke run for 10b's trials: fewer runs and sizes (stated per tool), no start condition, and
+its records say `mode quick`, which `check.py` refuses (L-pb). A driver writes its result files
+into `DIR` only when every measurement of the run was measured and validated; otherwise it writes
+nothing there. In final mode a driver also refuses (setup error, before it builds or measures) when
+any of its own output files already exists in `DIR`, so a result file is written once per session
+and never replaced (L-ps); in quick mode it overwrites them.
+
+**Build, then measure.** The Mac drivers have two commands, `build` and `measure` (`sh
+bench/workloads.sh build|measure [options]`, the same for `kernels.sh` and `micro.sh --current`;
+`numpy.sh` has only `measure`). `build` compiles everything the measurement runs into
+`build/bench/<tool>/` (and records the ports' compile times, §2.17.4) and measures nothing;
+`measure` builds nothing and is a setup error when a built file is missing or older than its source
+or than `build/sea`. So no compiler runs between the start condition and the last timed run. A
+`--cross` run is one `ssh` per tool whose remote script builds first (the host's runtimes, the
+links, the C files), then applies the start condition on the host, then measures.
+
+**The session** (L-ps). `sh bench/session.sh DIR [--quick]` creates `DIR` and writes
+`DIR/session.txt`, one line: the UTC time `date -u +%Y%m%dT%H%M%SZ`, `-`, and 8 hexadecimal digits
+from `od -An -N4 -tx1 /dev/urandom` (for example `20261105T091500Z-3fa9c21e`). In final mode it is a
+setup error when `DIR` exists and is not empty, so one session is one directory; with `--quick` it
+replaces `DIR/session.txt` and prefixes the id with `quick-`. Every driver reads `DIR/session.txt`
+(missing: setup error) and records it; `make bench` creates the session first, and `make bench-cross`
+uses the session of the same `DIR`.
+
+**The start condition** (Decision 170 (a)). In final mode
+every `measure` (and every remote script after its build) first runs `bench/settle.sh`: it sleeps
+120 s (the cool-down after the build or the previous tool's measurement), then reads the 1-minute
+load average every 10 s until it is at most 2.0. When the load has not fallen to 2.0 within 15
+minutes of the end of the cool-down, it prints `settle: load average <x> above 2.0 after 15
+minutes` and the driver stops with exit 2 without measuring (L-po). It prints `settle_waited_s` (the
+seconds waited after the cool-down) and the three load averages at its end, which the driver records
+(below). In quick mode the start condition is skipped.
+
+**Preconditions** (checked by each driver before it builds or measures; a failure is a setup error,
+exit 2, with a message naming it):
+
+* the driver's own process has nice value 0 (`ps -o nice= -p $$`; Decision 163's "unniced"); on the
+  host the remote script checks its own nice value the same way;
+* on the Mac in final mode: on AC power (`pmset -g batt`'s first line names `AC Power`) and Low
+  Power Mode off (`pmset -g`'s `lowpowermode` is 0 or absent) (L-pa);
+* in final mode: the Sea working tree is clean apart from the results, checked from the driver's own
+  root directory (`$ROOT`, the Sea repository) as `git -C "$ROOT" status --porcelain -- .
+  ':(exclude)bench/results'` printing nothing, so the measured binaries are those of the recorded
+  commit and one driver's results never make the next driver refuse (L-pb); the Baysick checkout
+  (`BAYSICK`, default the parent of `$ROOT`, whose runtime is linked into every Sea binary) is
+  recorded with its own dirty flag, and in final mode a dirty Baysick tree (`git -C "$BAYSICK" status
+  --porcelain -- . ':(exclude)sea'` not empty; the submodule `sea` is checked above) is a setup
+  error too;
+* in final mode: the overrides `PORTS` and `KERNELS` (§2.17.4, §2.17.6) are unset or name their
+  defaults; they exist for 10b's injected failures only;
+* `build/sea` exists (`make` has run; the drivers depend on `all` through the `Makefile`).
+
+The host has no git tree: its record carries the Mac's commits and dirty flags, and its own nice
+value, load and start condition.
+
+**The machine record.** Each driver writes `DIR/env-<tool>-<target>.txt` (`<tool>` one of
+`workloads`, `kernels`, `micro`, `numpy`; `<target>` `arm64-macos` or `x86_64-linux`), one
+`key<TAB>value` line per item, in this order: `target`; `mode` (`final` or `quick`); `session` (the
+content of `DIR/session.txt`); `date` (UTC, `date -u +%Y-%m-%dT%H:%M:%SZ`, at the start);
+`machine_model` (`sysctl -n hw.model` on the Mac; the DMI product name
+`/sys/devices/virtual/dmi/id/product_name` on Linux, `-` if unreadable); `cpu` (`sysctl -n
+machdep.cpu.brand_string`; on Linux the first `model name` of `/proc/cpuinfo`); `os` (`macOS
+<sw_vers -productVersion> (<uname -sr>)`; on Linux `uname -sr`); `sea_commit` (`git -C "$ROOT"
+rev-parse HEAD`); `sea_dirty` (`yes`/`no`, by the rule above); `baysick_commit` (`git -C
+"$BAYSICK" rev-parse HEAD`); `baysick_dirty` (`yes`/`no`); `nice`; `power` (`ac`, `battery` or `-`
+on Linux); `lowpower` (`0`, `1` or `-`); `variants` (the kernel variants measured, §2.17.4);
+`tools` (the first line of `xcrun cc --version` or `gcc --version`; for `numpy` the NumPy and Python
+versions); for `numpy` also `numpy_blas` and `numpy_threads` (§2.17.5); `settle_waited_s` and
+`load_before` (the start condition's wait and its final three load averages, read just before the
+first measured process; `-` and `uptime`'s values in quick mode); `load_after` (read just after the
+last measured process, before any validation by `uv`). For a `--cross` run the host's own record is
+written (its nice value, start condition and loads read on the host), with the commits and dirty
+flags from the Mac. So the load is recorded before and after every driver.
+
+**Scheduling** (L-oz). No measured process is niced, given a QoS class or pinned to a CPU, on
+either system and for every implementation alike: the Sea programs, the vendor harness, the C
+references and the NumPy scripts run with the default scheduling, as the MATLAB baseline did. A
+process started from an agent's shell may still inherit a lowered scheduling class, so `spawn_time`
+records each workload run's CPU time beside its wall time (§2.17.4), and `report.py` flags a run
+whose user + system CPU time is below 0.8 × its wall time as one that waited for a CPU (contention or
+throttling) instead of computing.
+
+**Environment of measured processes.** `SEA_HEAP_CHECK` and `BAYSICK_KERNELS` are removed;
+`SEA_KERNELS` is removed on the Mac and set to the measured variant on Linux. The kernel
+measurements (§2.17.6) and the micro-benchmarks run with `VECLIB_MAXIMUM_THREADS=1` (Mac) and
+`OPENBLAS_NUM_THREADS=1` (Linux); the NumPy runs get none of `VECLIB_MAXIMUM_THREADS`,
+`OPENBLAS_NUM_THREADS` and `OMP_NUM_THREADS` (Decision 172 (a)); the workload runs get none of them either (Sea reads none). Standard input is `/dev/null`.
+
+#### 2.17.4 The workload benchmark (refines §6.5)
+
+**The helper** `bench/spawn_time.c`, built as `build/bench/spawn_time` (Mac) and on the host by
+the cross run:
+
+* usage: `spawn_time DIR OUT ERR -- PROG [ARG...]`, every path absolute;
+* it `chdir`s to `DIR` (the child inherits the working directory), opens `OUT` and `ERR`
+  (`O_WRONLY|O_CREAT|O_TRUNC`, mode 0644) and `/dev/null` as the child's standard output, standard
+  error and standard input through `posix_spawn_file_actions_addopen`, and passes its own
+  environment unchanged;
+* it reads `clock_gettime(CLOCK_MONOTONIC)` immediately before `posix_spawn` and immediately after
+  `wait4(pid, &status, 0, &ru)` returns, and prints one line `wall %.9f cpu %.9f status %d` + LF
+  on its standard output: `cpu` is the child's user + system CPU time from `ru`
+  (`ru_utime + ru_stime`), the status the child's exit status, or 128 + the signal number if a
+  signal ended it;
+* it exits 0 when it measured (whatever the child's status) and 2 on its own failure (usage, a
+  failed `chdir`, `open` or `posix_spawn`), with a message on standard error.
+
+This is §6.5's "small exec-and-wait harness". **Whole-process time** is its `wall`: from just before
+the process is created to just after its exit is collected, so it contains everything the operating
+system does to start, load and end the program (§1.2). `bench/spawn_test.sh` checks the helper: a
+`/usr/bin/true` child gives status 0 and a wall below 0.1 s; `sh -c 'exit 3'` gives status 3; `sh -c
+'kill -TERM $$'` gives 143; `sleep 0.2` gives a wall within [0.2, 0.4) s and a `cpu` below 0.05 s;
+a busy shell loop of about 0.5 s (`sh -c 'i=0; while [ $i -lt 300000 ]; do i=$((i+1)); done'`)
+gives a `cpu` of at least half its wall; a child writing to both streams leaves exactly its bytes
+in `OUT` and `ERR`; a missing program, a missing `DIR` and a usage error each give exit 2 with
+nothing on standard output.
+
+**The ports and the build.** The seven ports `PORTS/NAME.sea` (W1–W5, W7, W8), `NAME` from §1.2;
+`PORTS` is an environment override (default `sea/ports`, as in `tests/accept.sh`; in final mode only
+the default is allowed, §2.17.3). `workloads.sh build` builds each port once, by the command
+`tests/accept.sh` uses (`sea build NAME.sea -o build/bench/workloads/bin/NAME` with the working
+directory `PORTS`, the prelude included), run through `spawn_time`, so its `wall` is the **compile
+time** (reported, never counted, §1.2), kept in `build/bench/workloads/compile.tsv` for `measure`.
+It also builds `build/bench/spawn_time`. For `--cross`, each port is compiled on the Mac with
+`--target x86_64-linux -S` and assembled and linked on the host by the remote script's build step,
+as `bench/micro.sh --cross` does (L-pm); the Linux rows have no compile time.
+
+**The fixtures.** `workloads.sh build` reads each port's `// fixture: PATH` lines with
+`tests/accept.sh`'s rule (L-oo; a malformed line is a setup error, exit 2) and copies each fixture
+into a per-port fixture directory `build/bench/workloads/fix/NAME/` (called `FIX/NAME/` below; for
+`--cross`, into the bundle). W8's fixture is `workloads/w8_ev_can/w8_ev_can.log`; the other ports
+have none.
+
+**The runs.** For each workload, in the order W1, W2, W3, W4, W5, W7, W8, and on Linux for each
+variant in the order `avx2`, `sse2`, the runner `bench/workloads/run.sh` makes **15 consecutive
+runs** with nothing between them but their setup: runs 1–5 are §6.5's five (the pass set; run 1
+is the first run, L-ow) and runs 6–15 its ten further runs. Run K:
+
+1. creates the fresh run directory `W/VARIANT/NAME/rK/` and copies `FIX/NAME/*` into it (outside
+   the timed region);
+2. runs `spawn_time W/VARIANT/NAME/rK W/VARIANT/NAME/rK.out W/VARIANT/NAME/rK.err --
+   BIN/NAME --export-reference` (`W` a `mktemp -d` work directory, `BIN` the built ports; the
+   reference export enabled and the figures disabled, as §1.2 requires), in the environment of
+   §2.17.3;
+3. records `wall`, `cpu`, the status, and the compute time: the one line of `rK.out` that matches
+   `^Compute time: [0-9]+\.[0-9]{3} s$`, whose number is the compute time `c` exactly as printed
+   (three decimals; L-ox).
+
+`VARIANT` is `neon` on the Mac (the one arm64 variant, §4.4; `SEA_KERNELS` unset), and `avx2` and
+`sse2` on Linux (`SEA_KERNELS` set to each; the host must list `avx2` in `/proc/cpuinfo`'s flags,
+else a setup error, exit 2). `--quick` makes 1 + 1 runs (run 1 and one further run).
+
+**Correctness of every timed run** (L-oy). After a workload's 15 runs, the runner checks each run:
+status 0; `rK.err` empty (the heap check is off, so nothing is printed there); exactly one
+`Compute time` line; the run directory holds exactly `NAME.json` and the fixtures, each fixture
+byte-identical to its source. Runs 2–15 must then equal run 1: `NAME.json` byte for byte (`cmp`),
+and the standard output byte for byte once the `Compute time` line is removed from both (the
+programs are deterministic on one machine and variant, class R included). Run 1 itself is judged
+by the driver on the Mac after all workloads have run, as acceptance judges it (§6.3):
+
+    uv run --no-project --with numpy python workloads/reference_py/compare.py --candidate RUN1 NAME
+    uv run --no-project --with numpy python workloads/reference_py/compare_report.py \
+        NAME RUN1.out ports/NAME.tokens --candidate-json RUN1/NAME.json
+
+both exiting 0. A failure of any check is a validation failure: the driver names the workload,
+variant, run and check, writes no result file and exits 1. So no fast wrong run can be reported.
+The Mac driver keeps each run 1's `NAME.json` and standard output in
+`build/bench/workloads/run1/` (not committed) for the cross comparison below.
+
+**The cross run.** For `--cross`, the host checks runs 2–15 against run 1 as above. Run 1 of each
+workload and variant comes back to the Mac and is judged there with the two commands above (the
+host needs no `uv`), as `make cross` judges the deferred W2 and W3 (Decision 127; their class-R
+results differ in the last bits between targets, so `compare.py`'s rules are their only test).
+For W1, W4, W5, W7 and W8, whose outputs are class E and byte-identical across targets (§6.6, the
+`ports` cross case), the Mac also requires the host's run 1 to equal its own kept run 1: `NAME.json`
+byte for byte and the standard output byte for byte once the `Compute time` line is removed from
+both (a setup error when `build/bench/workloads/run1/` is missing: the Mac measurement runs first).
+The remote script's standard output holds exactly three blocks, in this order, and nothing else
+(its progress messages go to standard error):
+
+1. the line `@@SEA-BENCH-ENV-BEGIN@@`, the host's machine record (§2.17.3), the line
+   `@@SEA-BENCH-ENV-END@@`;
+2. the line `@@SEA-BENCH-TSV-BEGIN@@`, the host's `workloads-runs` rows and then its
+   `workloads` summary rows (each set with its header row), the line `@@SEA-BENCH-TSV-END@@`;
+3. the line `#sea-bench-files N` and then the base64 text of a tar of the run-1 files
+   (`VARIANT/NAME.json`, `VARIANT/NAME.out`), where N is the length in bytes of that base64 text,
+   line feeds included, as in `cross_run.sh`'s `#sea-cross-files N` (§6.6.1); nothing follows it.
+
+A missing, repeated or out-of-order block, or a base64 text of another length, is a setup error
+(exit 2). The bundle is built, sent with one `ssh -o BatchMode=yes` and unpacked into a `mktemp -d`
+directory removed on exit, as `bench/micro.sh --cross` does; nothing stays on the host. The remote
+script checks the host's preconditions itself (nice 0, `avx2` in `/proc/cpuinfo`'s flags, `as`,
+`gcc` and `make` present; each a setup error, exit 2), builds, applies the start condition, then
+measures.
+
+**What is computed** (per target, variant and workload; walls in seconds to 9 decimals, compute
+times as printed with 3): the first run (run 1); the **best of 5** (the minimum of runs 1–5, §6.5's
+pass/fail number) and the median of 5 (the third smallest); the median of the 10 further runs (the
+mean of their 5th and 6th smallest, computed exactly in decimal, so it has one decimal more: 10 for
+walls, 4 for compute times) and their minimum and maximum; for both measures; and the CPU time of
+every run (runs file only). The MATLAB
+side (first, median, best; default and single-threaded) is read from the committed files by
+`check.py` and `report.py`, never measured.
+
+**Usage.** `sh bench/workloads.sh build|measure [--out DIR] [--quick] [--only NAMES]` (Mac) and `sh
+bench/workloads.sh --cross [-H HOST] [--out DIR] [--quick] [--only NAMES]` (host as for `tests/cross.sh`:
+`-H`, else `$SEA_CROSS_HOST`, else `desktop`; build and measure in one remote run). `--only` takes a
+comma-separated list of workload names and is refused in final mode (the pass check needs all
+seven). Environment: `PORTS` (above), `BAYSICK` (§2.17.3). Exit status: 0 measured and validated
+(or built); 1 a validation failure; 2 a setup error (precondition, start condition, build failure,
+missing host, `uv` or fixture, an existing output file in final mode). Outputs:
+`DIR/workloads-runs-<target>.tsv`, `DIR/workloads-<target>.tsv` and
+`DIR/env-workloads-<target>.txt` (§2.17.9).
+
+#### 2.17.5 The NumPy column (Decision 167)
+
+**The NumPy version is pinned**: `numpy==2.5.4` (L-px), the release `uv` resolves on the Mac
+today. 10b confirms it by `uv run --no-project --with numpy==2.5.4 python -c 'import numpy;
+print(numpy.__version__)'` printing `2.5.4`, and the run-1 check below confirms the pinned version
+reproduces the cross-check's outputs within `compare.py`'s rules. `--with numpy==2.5.4` below
+stands for that pin.
+
+`sh bench/numpy.sh measure [--out DIR] [--quick]` (Mac only, L-pd):
+
+1. checks §2.17.3's preconditions and reads the session; runs `uv run --no-project --with
+   numpy==2.5.4 python -c 'import numpy'` (so any download happens before measuring); applies the
+   start condition (final mode);
+2. reads `load_before`, then runs `uv run --no-project --with numpy==2.5.4 python -I
+   bench/numpy_time.py [--quick] DIR SCRATCH` with the NumPy environment of §2.17.3 (no thread
+   variables), `SCRATCH` a `mktemp -d` directory removed on exit;
+3. writes `DIR/env-numpy-arm64-macos.txt` itself: §2.17.3's record, with `tools`, `numpy_blas`,
+   `numpy_threads` and `load_after` taken from `SCRATCH/info.txt`, which `numpy_time.py` writes.
+
+`numpy_time.py [--quick] DIR SCRATCH`:
+
+* puts `workloads/reference_py` first on `sys.path` and imports `numpy`, `common` and `compare`;
+  writes into `SCRATCH/info.txt` the lines `tools` (`numpy <version>, Python <version>`),
+  `numpy_blas` (from `numpy.show_config(mode="dicts")`: the BLAS dependency's `name` and `version`
+  under `Build Dependencies`, `-` when absent) and `numpy_threads` (the values of
+  `VECLIB_MAXIMUM_THREADS`, `OPENBLAS_NUM_THREADS` and `OMP_NUM_THREADS` in its environment, each
+  `unset` when absent);
+* for each workload of §1.2 in the order W1, W2, W3, W4, W5, W7, W8 (W6 is not in the set): imports
+  its module (untimed), then makes **5 runs** in the same process (`--quick`: 1). Before run K,
+  outside the timed region, it sets `common.REF_DIR` to the fresh directory `SCRATCH/NAME/rK` (so
+  the committed `reference/<name>.py.json` is never written), calls `sys.stdout.flush()`, and points
+  file descriptor 1 at `SCRATCH/NAME/rK.out` with `os.dup2` (the original kept with `os.dup`). The
+  timed region is `t0 = time.perf_counter(); mod.main(); sys.stdout.flush(); t =
+  time.perf_counter() - t0`: the final flush is inside it, because printing is part of the script's
+  work as it is of MATLAB's and Sea's. Then file descriptor 1 is restored;
+* after the last timed run of the last workload, writes `load_after` (`os.getloadavg()`, three
+  values) into `SCRATCH/info.txt`, then checks run 1 of each workload by `compare.compare(NAME,
+  <reference>/NAME.json, SCRATCH/NAME/r1/NAME.py.json, candidate=False, quiet=True)` returning an
+  empty list (`compare.py`'s NumPy mode on the scratch file), and runs 2–5's `NAME.py.json`
+  byte-identical to run 1's; a failure is a validation failure (exit 1, no file written);
+* writes `DIR/numpy-arm64-macos.tsv` (columns in §2.17.9: first run, median of 5, best of 5).
+
+The time is the in-process time of the script's whole `main()`: its computation, its JSON export and
+its printing, inside a running interpreter with NumPy already imported, with NumPy's default threads
+(Decision 172 (a), as MATLAB's pass baseline ran with its default threads). It is therefore
+comparable in kind with MATLAB's `total_seconds` (also in-session), not with Sea's whole-process
+time; there is no NumPy compute time (the scripts have no `tic`/`toc` region). `BENCH.md` states
+this beside the column. The column is reported, never judged (Decision 167).
+
+#### 2.17.6 The Sea-level kernel benchmarks (Decision 162)
+
+Three programs written in Sea measure what a Sea user gets from `@`, `solve` and a fused element-wise
+expression, against the vendor library on each platform and, for the fused loop, a C loop.
+
+**The protocol** (every implementation, Sea or C). An executable takes `N BATCH` (the vendor
+harness `KERNEL N BATCH`), builds its data (untimed) and makes the calls numbered r = 0, 1, …,
+`BATCH`: call 0 is the untimed **warm-up call**, calls 1 … `BATCH` are timed back to back with a
+monotonic clock (Sea: `now()`, LANGUAGE.md §13; C: `clock_gettime(CLOCK_MONOTONIC)`). **Before call
+r it changes one input by r mod 2** in the way the table below states (inside the timed region for
+r ≥ 1; O(1) work, O(N) for `solve`), so no call computes what the previous one did and the last
+call's result depends on its own input (L-pg). It then prints, on standard output, the line `check
+…` from the result of the last call (call `BATCH`, the warm-up call when `BATCH` is 0), whose input
+parity is P = `BATCH` mod 2, then `seconds %.9e` (the batch time divided by `BATCH`; `seconds 0` if
+`BATCH` is 0), and exits 0. The runner `bench/kernels/run.sh` then, for each kernel, size and
+implementation:
+
+1. **calibrates**: one run with `BATCH` = 1 gives `t₁`; `BATCH` is 1 if `t₁` ≥ 100 µs, else
+   ⌈100 µs / t₁⌉, at most 100 000 (Baysick BENCH.md §3.1's batching; every call costs the same);
+2. **repeats**: one process per repetition (L-pf) with that `BATCH` until at least 5 repetitions
+   and at least 1.0 s of timed calls (Σ seconds × `BATCH`; `--quick`: 0.2 s), at most 200;
+3. **validates** every run's `check` line (the calibration's included) against the expected line for
+   its parity, as below, and, when `BATCH` > 1, requires the median per-call time to be at least
+   t₁ / 2 (a batched call more than twice as fast as a single one means work was skipped or
+   merged; Decision 171 (a)); a failure is a validation
+   failure (exit 1, no file written);
+4. reports the median of the repetitions' `seconds` with their minimum and maximum.
+
+The C calls go through a `noinline` function ending in an empty `asm volatile` with a `"memory"`
+clobber (§2.17.2, L-pt). There is no allocation-count check: the fused `axpby` reuses `w`'s buffer
+in the loop and allocates nothing per call (§5.4, §2.12's F2 (6)).
+
+**The data are exact** (L-pe; indices from 0). Every implementation builds the same matrices with
+the formulas below, every product and sum involved is an integer or a multiple of 0.25 far below
+2⁵³, so every correct implementation, whatever its order of operations, FMA use or blocking, gives
+the same `check` values for `gemm` and `axpby`, which `bench/kernels/expect.c` computes
+independently in `int64_t`: `expect KERNEL N P` (`KERNEL` `gemm` or `axpby` only) prints the line
+`check …` a program must print after a last call of parity P. A value's cost does not depend on
+these data (no subnormals, no special values).
+
+| Kernel | Timed call; change before call r | Data | `check` line | Sizes N (`--quick`) | Work, unit |
+|--------|----------------------------------|------|--------------|---------------------|------------|
+| `gemm` | `c = a @ b` (`a`, `b`, `c` dynamic `f64` N × N; Baysick's GEMM, §2.13); `a[0,0] = a₀₀ + (r mod 2)` | `a[i,j] = ((3i + 5j) mod 17) − 8` (a₀₀ its first element), `b[i,j] = ((7i + 2j) mod 13) − 6` | `check S1 S2` with `S1 = Σ c[i,j]`, `S2 = Σ c[i,j]·(((7i + 13j) mod 17) − 8)`, printed `%.0f` | 64, 128, 256, 512, 1024, 2048 (≤ 512) | 2N³ flop, GFLOP/s |
+| `solve` | `x = solve(a, b)` (`b` a vector; `a` is not symmetric, so `solve` takes the LU path, LANGUAGE.md §10.8); `b[i] = b₀[i] + (r mod 2)·a[i,0]` for every i, so the exact solution is `xt + (r mod 2)·e₀` | `a[i,j] = ((3i + 5j) mod 17) − 8`, plus 9N on the diagonal (strictly diagonally dominant); `xt[i] = (i mod 9) − 4`; `b₀ = a @ xt` (exact, untimed) | `check maxerr E` with `E = max |x[i] − xt[i] − P·δ(i,0)|`, printed `%.3e` | 100, 250, 500, 1000, 2000 (≤ 500) | (2/3)N³ + 2N² flop (nominal), GFLOP/s |
+| `axpby` | `w = 0.75 * x - 1.25 * y` (one fused loop, §2.12; `x`, `y`, `w` dynamic `f64` vectors of N); `x[0] = x₀ + (r mod 2)` | `x[i] = (i mod 2047) − 1023` (x₀ its first element), `y[i] = (5i mod 2039) − 1019` | `check S1 S2` with `S1 = Σ w[i]`, `S2 = Σ w[i]·((i mod 17) − 8)`, printed `%.2f` | 1 000, 100 000, 10 000 000 (≤ 100 000) | 24N bytes, GB/s |
+
+**Validation.** `gemm` and `axpby`: every implementation prints exactly `expect KERNEL N P`'s line.
+`expect.c` sums in `int64_t` (`axpby` as 4·w = 3x − 5y), prints with the same formats, and is built
+and run by the runner before any measurement. `solve` has no exact line: every implementation's `E`
+must be at most 1·10⁻⁹ (the matrix is strictly diagonally dominant, so the error of a correct LU
+solve is many orders below; x is not exact in binary, so no equality is asked).
+
+**The Sea programs, exactly** (L-pg; the spec fixes their text, so 10b writes them verbatim with a
+header comment naming this section; `args()` gives N and `BATCH`):
+
+    // gemm.sea
+    let av = args()
+    let n = parse_i64(av[0])
+    let batch = parse_i64(av[1])
+    var a = zeros(n, n)
+    var b = zeros(n, n)
+    for i in 0..n {
+        for j in 0..n {
+            a[i, j] = f64((3 * i + 5 * j) % 17 - 8)
+            b[i, j] = f64((7 * i + 2 * j) % 13 - 6)
+        }
+    }
+    let a00 = a[0, 0]
+    var c = a @ b
+    let t0 = now()
+    for r in 1..=batch {
+        a[0, 0] = a00 + f64(r % 2)
+        c = a @ b
+    }
+    let secs = now() - t0
+    var s1 = 0.0
+    var s2 = 0.0
+    for i in 0..n {
+        for j in 0..n {
+            s1 = s1 + c[i, j]
+            s2 = s2 + c[i, j] * f64((7 * i + 13 * j) % 17 - 8)
+        }
+    }
+    printf("check %.0f %.0f\n", s1, s2)
+    if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }
+
+    // solve.sea
+    let av = args()
+    let n = parse_i64(av[0])
+    let batch = parse_i64(av[1])
+    var a = zeros(n, n)
+    var xt = zeros(n)
+    for i in 0..n {
+        for j in 0..n {
+            a[i, j] = f64((3 * i + 5 * j) % 17 - 8)
+        }
+        a[i, i] = a[i, i] + f64(9 * n)
+        xt[i] = f64(i % 9 - 4)
+    }
+    let b0 = a @ xt
+    var b = b0
+    var x = solve(a, b)
+    let t0 = now()
+    for r in 1..=batch {
+        for i in 0..n {
+            b[i] = b0[i] + f64(r % 2) * a[i, 0]
+        }
+        x = solve(a, b)
+    }
+    let secs = now() - t0
+    var e = 0.0
+    for i in 0..n {
+        var want = xt[i]
+        if i == 0 { want = want + f64(batch % 2) }
+        let d = abs(x[i] - want)
+        if d > e { e = d }
+    }
+    printf("check maxerr %.3e\n", e)
+    if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }
+
+    // axpby.sea
+    let av = args()
+    let n = parse_i64(av[0])
+    let batch = parse_i64(av[1])
+    var x = zeros(n)
+    var y = zeros(n)
+    for i in 0..n {
+        x[i] = f64(i % 2047 - 1023)
+        y[i] = f64(5 * i % 2039 - 1019)
+    }
+    let x0 = x[0]
+    var w = 0.75 * x - 1.25 * y
+    let t0 = now()
+    for r in 1..=batch {
+        x[0] = x0 + f64(r % 2)
+        w = 0.75 * x - 1.25 * y
+    }
+    let secs = now() - t0
+    var s1 = 0.0
+    var s2 = 0.0
+    for i in 0..n {
+        s1 = s1 + w[i]
+        s2 = s2 + w[i] * f64(i % 17 - 8)
+    }
+    printf("check %.2f %.2f\n", s1, s2)
+    if batch > 0 { printf("seconds %.9e\n", secs / f64(batch)) } else { printf("seconds 0\n") }
+
+A program text that the compiler rejects is a defect of this section, corrected with the lead before
+10b continues (the text is written from LANGUAGE.md and was not compiled when 10a was drafted). The
+C implementations make the same per-call input change, the same check computation and the same
+output. The kernels' directory is the override `KERNELS` (default `sea/bench/kernels`; in final mode
+only the default, §2.17.3), for 10b's injected failures.
+
+**The implementations** per kernel and platform:
+
+| Kernel | `sea` | `vendor`, Mac (Accelerate) | `vendor`, Linux (OpenBLAS) | `c-O2` |
+|--------|-------|----------------------------|----------------------------|--------|
+| `gemm` | `gemm.sea` | `cblas_dgemm` (`CblasRowMajor`, α = 1, β = 0, into a preallocated C) | same | — |
+| `solve` | `solve.sea` | LAPACK `dgesv_` (`-DACCELERATE_NEW_LAPACK`), one right-hand side; `a` filled column-major (the same matrix), and `a` and `b` copied into the work arrays inside each timed call, since `dgesv` overwrites them | same (`dgesv_`) | — |
+| `axpby` | `axpby.sea` | `vDSP_vsmsmaD` (w = x·0.75 + y·(−1.25), one pass, out of place) | `cblas_dcopy` (y → w) then `cblas_daxpby` (w = 0.75x − 1.25w): a two-pass proxy, labelled `vendor-proxy` in the TSV | `axpby_ref.c`: the same loop in C |
+
+The Sea times include what the Sea expression does and the vendor call does not: `@` may allocate
+its result on each call, and `solve` copies `a` (it does not change its argument); the vendor's
+`solve` includes its two copies for the same reason (L-ph). Every implementation's time includes the
+per-call input change of the protocol. `vendor.c`
+forces one thread (`VECLIB_MAXIMUM_THREADS=1` set with `setenv` before the first Accelerate call;
+`openblas_set_num_threads(1)`) and, on Linux, checks it linked OpenBLAS with `openblas_get_config()`
+(otherwise `kernels.sh --cross` stops with `kernels: OpenBLAS not found on <host>`, exit 2), as
+Baysick BENCH.md §1 and §4 do. On the Apple M2 Pro, Accelerate's `dgemm` and `dgesv` can use
+Apple's matrix hardware, which hand-written NEON code cannot use, so "vs Accelerate" there is not a
+like-for-like contest; `BENCH.md` says so beside the table, as Baysick BENCH.md §1 does. No peak
+loop is measured (L-pi).
+
+**Variants**: the `sea` rows are measured on the Mac with the one variant `neon`, and on Linux once
+with `SEA_KERNELS=avx2` and once with `SEA_KERNELS=sse2`; the `vendor` and `c-O2` rows have the
+variant `-`.
+
+**Builds** (by `kernels.sh build`; `K` is `KERNELS`). Mac: `sea build K/NAME.sea -o
+build/bench/kernels/NAME`; `xcrun cc -O2 -ffp-contract=off -DACCELERATE_NEW_LAPACK -o
+build/bench/kernels/vendor K/vendor.c -framework Accelerate`; `xcrun cc -O2 -ffp-contract=off -o
+build/bench/kernels/axpby_ref K/axpby_ref.c` and the same for `expect.c`. Linux (`kernels.sh
+--cross`): the Sea programs compiled on the Mac with `--target x86_64-linux -S` and linked on the
+host by the remote script's build step as `bench/micro.sh --cross` does; `gcc -O2 -ffp-contract=off
+-o vendor vendor.c -lopenblas -lm`, and `axpby_ref.c` and `expect.c` with `gcc -O2
+-ffp-contract=off`. The cross bundle, the single `ssh`, the host's preconditions and start condition
+follow §2.17.4; the remote standard output holds exactly two blocks, in this order: the line
+`@@SEA-KERN-ENV-BEGIN@@`, the host's machine record, `@@SEA-KERN-ENV-END@@`; then
+`@@SEA-KERN-TSV-BEGIN@@`, the TSV with its header, `@@SEA-KERN-TSV-END@@`; nothing else (no files
+return: every validation happens on the host, against `expect` built there).
+
+**Usage.** `sh bench/kernels.sh build|measure [--out DIR] [--quick]`, `sh bench/kernels.sh --cross
+[-H HOST] [--out DIR] [--quick]`. Environment: `KERNELS`, `BAYSICK`. Exit status 0 / 1 / 2 as
+§2.17.4. Outputs: `DIR/kernels-<target>.tsv` and
+`DIR/env-kernels-<target>.txt`. **Rates**: work / median seconds, in 10⁹ units; `pct_vendor` = 100 ·
+(the `sea` rate) / (the `vendor` or `vendor-proxy` rate at the same kernel and N), on `sea` rows
+only.
+
+#### 2.17.7 The micro-benchmarks in phase 10
+
+The micro-benchmarks of §5.9 are re-measured with the compiler at the measured commit (L-pj):
+`bench/micro.sh --current [--out DIR] [--cross [-H HOST]]` builds `lcg.sea` and `sor.sea` with
+`build/sea` only (no `SEA4` needed) and their C references, and `bench/micro/run.sh` measures the
+compilers listed in the environment variable `MICRO_COMPILERS` (default `p5 p4 c`; `--current`
+passes `p5 c`) and labels the `p5` rows with `MICRO_SEA_LABEL` (default `sea-phase5`; `--current`
+passes `sea-p10`). The rules, the validation and the TSV columns are §5.9's unchanged; with `--out
+DIR` the TSV goes to `DIR/micro-<target>.tsv` and the machine record (the lines `run.sh` prints on
+standard error, extended to §2.17.3's record) to `DIR/env-micro-<target>.txt`; `--quick` passes
+`BENCH_MIN_SECONDS=0.2`. With `--current`, §2.17.3's modes, preconditions, session, start
+condition, record, scheduling and environment apply as to the other drivers, and the Mac form takes
+the command `build` (into `build/bench/micro/`) or `measure`. For `--current --cross` the remote
+standard output holds exactly two blocks, in this order: `@@SEA-MICRO-ENV-BEGIN@@`, the host's
+machine record, `@@SEA-MICRO-ENV-END@@`; then `@@SEA-MICRO-TSV-BEGIN@@`, `run.sh`'s TSV,
+`@@SEA-MICRO-TSV-END@@`; the host's preconditions and start condition are §2.17.4's. Without
+`--current` and `--out`, `micro.sh` behaves exactly as in 5d,
+and the 5d files `bench/results/micro-*.tsv` are never overwritten by phase 10.
+
+#### 2.17.8 The pass check
+
+`uv run --no-project python -I bench/check.py [DIR]` (`make bench-check`; `DIR` default
+`bench/results/p10`) decides §6.5's rule from the committed files alone:
+
+* it reads `DIR/session.txt`, `DIR/workloads-runs-arm64-macos.tsv`, `DIR/workloads-arm64-macos.tsv`,
+  every `DIR/env-*.txt` present, and the four MATLAB files of §1.2: for W1–W5 the default file
+  `baseline_timings_matlab.json`, whose `total_seconds_best` and `compute_seconds_best` are lists
+  indexed by the position of the workload in its `workloads` list; for W7 and W8 their own files,
+  which name one workload and hold those two values as plain numbers (and `total_seconds`,
+  `compute_seconds` as flat lists of five), not lists of lists;
+* **setup errors** (exit 2, one line `check: <reason>` on standard error, nothing on standard
+  output): a missing or malformed file; in `env-workloads-arm64-macos.txt`, `mode` not `final`,
+  `sea_dirty` or `baysick_dirty` not `no`, or `target` not `arm64-macos`; an env file present whose
+  `session` differs from `session.txt` or whose `sea_commit` differs from the workloads record's
+  (one measurement, L-ps); a workload of the seven missing, repeated, or without exactly runs 1–15
+  with status 0; a summary value that differs from the one recomputed from the runs file (L-pb). The
+  recomputation reads the runs file's values as decimal strings and computes with Python's
+  `decimal` module, so it is exact: firsts, bests, medians of 5, minima and maxima are the run
+  values themselves (walls with 9 decimals, compute times with 3), medians of 10 are the mean of two
+  values (walls formatted with 10 decimals, compute times with 4); each recomputed value is
+  formatted so and compared with the summary's field as a string;
+* per workload: `wu` = Sea's best of 5 whole-process time + 5·10⁻¹⁰ (the largest value its nine
+  printed decimals can stand for); `cu` = Sea's best of 5 printed compute time + 0.0005 (the same
+  for three decimals, L-ox); `Mt`, `Mc` = MATLAB's best `total_seconds` and `compute_seconds` at
+  full precision. The workload passes when **`wu < Mt` and `cu < Mc`**, both strict; equality is a
+  miss;
+* the machine: `machine_model` and `cpu` of the environment file must equal `machine_model` and
+  `cpu_brand` of every MATLAB file (L-pc).
+
+**Its standard output, exactly** (`%` formats as in C; `<op>` is `<` when the strict comparison
+holds, else `>=`; `<v>` is `ok` or `MISS`):
+
+    sea bench check: arm64-macos, session <session>, sea commit <sea_commit>, <date>
+    machine: <machine_model> (<cpu>); baseline <machine_model> (<cpu_brand>): <ok|MISMATCH>
+    load average before <load_before>; after <load_after>
+    <name %-16s> wall %.10f <op> %.6f <v>   compute %.4f <op> %.6f <v>
+    … (one line per workload, in the order W1, W2, W3, W4, W5, W7, W8)
+    <verdict>
+
+(the wall column prints `wu`; the loads are the workloads record's) with, when the 1-minute load
+average before or after exceeds 2.0, the line `warning: load average above 2.0` after the load line.
+`<verdict>` is `PASS: 7 of 7 workloads faster than MATLAB on both
+measures` (exit 0), or `FAIL: K of 7 workloads miss: <name> (<wall|compute|wall, compute>), …`
+listing every missing workload in order (exit 1), or, on a machine mismatch, `FAIL: measured on
+another machine than the MATLAB baseline` (exit 1; the workload lines are still printed). The
+compute column prints `cu`, so a reader sees the value actually compared.
+
+`check.py --self-test` builds result directories in a temporary directory and checks: all seven
+passing → exit 0 and the `PASS` line; a best wall equal to `Mt` rounded to 9 decimals → `MISS`,
+exit 1; a printed compute time of 0.617 against W8's 0.61708195833333335 → `cu` 0.6175, `MISS`;
+0.616 → `cu` 0.6165, `ok`; a missing workload, `mode quick`, `sea_dirty yes`, `baysick_dirty yes`,
+an `env-kernels` file with another session or commit, a summary disagreeing with the runs (and a
+median of 10 written with 3 decimals instead of 4) → exit 2; a machine model `Mac15,7` → `MISMATCH`
+and exit 1; load 2.5 → the warning line and no change of verdict; the W7 and W8 files read as
+scalars.
+It prints `check self-test: P passed, F failed` and exits 0 only when F is 0.
+
+#### 2.17.9 Output formats, `make` targets and `docs/BENCH.md`
+
+**TSV files** (tab-separated, one header row, `.` decimal point; in `DIR`, final results committed
+under `bench/results/p10/`):
+
+| File | Header row |
+|------|------------|
+| `workloads-runs-<target>.tsv` | `target variant workload run wall_s cpu_s compute_s status` (run 1–15; walls and CPU times `%.9f`, compute as printed) |
+| `workloads-<target>.tsv` | `target cpu variant workload compile_s first_wall_s best5_wall_s median5_wall_s median10_wall_s min10_wall_s max10_wall_s first_compute_s best5_compute_s median5_compute_s median10_compute_s min10_compute_s max10_compute_s` (`compile_s` `%.3f`, empty on Linux; walls `%.9f` but `median10_wall_s` `%.10f`; compute times `%.3f` but `median10_compute_s` `%.4f`) |
+| `numpy-arm64-macos.tsv` | `target cpu workload numpy python reps first_s median5_s best5_s` |
+| `kernels-<target>.tsv` | `target cpu kernel impl variant n reps batch median_s min_s max_s unit rate pct_vendor` (`impl` `sea`, `vendor`, `vendor-proxy` or `c-O2`; `pct_vendor` empty except on `sea` rows) |
+| `micro-<target>.tsv` | §5.9's header, unchanged |
+
+plus `session.txt`, the `env-*.txt` records of §2.17.3 and `check.txt`, the standard output of
+`check.py` on the committed directory. Failed attempts (Decision 164) are kept: before a
+re-measurement the lead moves `bench/results/p10/` to `bench/results/p10-attempt-K/` (K = 1, 2, …)
+(L-pk), so the new session starts in an empty `bench/results/p10/`.
+
+**`make` targets** (Mac; each depends on `all`; none is part of `make test`, `make cross` or any
+other target). Variables: `BENCH_OUT` (default `bench/results/p10`, relative to the Sea repository;
+passed as `--out`), `BENCH_QUICK` (`1` passes `--quick`), `BENCH_CROSS_ARGS` (passes `-H HOST`):
+
+| Target | Runs |
+|--------|------|
+| `bench-session` | `sh bench/session.sh $(BENCH_OUT)` |
+| `bench-build` | `sh bench/workloads.sh build`, `sh bench/kernels.sh build`, `sh bench/micro.sh --current build` |
+| `bench-workloads` | `sh bench/workloads.sh measure` |
+| `bench-kernels` | `sh bench/kernels.sh measure` |
+| `bench-micro` | `sh bench/micro.sh --current measure` |
+| `bench-numpy` | `sh bench/numpy.sh measure` |
+| `bench-check` | `uv run --no-project python -I bench/check.py $(BENCH_OUT)` with its standard output written to `$(BENCH_OUT)/check.txt`, then that file printed, and the target's exit status the checker's (below) |
+| `bench` | `bench-session`, `bench-build`, `bench-workloads`, `bench-kernels`, `bench-micro`, `bench-numpy`, in this order (L-pl), then, in final mode only, `bench-check`; with `BENCH_QUICK=1` it ends after `bench-numpy` and exits 0 when they all did |
+| `bench-cross` | `sh bench/workloads.sh --cross`, `sh bench/kernels.sh --cross`, `sh bench/micro.sh --current --cross`, in this order, into the session of `$(BENCH_OUT)` |
+| `bench-report` | `uv run --no-project python -I bench/report.py $(BENCH_OUT)` |
+| `bench-selftest` | `sh bench/spawn_test.sh` and `uv run --no-project python -I bench/check.py --self-test` |
+
+`bench-check`'s recipe keeps the checker's status without a pipe (POSIX sh has no `pipefail`): `st=0;
+uv run … check.py "$(BENCH_OUT)" >"$(BENCH_OUT)/check.txt" || st=$$?; if [ $$st -eq 2 ]; then rm -f
+"$(BENCH_OUT)/check.txt"; else cat "$(BENCH_OUT)/check.txt"; fi; exit $$st`. So `check.txt` exists
+only for a verdict (0 or 1), and a setup error (2) leaves none; `check.txt` is the one file rewritten
+on a re-run, since the check is deterministic on the committed files.
+
+**`bench/report.py DIR`** prints, from the files of `DIR` and the MATLAB files, the Markdown of
+`BENCH.md` §2 and §4–§8 (the headings and tables below, every number formatted from the files: walls
+and times to 3 decimals, ratios to 2, rates as `%.2f`), and, after the §4 tables, the list of runs
+flagged by the CPU rule of §2.17.3 (target, variant, workload, run, wall, CPU), or "No run flagged".
+No number in those sections is typed by hand (L-pn). `report.py --readme DIR` prints the short
+table of Decision 169 (a) instead (per workload: Sea's best of 5 and MATLAB's best on both measures,
+and one line naming the machine); WP-CHECK writes it in 10b, and 10d pastes its output into
+`README.md`.
+
+**`docs/BENCH.md`** (written in 10c by WP-DOC from this section and `report.py`'s output; normative
+for the methodology as Baysick BENCH.md is for Baysick's):
+
+1. *What is measured, and the pass rule*: the seven workloads, the two measures and the rule
+   (pointers to §1.2, §5.7, §6.5, §2.17), the reported extras (single-threaded MATLAB, NumPy,
+   kernels, micro-benchmarks, Linux), and Decision 79's meaning of 1.0.0.
+2. *Machines* (generated): the session, then the Mac and the Linux host, each from its `env-*.txt`
+   records (model, CPU, OS, commits and dirty flags, power, start-condition wait and load before and
+   after per tool, variants, compilers, NumPy's BLAS and thread settings, date).
+3. *Methodology*: §2.17.3–§2.17.7 in prose, with the stated asymmetries: MATLAB ran with 10
+   threads and in-session (its start-up excluded), Sea single-threaded and as a whole process; the
+   NumPy time is in-process with NumPy's default threads; the printed decimals and the +0.0005 and
+   +5·10⁻¹⁰ rules; the start condition; the Sea kernel times include `@`'s allocation and `solve`'s
+   copy, and every implementation's the per-call input change; Accelerate's matrix hardware; the
+   `vendor-proxy` row; the variants.
+4. *Workloads against MATLAB* (generated): one table per measure, one row per workload: Sea first,
+   best of 5, median of 5, median of 10 [min–max]; MATLAB first, median, best; the ratio MATLAB best
+   / Sea best (×). Then the single-threaded MATLAB table (W1–W5) beside Sea's best, the NumPy table
+   (first, median, best of 5, and the ratio NumPy best / MATLAB best `total_seconds`, both
+   in-session times; NumPy is never divided by Sea's whole-process time), the flagged runs, and the
+   compile times.
+5. *The pass check* (generated): `check.txt` verbatim in a code block.
+6. *Sea-level kernels* (generated): per target, one table per kernel: N, the `sea` rate per variant,
+   the vendor (or proxy) rate, `pct_vendor`, and for `axpby` the `c-O2` rate.
+7. *Micro-benchmarks* (generated): `micro-*.tsv` of `p10` with the ratio Sea / C, and a pointer to
+   §5.9's 5d table.
+8. *Linux x86_64* (generated): the workload table of §4 for `avx2` and `sse2`, without MATLAB
+   columns ("reported, compared with nothing", Decision 165).
+9. *Reproducing*: the `make` targets and the preconditions.
+10. *Raw files*: the list of `bench/results/p10/` and of any `p10-attempt-K/` with its `check.txt`
+    verdict line.
+
+#### 2.17.10 The final measurement (Decision 163)
+
+When 10b is done and committed and the user says "go", one agent takes the final measurement in one
+go:
+
+1. **Before**: `make all`; `git -C sea status --porcelain` empty (the results directory
+   `bench/results/p10/` absent or empty); `uv run --no-project --with numpy==2.5.4 python -c 'import
+   numpy'` (cached); `ssh -o BatchMode=yes desktop true` succeeds. If any of these fails the agent
+   stops and reports to the lead without measuring.
+2. **Measure**: `make bench` (Mac: the session, the build of everything measured, then for each of
+   workloads, kernels, micro-benchmarks and NumPy the start condition and its measurement, then the
+   check), then `make bench-cross` (Linux: per tool, the host's build, start condition and
+   measurement), unniced, from the agent's shell, with no other work started on the Mac meanwhile.
+   When a driver stops with exit 2 (a precondition, or the start condition's 15-minute timeout,
+   L-po) the agent does not retry or work around it: it stops and reports, and the lead decides with
+   the user (a new session then starts in an emptied directory).
+3. **Report**: `check.txt`, the `env-*.txt` records (session, machine, OS, commits, start-condition
+   waits, load average before and after each tool) and the exit statuses. The agent commits nothing;
+   the results under `bench/results/p10/` stay uncommitted until the lead has verified them.
+
+The pass is decided by that one measurement (best of 5 within it); results of different sessions are
+never combined (L-ow, L-ps).
+
+#### 2.17.11 Sub-phases (the rows of §8)
+
+10a this specification; 10b the tools and the kernel benchmarks; 10c the final measurement,
+`BENCH.md` and the pass check; 10o, only if the check fails, a targeted optimisation followed by 10c
+again; 10d the version 1.0.0. They run in this order. 10b and 10d end with `make test` and `make
+cross` passing; 10o ends with them before its 10c.
+
+| Sub-phase | Contents | Done when |
+|-----------|----------|-----------|
+| 10a | **Phase-10 specification** (documents only): §2.17, §8 (row 10 and these rows), §9 (Decisions 162–172, lead decisions L-ow – L-qa) | `make check-contracts` passes; the user has agreed the text and decided Decisions 168–172; the amendments of §2.17.14 that come with the agreement are made. **Done** (2026-11-04): the specification revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed with the text; next 10b |
+| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py` (to `spawn_time`'s interface of §2.17.4, so it can run in parallel with WP-SPAWN); **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (§2.17.6, the Sea programs verbatim); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (§2.17.7); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile`, `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | `make bench-selftest` passes; `uv run --no-project --with numpy==2.5.4 python -c 'import numpy; print(numpy.__version__)'` prints `2.5.4`; quick trial runs into a scratch directory (`make bench BENCH_QUICK=1 BENCH_OUT=<scratch>`, then `make bench-cross BENCH_QUICK=1 BENCH_OUT=<scratch>`) exit 0 and write every file of §2.17.9 with its header except `check.txt`, and then `make bench-check BENCH_OUT=<scratch>` exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses an existing output file and a non-empty session directory (exit 2, shown in a scratch directory with a fake session, measuring nothing); a validation failure is shown to stop each driver with exit 1 and no file written, through the overrides (`PORTS=<scratch ports>` with a copy of one port printing a changed number for `workloads.sh`; `KERNELS=<scratch kernels>` with a program printing a wrong `check` line, and one whose timed loop skips its call when `BATCH` > 1, for `kernels.sh`; both quick mode, by hand, not committed); for `gemm` and `axpby`, `expect`'s line equals the `sea`, `vendor` and `c-O2` lines at every size and both parities on both platforms; `solve`'s `E` ≤ 10⁻⁹ for `sea` and `vendor` at every size and both parities on both platforms; `bench/micro.sh` without `--current` is unchanged (its usage text and its 5d command line still work); nothing is written under `bench/results/`; `make test` and `make cross` pass unchanged. **The lead verifies** by running `make bench-selftest` and one quick Mac trial itself, and reads the diff |
+| 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent; then **WP-DOC** `docs/BENCH.md` (§2.17.9; the generated sections pasted from `make bench-report` unchanged) | `bench/results/p10/` holds every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (§6.5 passes; go to 10d) or 1 (go to 10o); `BENCH.md` §2 and §4–§8 equal `report.py`'s output. **The lead verifies** by running `make bench-check` and `make bench-report` on the files and diffing them against `check.txt` and `BENCH.md`, then commits the results and `BENCH.md` (also when the check fails: a miss is recorded) |
+| 10o | **Targeted optimisation** (only after a 10c whose check exits 1; Decisions 164, 168). The lead finds the cause of each miss with a read-only investigation (profiles, the emitted code); a short specification (a subsection §2.17.15 "Optimisation attempt K", with its own decisions and lead decisions) is agreed with the user before any code; the work packages it names, in the scope Decision 168 allows; `make test` and `make cross` pass; then the lead moves `bench/results/p10/` to `p10-attempt-K/` (L-pk) and 10c is repeated in full | the agreed changes are built and `make test` and `make cross` pass; 10c's done criteria hold for the new measurement |
+| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md` (its version sentence and the results table of Decision 169 (a), from `report.py --readme`), `sea/CLAUDE.md` (status and the version line); the lead: §0, §1.2's versions paragraph, §2.2's `sea --version` text, row 10's status | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp). **Phase 10 is complete and Sea v1 is done** (§1.2) |
+
+#### 2.17.12 Decisions of phase 10
+
+Decisions 162–167 were asked on 2026-11-04 with the outline of this phase and decided by the user the
+same day, each as option (a); this text records them with their options. Decisions 168–172 are the
+questions the draft left to the user, each with a recommendation (170–172 added after one
+independent review of the draft); the user decided them on 2026-11-04 with the agreement, each as
+option (a). Mirrored in §9 ("Decisions of phase 10").
+
+162. **Which benchmarks phase 10 runs.** Options: (a) **the seven workloads against MATLAB (§6.5),
+     the existing micro-benchmarks (§5.9), and a small set of Sea-level matrix benchmarks written in
+     Sea: GEMM (`@`), `solve` and one fused element-wise loop, compared with Apple Accelerate on the
+     Mac and OpenBLAS on Linux by C harnesses in `bench/` only, never linked into Sea, with stated
+     sizes and methodology; their results are reported, and the only pass rule is §6.5's workload
+     rule**; (b) the workloads and the micro-benchmarks only; (c) a full kernel suite like Baysick's
+     (every kernel, every size, peak loops). Recommended: (a). Affects §2.17.6, §2.17.7, §5.7 (its
+     list of measured kernels, with the agreement). **Decided: (a)** (the user, 2026-11-04).
+163. **Who takes the final measurement.** Options: (a) **an agent, in one go, unniced, on the idle
+     M2 Pro, when the user says "go"; it records the load average before and after, the machine,
+     the OS and the commit**; (b) the user runs the `make` target and pastes the output.
+     Recommended: (a). Affects §2.17.3, §2.17.10, row 10c. **Decided: (a)** (the user, 2026-11-04).
+164. **What follows a miss.** Options: (a) **if any workload misses on either measure, a targeted
+     optimisation sub-phase, agreed with the user, follows, and then everything is re-measured**;
+     (b) the miss is recorded and v1 waits. Recommended: (a). Affects §2.17.11 (row 10o), §2.17.9
+     (the kept attempts), Decision 168. **Decided: (a)** (the user, 2026-11-04).
+165. **Linux numbers.** Options: (a) **Linux x86_64 numbers are measured on the ssh host `desktop`
+     (Intel Core i7-4790) and reported, compared with nothing**; (b) no Linux numbers. Recommended:
+     (a). Affects §2.17.4, §2.17.6, §2.17.7, `make bench-cross`, `BENCH.md` §8. **Decided: (a)**
+     (the user, 2026-11-04).
+166. **The version after the pass.** Options: (a) **when §6.5 passes, Sea's version becomes 1.0.0
+     (Decision 79) wherever it is recorded: the driver's `--version` text (`driver/sea`, the only
+     place in code), §1.2 and §2.2, `sea/CLAUDE.md`'s status and version line, and `README.md`**;
+     (b) the version stays 0.y. Recommended: (a). Affects row 10d. **Decided: (a)** (the user,
+     2026-11-04).
+167. **NumPy timings.** Options: (a) **the NumPy reference timings are an extra reported column,
+     never judged**; (b) MATLAB only. Recommended: (a). Affects §2.17.5, `BENCH.md` §4.
+     **Decided: (a)** (the user, 2026-11-04).
+168. **What an optimisation sub-phase may change** (Decision 164's 10o). Options: (a) **the
+     compiler passes, the runtimes and the prelude only; a port changes only where it departs from
+     its MATLAB script's algorithm (a defect of the port), never to restructure an accepted port for
+     speed**; (b) also port rewrites that keep the MATLAB script's algorithm and outputs but change
+     how the Sea code is written (for example a hand-vectorized loop or a preallocated buffer), each
+     still accepted by `tests/accept.sh`; (c) anything that keeps acceptance, a different algorithm
+     included. Recommended: (a): a gain in the compiler or runtime holds for every Sea program, the
+     ports stay the programs that were accepted, and the comparison stays "the same program written
+     plainly in each language"; (b) measures how well the port was tuned as much as Sea; (c) would
+     no longer compare like with like. Affects row 10o. **Decided: (a)** (the user, 2026-11-04).
+169. **The README after 1.0.0.** Options: (a) **10d adds to `README.md` a short "Performance"
+     table (per workload, Sea's best of 5 and MATLAB's best on both measures, and the machine),
+     generated by `report.py` from the committed results, with a link to `docs/BENCH.md`**; (b) the
+     README only states the version and links `docs/BENCH.md`. Recommended: (a): the speed goal is
+     Sea's first goal (§1.1), and a generated table cannot drift from the measurement. With (a),
+     `report.py` has a `--readme` option printing that table (written in 10b), and row 10d's
+     WP-VERSION pastes it. Affects row 10d, §2.17.9. **Decided: (a)** (the user, 2026-11-04).
+170. **The start condition of each measurement.** An independent review saw this Mac at a 1-minute
+     load average of 1.68–2.28 while idle with an agent session open, so the draft's limit of 1.0
+     could not be reached. Options: (a) **a separate build step before any timed run, then before
+     each tool's measurement a cool-down of at least 120 s, then a wait (15-minute timeout) until the
+     1-minute load average is at most 2.0; the wait and the load are recorded; on timeout the driver
+     stops and the agent reports instead of measuring**; (b) the same with the limit 1.0; (c) no load
+     condition: the load is only recorded. Recommended: (a): the build's heat and the agent's own
+     background load are allowed for, a measurement on a busy machine is still refused, and every
+     wait is in the record; (b) would in practice never start; (c) could publish numbers taken on a
+     loaded machine. Affects §2.17.3, §2.17.10, L-po, L-pl. **Decided: (a)** (the user,
+     2026-11-04).
+171. **What `axpby` measures, and how hoisting is excluded.** In a loop, `w = 0.75 * x - 1.25 * y`
+     reuses `w`'s buffer and allocates nothing per call (§5.4, §2.12's F2 (6)), so an allocation
+     count cannot show that each call ran. Options: (a) **the natural Sea form, reusing `w`'s
+     buffer, guarded for every implementation by an input that changes with the call number (r mod
+     2, so the checked result is that of the last call) and by the rule that a batched call may not
+     be more than twice as fast as a single one**; (b) a form that allocates a fresh result on every
+     call (for example a function returning the expression), so the heap count of the first draft
+     works. Recommended: (a): it measures what a Sea user's loop costs, the input change makes
+     hoisting impossible rather than merely detectable, and the guard is the same for Sea and C; (b)
+     measures an allocation the language avoids in practice. Affects §2.17.6, L-pg. **Decided: (a)**
+     (the user, 2026-11-04).
+172. **NumPy's threads.** Options: (a) **NumPy's default threads, as MATLAB's pass baseline ran
+     with its default threads: no thread variable is set, and the BLAS and thread settings NumPy
+     reports are recorded**; (b) single-threaded (`VECLIB_MAXIMUM_THREADS=1`,
+     `OPENBLAS_NUM_THREADS=1`), like Sea. Recommended: (a): the column sits beside MATLAB's default
+     baseline and is not judged; (b) would make it comparable with the single-threaded MATLAB file
+     instead. Affects §2.17.3, §2.17.5. **Decided: (a)** (the user, 2026-11-04).
+
+#### 2.17.13 Lead decisions of phase 10
+
+Readings taken because one answer is clearly right, agreed by the user with the text and Decisions
+168–172 on 2026-11-04 (§9, "Lead decisions of phase 10"):
+
+* **L-ow** (no warm-up run, one measurement) Nothing runs a port between its build and run 1, so run
+  1 is the first run, as MATLAB's first repetition is; best of 5 includes it (§5.7). The pass is
+  decided within one final measurement; runs of different attempts are never combined.
+* **L-ox** (the printed compute time) The ports print the compute time with three decimals because
+  the MATLAB reports do and the reports are compared (§6.4); the check therefore compares the largest
+  value the printed number can stand for, printed + 0.0005, strictly below MATLAB's best at full
+  precision. This can only make the check stricter, never pass a slower run.
+* **L-oy** (every timed run is correct) Run 1 of each workload is judged as acceptance judges it, and
+  runs 2–15 must give the same bytes (the `Compute time` line aside), the same status and an empty
+  standard error, and leave only `NAME.json` and the fixtures. Judging happens after the timed runs,
+  so the `uv` processes never run between two timed runs.
+* **L-oz** (scheduling) No QoS class, affinity or nice value is set for any measured process on
+  either system, so every implementation runs under the same default scheduling as MATLAB did; this
+  departs from Baysick BENCH.md §3.1 (which sets a QoS class and pins on Linux) for the sake of that
+  equality. The drivers refuse to run niced. Because a shell started by an agent may inherit a
+  lowered scheduling class that no tool can portably query, `spawn_time` records each workload
+  run's user + system CPU time (`wait4`), and `report.py` flags runs whose CPU time is below 0.8 of
+  their wall time as runs that waited for a CPU; a flag is reported, not a failure.
+* **L-pa** (power) The baseline machine `Mac14,9` is a portable; in final mode the drivers refuse to
+  measure on battery or in Low Power Mode, which lower the clock, and record the power source.
+* **L-pb** (what the check accepts) Only final-mode results of a clean tree, whose summary agrees
+  with its runs file: the check can then be re-run by anyone on the committed files, and the
+  measured binaries are those of the recorded commit.
+* **L-pc** (the machine) §1.2's comparison is valid only on the baseline's machine, so a model or CPU
+  name different from the MATLAB files' is a failure of the check, not a warning.
+* **L-pd** (NumPy) Timed in-process (`main()` with `perf_counter`, five runs in one interpreter, the
+  module imported untimed), the committed `.py.json` protected by redirecting `common.REF_DIR`, and
+  run 1 judged by `compare.py`'s own NumPy-mode function; Mac only, because the column exists to sit
+  beside MATLAB's and the host has no MATLAB baseline. Five runs, as the MATLAB files hold, not 15:
+  the column is not judged, and the slowest scripts make 15 runs costly. The redirection of file
+  descriptor 1 and the flush before it are outside the timed region, the flush after `main()`
+  inside it; `numpy.sh` writes the record, with the facts only Python knows (versions, BLAS,
+  threads, the load after the last timed run) from `numpy_time.py`'s `info.txt`.
+* **L-pe** (exact kernel data) Integer and dyadic data make every correct implementation's result
+  identical, so validation is an equality against `expect.c`'s `int64_t` values, as Baysick's tests
+  use exact products; the cost of these operations does not depend on the values.
+* **L-pf** (one protocol for all implementations) Each implementation is an executable with the same
+  arguments and output, timed by itself around the calls, one process per repetition, with the same
+  calibration and batching, so Sea and the vendor are measured identically; a Sea program cannot
+  time a repetition loop of the runner's choosing any other way.
+* **L-pg** (no hoisting) A loop-invariant `a @ b` could in principle be moved out of the timed loop,
+  and the fused `axpby` allocates nothing per call, so an allocation count proves nothing for it.
+  Instead every implementation changes one input by the call number's parity before each call, so
+  no call is loop-invariant and the checked result is the last call's (exactly checkable for both
+  parities), and a batched call may not be more than twice as fast as a single one (Decision 171
+  (a)). The Sea programs' text is fixed in §2.17.6 so the guard's premises cannot drift.
+* **L-ph** (vendor calls) `cblas_dgemm` with β = 0 into a preallocated matrix; `dgesv_` with its
+  copies inside the timed call, because `solve` must also not change its arguments; `vDSP_vsmsmaD`
+  as Accelerate's one-pass out-of-place a·x + b·y, and on Linux `cblas_dcopy` + `cblas_daxpby` as a
+  labelled two-pass proxy, since OpenBLAS has no out-of-place form (Baysick BENCH.md §2 labels its
+  `add` proxy the same way).
+* **L-pi** (no peak loops) The Sea-level benchmarks measure the language over the kernels; GEMM's
+  quality against the instruction-set peak is Baysick's measurement (Baysick BENCH.md §3.4), and
+  Decision 162 chose a small set over a full suite.
+* **L-pj** (micro-benchmarks re-measured) The compiler changed after 5d (phases 6–9, L, W8), so the
+  micro-benchmarks are re-measured at the measured commit, with the current compiler and C only; the
+  5d files stay as the record of phase 5.
+* **L-pk** (kept attempts) A failed measurement is committed and then moved to
+  `bench/results/p10-attempt-K/`, so the record shows every attempt and `BENCH.md` §10 lists them.
+* **L-pl** (order) On the Mac everything is built first, then the workloads (the pass rule) are
+  measured, then the kernels, the micro-benchmarks and NumPy (the longest), each after its own start
+  condition (Decision 170 (a)), so no build and no previous tool's heat precedes a measurement
+  without a cool-down; the Linux run follows the Mac measurement so its `ssh` traffic never overlaps
+  a Mac measurement.
+* **L-pm** (Linux) The ports are compiled on the Mac and linked on the host as the cross tests do;
+  workloads and Sea kernels run under both x86_64 variants; run 1 of each is judged on the Mac with
+  the same `compare.py` and `compare_report.py` commands (the host need not have `uv`); no compile
+  time is reported for Linux.
+* **L-pn** (generated tables) Every number in `BENCH.md` §2 and §4–§8 comes from `report.py`, and
+  the lead checks that by re-running it; no measured number is typed by hand.
+* **L-po** (load) Under Decision 170 (a) a driver measures only after the cool-down and once the
+  1-minute load average is at most 2.0, and stops with exit 2 when that does not happen within 15
+  minutes; the final measurement's agent then reports instead of retrying, so the user can make the
+  machine idle. The wait and the loads before and after every driver are recorded, and `check.py`
+  warns (never fails) when the workloads' load exceeded 2.0.
+* **L-pp** (no re-measurement after 10d) The version is a string in the POSIX-sh driver only; the
+  compiled programs do not contain it, so 10d changes no measured binary.
+* **L-pq** (Python tools) `check.py` and `report.py` read JSON and TSV; Python's standard library does
+  that reliably where sh and awk would not, and `uv` is already required by acceptance. They never
+  import NumPy.
+* **L-pr** (§5.7's kernel list) §5.7 lists Sea's own kernels (GEMV, LU, Cholesky, triangular solve,
+  sort, the vector elementary functions) as measured "this way"; under Decision 162 (a) phase 10
+  measures the three Sea-level benchmarks of §2.17.6 instead, which run GEMM, LU with its triangular
+  solves, and a fused vector loop through the language, in §2.17.9's TSV format rather than
+  Baysick's and against the vendor library only, with no instruction-set peak (L-pi). With the
+  agreement §5.7 says so (§2.17.14).
+* **L-ps** (one session) `make bench` creates a session id that every record carries; a final-mode
+  driver never replaces a result file and `session.sh` needs an empty directory, and `check.py`
+  requires one session and one `sea_commit` across every record present, so the committed results
+  are one measurement and cannot mix runs of different sessions or commits.
+* **L-pt** (C call barrier) Each timed C call goes through a `noinline` function ending in `asm
+  volatile("" ::: "memory")`, so `-O2` can neither inline it into the timing loop nor hoist or merge
+  identical calls; with the per-call input change of L-pg this makes the C and the Sea loops do the
+  same work.
+* **L-pu** (build, then measure) Separate `build` and `measure` commands, with `measure` refusing stale
+  or missing builds, keep every compiler and linker out of the measured interval and give the start
+  condition a machine that is no longer building; the cross remote script follows the same order on
+  the host.
+* **L-pv** (the printed wall) Walls are written with nine decimals, so the check compares the best
+  wall + 5·10⁻¹⁰ strictly, as L-ox does for the compute time; the summary's medians of 10 carry one
+  decimal more and are recomputed exactly in decimal.
+* **L-pw** (cross outputs) On Linux, W2 and W3 (class R) are judged by `compare.py`'s rules only, as
+  `make cross` defers and judges them; W1, W4, W5, W7 and W8 must also give the Mac's bytes (the
+  `Compute time` line aside), which `make cross` already guarantees, so a host run that differs is
+  wrong even if it passes the rules.
+* **L-px** (NumPy pinned) The NumPy column names its version, so the version is pinned
+  (`numpy==2.5.4`, the release `uv` resolves today) rather than whatever `uv` picks on the day of the
+  measurement; the run-1 check confirms it reproduces the cross-check's outputs.
+* **L-py** (clean trees) Cleanliness excludes `bench/results`, which the measurement itself writes,
+  and is checked from the driver's own root; Baysick's tree is recorded and required clean too
+  (outside its `sea` submodule path), because its runtime is linked into every measured binary.
+* **L-pz** (overrides) `PORTS` and `KERNELS` let 10b inject failing programs without touching the
+  tree, as `tests/accept.sh`'s `PORTS` does; final mode accepts only their defaults, so a final
+  result always measures the committed programs.
+* **L-qa** (fixed program texts) The three Sea programs are written verbatim in §2.17.6, so their
+  input change, check computation and output format are part of the agreed text; a text the
+  compiler rejects is corrected in the document with the lead, never silently in `bench/`.
+
+#### 2.17.14 Sections amended with the agreement
+
+Edited with the draft (2026-11-04): §2.17 (this section), §8 (row 10 and the rows 10a–10d with 10o)
+and §9 (Decisions 162–172, lead decisions L-ow – L-qa); revised the same day after one independent
+review (§2.17.3–§2.17.11, Decisions 170–172, lead decisions L-ps – L-qa).
+
+With the agreement:
+
+* **§0** and `sea/CLAUDE.md`'s status (done 2026-11-04): 10a done and agreed, next 10b.
+* **§2.17**, **§8** and **§9** (done 2026-11-04): Decisions 168–172 decided as option (a), lead
+  decisions L-ow – L-qa agreed, the status lines updated.
+* **§5.7** (done 2026-11-04): its first paragraph's clauses "Sea's own kernels (GEMV, LU, Cholesky, triangular solve,
+  sort, vector `log`/`exp`/`sin`/`cos`/`pow`) are measured this way, in Baysick's TSV format" and
+  "the measured instruction-set peak as the other" are replaced, so that it reads: in phase 10 the
+  kernels are measured through the three Sea-level benchmarks of §2.17.6 (Decision 162), not one by
+  one, in the TSV format of §2.17.9, against the vendor library (Accelerate / OpenBLAS) and, for the
+  fused loop, a C loop, with no instruction-set peak measured (L-pi, L-pr); the rest of §5.7 (single
+  thread on the vendor side, monotonic clock, warm-up, at least 5 repetitions and 1 s, median with
+  min and max, validation before timing, machine and load recorded) stays.
+* **§6.5** (done 2026-11-04): a closing sentence "The tools, the run directory, the correctness check of every timed
+  run, the exact pass check and the output files are §2.17.4 and §2.17.8; the seven workloads' pass
+  criteria are the four MATLAB files of §1.2 (W7 and W8 from their own files)."
+
+With the later sub-phases:
+
+* **§0**, `sea/CLAUDE.md` and **§8** (10b–10d done as they finish).
+* **§2.17.15** (10o only: each optimisation attempt's specification, agreed before its code).
+* **§1.2** (10d: the versions paragraph says 1.0.0 is the current version), **§2.2** (10d: `sea
+  --version` prints `sea 1.0.0`).
+* **Files outside the documents**: `bench/*`, `Makefile`, `sea/CLAUDE.md`'s command list (10b);
+  `bench/results/p10/*`, `docs/BENCH.md` (10c); `driver/sea`, `README.md`, `sea/CLAUDE.md` (10d).
+
 ## 3. Intermediate files
 
 The passes of §2.1 communicate through ten text files in the temporary directory (six before
@@ -17250,10 +18256,11 @@ optimization beyond pass 2b's whole-program reachability.
 
 **Kernels** (`sea/bench/`): Baysick's methodology (`docs/BENCH.md`) unchanged — single-threaded
 on both sides, a monotonic clock, untimed warm-up, ≥ 5 repetitions and ≥ 1 s per measurement,
-the median reported with min and max, validation before timing, the vendor library (Accelerate /
-OpenBLAS / the vendor libm) as one bar and the measured instruction-set peak as the other, machine,
-load and variant recorded. Sea's own kernels (GEMV, LU, Cholesky, triangular solve, sort, vector
-`log`/`exp`/`sin`/`cos`/`pow`) are measured this way, in Baysick's TSV format. The harness may be C
+the median reported with min and max, validation before timing, machine, load and variant
+recorded. In phase 10 the kernels are measured through the three Sea-level benchmarks of §2.17.6
+(Decision 162), not one by one, in the TSV format of §2.17.9, against the vendor library
+(Accelerate / OpenBLAS) and, for the fused loop, a C loop, with no instruction-set peak measured
+(L-pi, L-pr). The harness may be C
 (built with `xcrun cc` / `gcc`), as Baysick's `bench/` is, because it is a measuring tool and
 never part of Sea.
 
@@ -19391,6 +20398,9 @@ The MATLAB rerun of Decision 7 is committed (sea commit c1736f7): `baseline_timi
 each. The same script also compares Sea's medians with the default baseline's medians and
 reports the single-threaded MATLAB numbers beside them. The same script runs on the Linux host
 for the x86_64 numbers (reported, not compared with MATLAB, which has no Linux baseline).
+The tools, the run directory, the correctness check of every timed run, the exact pass check and
+the output files are §2.17.4 and §2.17.8; the seven workloads' pass criteria are the four MATLAB
+files of §1.2 (W7 and W8 from their own files).
 
 ### 6.6 Cross-target identity
 
@@ -19785,7 +20795,7 @@ half-built. Phases 0–2 build the skeleton end to end on the smallest real prog
 | 9 | **Plotting.** The runtime's `Figure`/`Axes` objects, SVG writer, contours, embedded PNG images (specified in sub-phase 9a; built in the sub-phases 9b–9d below, §2.14) | the plot tests pass; every port writes its figure with `--figures` and passes its structural check. **Complete** (2026-11-03): 9a–9d done, the plot tests pass, all six ports write their figures with `--figures` and pass their structural files on the Mac (`tests/accept.sh`) and on the Linux host (byte-identical SVGs for W1, W3, W4, W5 and W7 under both variants, W2 by Decision 138), the gate after phase 9 passed with no relief (§2.7, "Measured at the gate after phase 9"); next the library sub-phase and the W8 workload (to be specified), then phase 10 |
 | L | **Text library.** `read_lines`, `split`, `substr`, `parse_i64`, `parse_f64`, the i64 bitwise functions and `%x`/`%X` (LANGUAGE.md §10.9, §10.10, §10.14, §11.1; specified in sub-phase La; built in the sub-phases Lb–Lc below, §2.15) | the text-library tests pass on both targets; §2.15.3's decode runs as `lib_candump`. **Complete** (2026-11-04): La–Lc done, the text-library tests pass on both targets (`make test`; `make cross`: 2 391 passed, 0 failed, 4 deferred on the host under both variants) and `lib_candump` prints §2.15.3's output, the gate after phase L passed with no relief (§2.7, "Measured at the gate after phase L"); next the specification of the W8 workload, then phase 10 |
 | W8 | **The EV CAN workload W8.** An original ESP32 controller sketch simulated on the Mac against an Arduino/TWAI mock and a deterministic motor and vehicle model, its committed `candump -L` log, the MATLAB reference and the Sea port (specified in sub-phase W8a, agreed 2026-11-04; built in W8b–W8d below, §2.16). **Complete** (2026-11-04): W8a–W8d done, W8 accepted on both targets; next phase 10 | W8 accepted on both targets (§6.3 "W8 acceptance"); `make w8-log` reproduces the committed log |
-| 10 | **Benchmarks.** `sea/bench/` kernel and workload benchmarks, published methodology and results | §6.5 passes for all seven workloads on the baseline machine; results and machine recorded in `sea/docs/BENCH.md` |
+| 10 | **Benchmarks.** `sea/bench/` kernel and workload benchmarks, published methodology and results (specified in sub-phase 10a; built and measured in 10b–10d below, with the conditional 10o, §2.17) | §6.5 passes for all seven workloads on the baseline machine (`bench/check.py` exits 0 on the committed `bench/results/p10/`, §2.17.8); results and machine recorded in `sea/docs/BENCH.md` (§2.17.9); Sea's version is 1.0.0 (Decision 166). Status: **specified, agreed 2026-11-04** (10a done: §2.17 revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed); next 10b |
 
 **Phase 4 sub-phases** (decided 2026-10-21, Decisions 17–24). They run in this order, because each
 touches the passes the next one extends; inside a sub-phase the passes are written in parallel
@@ -19839,6 +20849,11 @@ against hand-written goldens (stage.sh). Each starts from its specification text
 | W8b | **Sketch, simulator, committed log** (after W8a; Decisions 151, 153–155). **WP-SKETCH** `workloads/w8_ev_can/w8_ev_can/w8_ev_can.ino` and `w8_can_msgs.h` (§2.16.3, §2.16.4; an original sketch, reviewed by the user; WP-SKETCH writes `w8_can_msgs.h` first, and WP-MODEL, which uses its helpers, starts only once it exists); **WP-MOCK** `workloads/w8_ev_can/host/include/Arduino.h`, `host/include/driver/twai.h`, `host/mock_core.cpp`, `host/mock_twai.cpp`, `host/sim.h`, `host/main.cpp`, `host/sketch.cpp` (§2.16.5; WP-MOCK writes `host/sim.h`, the interface between the mock and the model, first); **WP-MODEL** `host/model.cpp`, `host/model.h` (§2.16.6); **WP-BUILD** `sea/Makefile` (`w8-sim`, `w8-log`, `w8-log-update`, `w8-sketch`; none of them in `make test`), `.gitattributes`, the command list of `sea/CLAUDE.md`; then the integration: `make w8-log-update` once and the three committed files `w8_ev_can.log`, `serial.txt`, `bench_serial.txt`; then one independent read-only review of the sketch and the simulator against §2.16.3–§2.16.7 | `make w8-log` passes (both builds byte-identical to the committed files); the log has 85 621 lines and 3 607 634 bytes and the fault counts of §2.16.6 (L 17 dropped, 23 late, 12 corrupted; R 25, 30, 14 and the 12 blackout frames), checked by a throwaway count over the committed log (`timeout 120 uv run --no-project python` with a script in the scratch directory, not committed) that must give `bad_checksum` 12 (`0x181`) and 14 (`0x182`), `fb_dropped` L 17 and R 37, `fb_late` L 23 and R 30, and gap events L 40 and R 56 by A4 and A5; `bench_serial.txt` has the banner and 2 055 frame lines; `serial.txt` shows the five state changes in §2.16.6's order; `make w8-sketch` passes (compile only; flashing is the user's); the floating-point checks of §2.16.7 pass (`grep -w -e float -e double` and the floating-literal check find nothing in the sketch, the header and the host files, and both builds compile with `-Wfloat-conversion -Wdouble-promotion -Werror`); `make test` and `make cross` pass unchanged; the user has reviewed the sketch. **Built** (2026-11-04): the sketch has 387 lines, `w8_can_msgs.h` 166, `host/model.cpp` 420, `host/mock_twai.cpp` 316, `host/main.cpp` 181, `host/mock_core.cpp` 92, `host/include/driver/twai.h` 143, `host/include/Arduino.h` 63, `host/sim.h` 77, `host/model.h` 35 and `host/sketch.cpp` 2; `make w8-log` passes (both builds identical to the committed files, 85 621 lines, 3 607 634 bytes); `make w8-sketch` compiles to 299 920 bytes of flash with no warning; the fault counts are those of §2.16.6; `bench_serial.txt` has 2 055 frame lines; `serial.txt` shows the five state changes at 0.5, 72.05, 74.22, 95.09 and 97.40 s (the log regenerated in W8c with the traces of Decision 161; the counts above are unchanged); an independent review re-simulated all three outputs byte for byte from §2.16 alone (Python, scratch only) with zero law mismatches; lead decisions L-nz–L-oi (§9); `make test` (rt 305, stage 1 354, shape 8, fusion 2, protocol 56, programs 2 536, plots 34, accept 2 + 6, lib_check 366, check_data 114, math 122) and `make cross` (1 340 cases packed, 0 failed to compile; default variant 1 053/0, `sse2` 1 053/0, once-only 285/0; host 2 391 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed) pass unchanged; the user reviewed and approved the sketch (2026-11-04); **W8b is done** |
 | W8c | **MATLAB reference** (after W8b; Decisions 152, 156, 157, 159). **WP-MATLAB** `workloads/w8_ev_can.m` (§2.16.8, written from this text, never from the simulator's code); **WP-RULES** `workloads/reference_py/compare.py` (`RULES["w8_ev_can"]` of §2.16.8), `workloads/run_all.m` (`w8_ev_can` in its workload lists, as `w7_drivetrain` is), `workloads/README.md` (W8's row, its feature-matrix column, its run commands and its separate baseline); with Decision 159 (a) **WP-NUMPY** `workloads/reference_py/w8_ev_can.py` and `run_all.py`'s list (by an agent that did not write `w8_ev_can.m`), run to write `reference/w8_ev_can.py.json`; then the hand-over to the user, who runs §2.16.8's two `run_all` calls and commits `reference/w8_ev_can.json`, `reference/w8_ev_can.txt` and `reference/baseline_timings_matlab_w8_ev_can.json` | the three MATLAB files are committed and §1.2 records W8's timing table; `compare.py` (NumPy mode) reports every W8 key `ok` (with Decision 159 (a)); `compare.py --self-test` passes; `make test` passes unchanged | **Done** (2026-11-04). Files: `workloads/w8_ev_can.m` (659 lines), `workloads/reference_py/w8_ev_can.py` (531), `workloads/reference_py/compare.py` (+31: `RULES["w8_ev_can"]`, 55 keys), `run_all.m`, `run_all.py`, `workloads/README.md`. Decision 161 (the traces retuned, the log regenerated, independently re-simulated byte for byte); lead decisions L-oj–L-on. The user ran MATLAB on 2026-11-04 (R2026a Update 5, Apple M2 Pro, 10 threads, 5 repetitions): total first 1.195 s, median 0.638 s, best 0.626 s; compute first 1.114 s, median 0.629 s, best 0.617 s (§1.2); the three MATLAB files and the figure `workloads/output/w8_ev_can.png` were written. The NumPy cross-check reports every W8 key `ok` (max abs diff 0 on every float key, bit-identical), "ALL COMPARED KEYS PASS", and `compare.py --self-test` passes. `make test` (rt 305, stage 1 354, shape 8, fusion 2, protocol 56, programs 2 536, plots 34, accept 2 + 6, lib_check 366, check_data 114, math 122) and `make cross` (1 340 cases packed, 0 failed to compile; default variant 1 053/0, `sse2` 1 053/0, once-only 285/0; host 2 391 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed) pass. Next W8d. |
 | W8d | **Port and acceptance** (after W8c; Decisions 157, 158). **WP-PORT** `ports/w8_ev_can.sea` (with its `// fixture:` line; §2.16.9); **WP-TOKENS** `ports/w8_ev_can.tokens`; **WP-STRUCT** `ports/w8_ev_can.struct` (§2.16.8, by an author who does not write the port); **WP-ACCEPT** `tests/accept.sh` (fixtures and the amended run-directory rule) and `tests/cross_pack.sh` (fixtures into `NAME.files/`), each with its setup errors tested; the compile and compute times recorded in §6.3 | `tests/accept.sh` passes W1, W2, W3, W4, W5, W7 and W8 (every key of `reference/w8_ev_can.json`, the report equivalent, the structural check); the port run with `--log workloads/w8_ev_can/bench_serial.txt` exits 0 (its report recorded, not compared); `make cross` passes W8 under both variants, byte-identical to the Mac but for the `Compute time` line; `make test` and `make cross` pass; W8 is accepted | **Done** (2026-11-04; verified by the lead). Files: `ports/w8_ev_can.sea` (896 lines, with its `// fixture: workloads/w8_ev_can/w8_ev_can.log` line), `ports/w8_ev_can.tokens` (106), `ports/w8_ev_can.struct` (50; §2.16.8's text verbatim, by an author who did not write the port), `tests/accept.sh` (fixtures, the amended run-directory rule, every setup error exit 2, a `PORTS` variable), `tests/cross_pack.sh` (fixtures packed into `NAME.files/`); `cross_run.sh` is unchanged. The port: compile time 31.1 s, within the 120 s limit; compute time best of 3 0.150 s (MATLAB's best 0.617 s); all 55 keys pass `compare.py --candidate`, every float bit-identical (max abs diff 0); the report is EQUIVALENT under `compare_report.py` and byte-identical to `reference/w8_ev_can.txt` apart from the `Compute time` line; `plot_struct.py` PASS; `heap: 0 live objects`; the run with `--log workloads/w8_ev_can/bench_serial.txt` exits 0 (its report is recorded, not compared: 2 055 frames on `twai0`, 507 overlaps, as expected for handling times); no compiler or runtime defect found. Setup errors tested by hand with throwaway ports, each exit 2: a missing source, a directory as source, a malformed line, a `..` component, a repeated line, the same base name, the reserved names `NAME.json`, `NAME` and `output`; a program that changes its fixture fails ("the program changed fixture"), and so does one that leaves a stray file. Lead decisions L-oo–L-ov. The lead's runs: `sh tests/accept.sh -v w8` passed 1 (31.8 s); `make test` (rt 305, stage 1 354, shape 8, fusion 2, protocol 56, programs 2 536, plots 34, accept 2 + 7, lib_check 366, check_data 114, math 122) and `make cross` (1 341 cases packed, 0 failed to compile; default variant 1 054/0, `sse2` 1 054/0, once-only 285/0; host 2 393 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed) pass; W8 is byte-identical to the Mac apart from the `Compute time` line, its 3.6 MB log carried as `NAME.files/`. W8 is accepted on both targets; **W8 is complete**. Next phase 10. |
+| 10a | **Phase-10 specification** (documents only): §2.17 (scope, files and ownership, the common rules, the workload benchmark refining §6.5, the NumPy column, the Sea-level kernel benchmarks, the micro-benchmarks in phase 10, the pass check, the output formats, `make` targets and `docs/BENCH.md`, the final measurement, these rows, Decisions 162–172, lead decisions L-ow – L-qa); no code, test, contract file or result changes | `make check-contracts` passes; the user has agreed the text and decided Decisions 168–172; the amendments of §2.17.14 that come with the agreement are made. **Done** (2026-11-04): the specification revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed with the text; next 10b |
+| 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py`; **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (the Sea programs verbatim from §2.17.6); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (`--current`, `--out`, `build`/`measure`); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile` (the `bench*` targets of §2.17.9, none in `make test`), `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | as §2.17.11's row 10b: `make bench-selftest` passes; the NumPy pin resolves to 2.5.4; quick trials on the Mac and the host into a scratch directory exit 0 and write every file of §2.17.9 but `check.txt`, after which `make bench-check` on them exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses existing outputs; failures injected through `PORTS` and `KERNELS` stop the drivers with exit 1 and no file written; `expect`'s lines equal every implementation's for `gemm` and `axpby`, and `solve`'s `E` ≤ 10⁻⁹, at every size and both parities on both platforms; `micro.sh`'s 5d behaviour unchanged; nothing written under `bench/results/`; `make test` and `make cross` pass unchanged |
+| 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent (`make bench`, then `make bench-cross`); **WP-DOC** `docs/BENCH.md` (§2.17.9, its §2 and §4–§8 from `make bench-report` unchanged); the lead commits `bench/results/p10/` and `BENCH.md` | every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (next 10d) or 1 (next 10o, the miss committed and recorded); the lead's own `make bench-check` and `make bench-report` reproduce `check.txt` and `BENCH.md` §2 and §4–§8 |
+| 10o | **Targeted optimisation** (conditional: only after a 10c whose check exits 1; Decisions 164, 168). A read-only investigation of each miss; a specification §2.17.15 "Optimisation attempt K" agreed with the user before code, in the scope of Decision 168; its work packages; `make test` and `make cross`; `bench/results/p10/` moved to `p10-attempt-K/`; then 10c in full again | the agreed changes are built, `make test` and `make cross` pass, and 10c's done criteria hold for the new measurement |
+| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md`, `sea/CLAUDE.md`'s status and version line; the lead: §0, §1.2, §2.2, row 10 | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp); **phase 10 is complete and Sea v1 is done** (§1.2) |
 
 ## 9. Decisions (agreed)
 
@@ -21870,6 +22885,88 @@ text.
      §2.16.6, §2.16.12 (W8b's built facts), `host/model.cpp`'s two trace tables and the committed
      `w8_ev_can.log`, `serial.txt` and `bench_serial.txt`. **Decided: (a)** (the user, 2026-11-04).
 
+**Decisions of phase 10** (written 2026-11-04 with the text of §2.17, sub-phase 10a, agreed by the
+user the same day after one independent review: 162–167 asked with the phase's outline and decided
+by the user that day, each as option (a); 168–172 left to the user with the text, 170–172 added
+after the review, and decided by the user with the agreement, each as option (a)). Each lists its
+options with the
+recommendation in bold, its reasons, the decision, and what it affects; §2.17.12 holds the same
+text.
+
+162. **Which benchmarks phase 10 runs.** Options: (a) **the seven workloads against MATLAB (§6.5),
+     the existing micro-benchmarks (§5.9), and a small set of Sea-level matrix benchmarks written in
+     Sea: GEMM (`@`), `solve` and one fused element-wise loop, compared with Apple Accelerate on the
+     Mac and OpenBLAS on Linux by C harnesses in `bench/` only, never linked into Sea, with stated
+     sizes and methodology; their results are reported, and the only pass rule is §6.5's workload
+     rule**; (b) the workloads and the micro-benchmarks only; (c) a full kernel suite like Baysick's
+     (every kernel, every size, peak loops). Recommended: (a). Affects §2.17.6, §2.17.7, §5.7 (its
+     list of measured kernels, with the agreement). **Decided: (a)** (the user, 2026-11-04).
+163. **Who takes the final measurement.** Options: (a) **an agent, in one go, unniced, on the idle
+     M2 Pro, when the user says "go"; it records the load average before and after, the machine,
+     the OS and the commit**; (b) the user runs the `make` target and pastes the output.
+     Recommended: (a). Affects §2.17.3, §2.17.10, row 10c. **Decided: (a)** (the user, 2026-11-04).
+164. **What follows a miss.** Options: (a) **if any workload misses on either measure, a targeted
+     optimisation sub-phase, agreed with the user, follows, and then everything is re-measured**;
+     (b) the miss is recorded and v1 waits. Recommended: (a). Affects §2.17.11 (row 10o), §2.17.9
+     (the kept attempts), Decision 168. **Decided: (a)** (the user, 2026-11-04).
+165. **Linux numbers.** Options: (a) **Linux x86_64 numbers are measured on the ssh host `desktop`
+     (Intel Core i7-4790) and reported, compared with nothing**; (b) no Linux numbers. Recommended:
+     (a). Affects §2.17.4, §2.17.6, §2.17.7, `make bench-cross`, `BENCH.md` §8. **Decided: (a)**
+     (the user, 2026-11-04).
+166. **The version after the pass.** Options: (a) **when §6.5 passes, Sea's version becomes 1.0.0
+     (Decision 79) wherever it is recorded: the driver's `--version` text (`driver/sea`, the only
+     place in code), §1.2 and §2.2, `sea/CLAUDE.md`'s status and version line, and `README.md`**;
+     (b) the version stays 0.y. Recommended: (a). Affects row 10d. **Decided: (a)** (the user,
+     2026-11-04).
+167. **NumPy timings.** Options: (a) **the NumPy reference timings are an extra reported column,
+     never judged**; (b) MATLAB only. Recommended: (a). Affects §2.17.5, `BENCH.md` §4.
+     **Decided: (a)** (the user, 2026-11-04).
+168. **What an optimisation sub-phase may change** (Decision 164's 10o). Options: (a) **the
+     compiler passes, the runtimes and the prelude only; a port changes only where it departs from
+     its MATLAB script's algorithm (a defect of the port), never to restructure an accepted port for
+     speed**; (b) also port rewrites that keep the MATLAB script's algorithm and outputs but change
+     how the Sea code is written (for example a hand-vectorized loop or a preallocated buffer), each
+     still accepted by `tests/accept.sh`; (c) anything that keeps acceptance, a different algorithm
+     included. Recommended: (a): a gain in the compiler or runtime holds for every Sea program, the
+     ports stay the programs that were accepted, and the comparison stays "the same program written
+     plainly in each language"; (b) measures how well the port was tuned as much as Sea; (c) would
+     no longer compare like with like. Affects row 10o. **Decided: (a)** (the user, 2026-11-04).
+169. **The README after 1.0.0.** Options: (a) **10d adds to `README.md` a short "Performance"
+     table (per workload, Sea's best of 5 and MATLAB's best on both measures, and the machine),
+     generated by `report.py` from the committed results, with a link to `docs/BENCH.md`**; (b) the
+     README only states the version and links `docs/BENCH.md`. Recommended: (a): the speed goal is
+     Sea's first goal (§1.1), and a generated table cannot drift from the measurement. With (a),
+     `report.py` has a `--readme` option printing that table (written in 10b), and row 10d's
+     WP-VERSION pastes it. Affects row 10d, §2.17.9. **Decided: (a)** (the user, 2026-11-04).
+170. **The start condition of each measurement.** An independent review saw this Mac at a 1-minute
+     load average of 1.68–2.28 while idle with an agent session open, so the draft's limit of 1.0
+     could not be reached. Options: (a) **a separate build step before any timed run, then before
+     each tool's measurement a cool-down of at least 120 s, then a wait (15-minute timeout) until the
+     1-minute load average is at most 2.0; the wait and the load are recorded; on timeout the driver
+     stops and the agent reports instead of measuring**; (b) the same with the limit 1.0; (c) no load
+     condition: the load is only recorded. Recommended: (a): the build's heat and the agent's own
+     background load are allowed for, a measurement on a busy machine is still refused, and every
+     wait is in the record; (b) would in practice never start; (c) could publish numbers taken on a
+     loaded machine. Affects §2.17.3, §2.17.10, L-po, L-pl. **Decided: (a)** (the user,
+     2026-11-04).
+171. **What `axpby` measures, and how hoisting is excluded.** In a loop, `w = 0.75 * x - 1.25 * y`
+     reuses `w`'s buffer and allocates nothing per call (§5.4, §2.12's F2 (6)), so an allocation
+     count cannot show that each call ran. Options: (a) **the natural Sea form, reusing `w`'s
+     buffer, guarded for every implementation by an input that changes with the call number (r mod
+     2, so the checked result is that of the last call) and by the rule that a batched call may not
+     be more than twice as fast as a single one**; (b) a form that allocates a fresh result on every
+     call (for example a function returning the expression), so the heap count of the first draft
+     works. Recommended: (a): it measures what a Sea user's loop costs, the input change makes
+     hoisting impossible rather than merely detectable, and the guard is the same for Sea and C; (b)
+     measures an allocation the language avoids in practice. Affects §2.17.6, L-pg. **Decided: (a)**
+     (the user, 2026-11-04).
+172. **NumPy's threads.** Options: (a) **NumPy's default threads, as MATLAB's pass baseline ran
+     with its default threads: no thread variable is set, and the BLAS and thread settings NumPy
+     reports are recorded**; (b) single-threaded (`VECLIB_MAXIMUM_THREADS=1`,
+     `OPENBLAS_NUM_THREADS=1`), like Sea. Recommended: (a): the column sits beside MATLAB's default
+     baseline and is not judged; (b) would make it comparable with the single-threaded MATLAB file
+     instead. Affects §2.17.3, §2.17.5. **Decided: (a)** (the user, 2026-11-04).
+
 **Lead decisions of phase 5** (2026-10-24, within Decisions 58–73, each taken because one answer is
 clearly right, reported to the user and agreed with the phase-5 text; each is written into its
 normative section): L-ac,
@@ -23566,3 +24663,125 @@ clearly right, written into §2.16:
 * **L-ov** (W8d, 2026-11-04) (no A9 cycles) With no A9 cycles (a bench log) the port plots panel 1's
   "fit" series from two empty vectors, as MATLAB's `plot([], [])` does. This keeps the legend's
   structure and never reaches `min` of an empty vector, which is a run-time error in Sea.
+
+**Lead decisions of phase 10** (written 2026-11-04 with the text of §2.17, sub-phase 10a, revised
+after one independent review, and agreed by the user with the text and Decisions 168–172 on
+2026-11-04); each is a reading taken because one answer is clearly right, written into §2.17:
+
+* **L-ow** (no warm-up run, one measurement) Nothing runs a port between its build and run 1, so run
+  1 is the first run, as MATLAB's first repetition is; best of 5 includes it (§5.7). The pass is
+  decided within one final measurement; runs of different attempts are never combined.
+* **L-ox** (the printed compute time) The ports print the compute time with three decimals because
+  the MATLAB reports do and the reports are compared (§6.4); the check therefore compares the largest
+  value the printed number can stand for, printed + 0.0005, strictly below MATLAB's best at full
+  precision. This can only make the check stricter, never pass a slower run.
+* **L-oy** (every timed run is correct) Run 1 of each workload is judged as acceptance judges it, and
+  runs 2–15 must give the same bytes (the `Compute time` line aside), the same status and an empty
+  standard error, and leave only `NAME.json` and the fixtures. Judging happens after the timed runs,
+  so the `uv` processes never run between two timed runs.
+* **L-oz** (scheduling) No QoS class, affinity or nice value is set for any measured process on
+  either system, so every implementation runs under the same default scheduling as MATLAB did; this
+  departs from Baysick BENCH.md §3.1 (which sets a QoS class and pins on Linux) for the sake of that
+  equality. The drivers refuse to run niced. Because a shell started by an agent may inherit a
+  lowered scheduling class that no tool can portably query, `spawn_time` records each workload
+  run's user + system CPU time (`wait4`), and `report.py` flags runs whose CPU time is below 0.8 of
+  their wall time as runs that waited for a CPU; a flag is reported, not a failure.
+* **L-pa** (power) The baseline machine `Mac14,9` is a portable; in final mode the drivers refuse to
+  measure on battery or in Low Power Mode, which lower the clock, and record the power source.
+* **L-pb** (what the check accepts) Only final-mode results of a clean tree, whose summary agrees
+  with its runs file: the check can then be re-run by anyone on the committed files, and the
+  measured binaries are those of the recorded commit.
+* **L-pc** (the machine) §1.2's comparison is valid only on the baseline's machine, so a model or CPU
+  name different from the MATLAB files' is a failure of the check, not a warning.
+* **L-pd** (NumPy) Timed in-process (`main()` with `perf_counter`, five runs in one interpreter, the
+  module imported untimed), the committed `.py.json` protected by redirecting `common.REF_DIR`, and
+  run 1 judged by `compare.py`'s own NumPy-mode function; Mac only, because the column exists to sit
+  beside MATLAB's and the host has no MATLAB baseline. Five runs, as the MATLAB files hold, not 15:
+  the column is not judged, and the slowest scripts make 15 runs costly. The redirection of file
+  descriptor 1 and the flush before it are outside the timed region, the flush after `main()`
+  inside it; `numpy.sh` writes the record, with the facts only Python knows (versions, BLAS,
+  threads, the load after the last timed run) from `numpy_time.py`'s `info.txt`.
+* **L-pe** (exact kernel data) Integer and dyadic data make every correct implementation's result
+  identical, so validation is an equality against `expect.c`'s `int64_t` values, as Baysick's tests
+  use exact products; the cost of these operations does not depend on the values.
+* **L-pf** (one protocol for all implementations) Each implementation is an executable with the same
+  arguments and output, timed by itself around the calls, one process per repetition, with the same
+  calibration and batching, so Sea and the vendor are measured identically; a Sea program cannot
+  time a repetition loop of the runner's choosing any other way.
+* **L-pg** (no hoisting) A loop-invariant `a @ b` could in principle be moved out of the timed loop,
+  and the fused `axpby` allocates nothing per call, so an allocation count proves nothing for it.
+  Instead every implementation changes one input by the call number's parity before each call, so
+  no call is loop-invariant and the checked result is the last call's (exactly checkable for both
+  parities), and a batched call may not be more than twice as fast as a single one (Decision 171
+  (a)). The Sea programs' text is fixed in §2.17.6 so the guard's premises cannot drift.
+* **L-ph** (vendor calls) `cblas_dgemm` with β = 0 into a preallocated matrix; `dgesv_` with its
+  copies inside the timed call, because `solve` must also not change its arguments; `vDSP_vsmsmaD`
+  as Accelerate's one-pass out-of-place a·x + b·y, and on Linux `cblas_dcopy` + `cblas_daxpby` as a
+  labelled two-pass proxy, since OpenBLAS has no out-of-place form (Baysick BENCH.md §2 labels its
+  `add` proxy the same way).
+* **L-pi** (no peak loops) The Sea-level benchmarks measure the language over the kernels; GEMM's
+  quality against the instruction-set peak is Baysick's measurement (Baysick BENCH.md §3.4), and
+  Decision 162 chose a small set over a full suite.
+* **L-pj** (micro-benchmarks re-measured) The compiler changed after 5d (phases 6–9, L, W8), so the
+  micro-benchmarks are re-measured at the measured commit, with the current compiler and C only; the
+  5d files stay as the record of phase 5.
+* **L-pk** (kept attempts) A failed measurement is committed and then moved to
+  `bench/results/p10-attempt-K/`, so the record shows every attempt and `BENCH.md` §10 lists them.
+* **L-pl** (order) On the Mac everything is built first, then the workloads (the pass rule) are
+  measured, then the kernels, the micro-benchmarks and NumPy (the longest), each after its own start
+  condition (Decision 170 (a)), so no build and no previous tool's heat precedes a measurement
+  without a cool-down; the Linux run follows the Mac measurement so its `ssh` traffic never overlaps
+  a Mac measurement.
+* **L-pm** (Linux) The ports are compiled on the Mac and linked on the host as the cross tests do;
+  workloads and Sea kernels run under both x86_64 variants; run 1 of each is judged on the Mac with
+  the same `compare.py` and `compare_report.py` commands (the host need not have `uv`); no compile
+  time is reported for Linux.
+* **L-pn** (generated tables) Every number in `BENCH.md` §2 and §4–§8 comes from `report.py`, and
+  the lead checks that by re-running it; no measured number is typed by hand.
+* **L-po** (load) Under Decision 170 (a) a driver measures only after the cool-down and once the
+  1-minute load average is at most 2.0, and stops with exit 2 when that does not happen within 15
+  minutes; the final measurement's agent then reports instead of retrying, so the user can make the
+  machine idle. The wait and the loads before and after every driver are recorded, and `check.py`
+  warns (never fails) when the workloads' load exceeded 2.0.
+* **L-pp** (no re-measurement after 10d) The version is a string in the POSIX-sh driver only; the
+  compiled programs do not contain it, so 10d changes no measured binary.
+* **L-pq** (Python tools) `check.py` and `report.py` read JSON and TSV; Python's standard library does
+  that reliably where sh and awk would not, and `uv` is already required by acceptance. They never
+  import NumPy.
+* **L-pr** (§5.7's kernel list) §5.7 lists Sea's own kernels (GEMV, LU, Cholesky, triangular solve,
+  sort, the vector elementary functions) as measured "this way"; under Decision 162 (a) phase 10
+  measures the three Sea-level benchmarks of §2.17.6 instead, which run GEMM, LU with its triangular
+  solves, and a fused vector loop through the language, in §2.17.9's TSV format rather than
+  Baysick's and against the vendor library only, with no instruction-set peak (L-pi). With the
+  agreement §5.7 says so (§2.17.14).
+* **L-ps** (one session) `make bench` creates a session id that every record carries; a final-mode
+  driver never replaces a result file and `session.sh` needs an empty directory, and `check.py`
+  requires one session and one `sea_commit` across every record present, so the committed results
+  are one measurement and cannot mix runs of different sessions or commits.
+* **L-pt** (C call barrier) Each timed C call goes through a `noinline` function ending in `asm
+  volatile("" ::: "memory")`, so `-O2` can neither inline it into the timing loop nor hoist or merge
+  identical calls; with the per-call input change of L-pg this makes the C and the Sea loops do the
+  same work.
+* **L-pu** (build, then measure) Separate `build` and `measure` commands, with `measure` refusing stale
+  or missing builds, keep every compiler and linker out of the measured interval and give the start
+  condition a machine that is no longer building; the cross remote script follows the same order on
+  the host.
+* **L-pv** (the printed wall) Walls are written with nine decimals, so the check compares the best
+  wall + 5·10⁻¹⁰ strictly, as L-ox does for the compute time; the summary's medians of 10 carry one
+  decimal more and are recomputed exactly in decimal.
+* **L-pw** (cross outputs) On Linux, W2 and W3 (class R) are judged by `compare.py`'s rules only, as
+  `make cross` defers and judges them; W1, W4, W5, W7 and W8 must also give the Mac's bytes (the
+  `Compute time` line aside), which `make cross` already guarantees, so a host run that differs is
+  wrong even if it passes the rules.
+* **L-px** (NumPy pinned) The NumPy column names its version, so the version is pinned
+  (`numpy==2.5.4`, the release `uv` resolves today) rather than whatever `uv` picks on the day of the
+  measurement; the run-1 check confirms it reproduces the cross-check's outputs.
+* **L-py** (clean trees) Cleanliness excludes `bench/results`, which the measurement itself writes,
+  and is checked from the driver's own root; Baysick's tree is recorded and required clean too
+  (outside its `sea` submodule path), because its runtime is linked into every measured binary.
+* **L-pz** (overrides) `PORTS` and `KERNELS` let 10b inject failing programs without touching the
+  tree, as `tests/accept.sh`'s `PORTS` does; final mode accepts only their defaults, so a final
+  result always measures the committed programs.
+* **L-qa** (fixed program texts) The three Sea programs are written verbatim in §2.17.6, so their
+  input change, check computation and output format are part of the agreed text; a text the
+  compiler rejects is corrected in the document with the lead, never silently in `bench/`.

@@ -258,7 +258,9 @@ rows W8a–W8d: the workload W8 `w8_ev_can`, an ESP32 controller sketch simulate
 writing a CAN log that a Sea port reads, decodes and plots; Decisions 151–160 each decided by the
 user as option (a), lead decisions L-nf–L-ny agreed; W8 joins the acceptance set, now seven
 workloads). W8c done (2026-11-04); W8d done (2026-11-04); **W8 is complete** (accepted on both
-targets); next phase 10 (benchmarks). `make test` passes (rt 305, stage 1 354, programs 2 536, plots
+targets). **Phase 10** (benchmarks) **is specified** (10a, agreed 2026-11-04 after one independent
+review: Decisions 162–172 each option (a), lead decisions L-ow–L-qa; DESIGN.md §2.17, §8 rows
+10a–10d, 10o); next 10b. `make test` passes (rt 305, stage 1 354, programs 2 536, plots
 34, accept 2 + 7, `lib_check` 366) and `make cross` passes 1 341 cases (default 1 054, `sse2` 1 054,
 once-only 285; host 2 393 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed).
 
