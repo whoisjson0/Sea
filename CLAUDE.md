@@ -260,11 +260,14 @@ user as option (a), lead decisions L-nf–L-ny agreed; W8 joins the acceptance s
 workloads). W8c done (2026-11-04); W8d done (2026-11-04); **W8 is complete** (accepted on both
 targets). **Phase 10** (benchmarks) **is specified** (10a, agreed 2026-11-04 after one independent
 review: Decisions 162–172 each option (a), lead decisions L-ow–L-qa; DESIGN.md §2.17, §8 rows
-10a–10d, 10o); next 10b. `make test` passes (rt 305, stage 1 354, programs 2 536, plots
-34, accept 2 + 7, `lib_check` 366) and `make cross` passes 1 341 cases (default 1 054, `sse2` 1 054,
-once-only 285; host 2 393 passed, 0 failed, 4 deferred; Mac 4 passed, 0 failed).
+10a–10d, 10o). **10b is done** (the tools and kernel benchmarks), **10c is done** (the final
+measurement committed under `bench/results/p10/`, `docs/BENCH.md`, `bench/check.py` printing
+"PASS: 7 of 7 workloads faster than MATLAB on both measures"; 10o was not needed) and **10d is
+done** (2026-11-05: Sea version 1.0.0, the README's results table and, at the user's request, two
+generated charts (lead decision L-qv, DESIGN.md §2.17.9, §2.17.13); no re-measurement, L-pp).
+**Phase 10 is complete and Sea v1 is done.**
 
-Versions 0.y.z are alpha; 1.0.0 = v1
+Version: **1.0.0** (`sea --version` prints `sea 1.0.0`); versions 0.y.z were alpha and 1.0.0 = v1
 (Decision 79).
 
 ## Read first
@@ -346,7 +349,9 @@ Versions 0.y.z are alpha; 1.0.0 = v1
   into `$(BENCH_OUT)/check.txt`, the checker's exit status; skipped with `BENCH_QUICK=1`);
   `make bench-cross` (`workloads.sh --cross`, `kernels.sh --cross`, `micro.sh --current --cross`
   on the host into the same session; `BENCH_CROSS_ARGS='-H HOST'`), `make bench-report`
-  (`bench/report.py`, the Markdown of `docs/BENCH.md`), `make bench-selftest`
+  (`bench/report.py`, the Markdown of `docs/BENCH.md`), `make bench-charts` (`uv run --no-project
+  python -I bench/charts.py $(BENCH_OUT) docs/img`: writes `docs/img/{speedup,times}-{light,dark}.svg`
+  from the results, deterministically; not part of `make test`), `make bench-selftest`
   (`bench/spawn_test.sh` and `check.py --self-test`). Variables: `BENCH_OUT` (default
   `bench/results/p10`; passed as `--out`), `BENCH_QUICK=1` (passes `--quick`: a smoke run whose
   records say `mode quick`, refused by `check.py`). Final mode (no `--quick`) refuses an existing

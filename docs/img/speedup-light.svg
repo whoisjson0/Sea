@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="538" viewBox="0 0 800 538" role="img" aria-labelledby="speedup-light-title speedup-light-desc" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif">
+<title id="speedup-light-title">Sea vs MATLAB: times faster (higher is better)</title>
+<desc id="speedup-light-desc">How many times faster Sea is than MATLAB on each workload, as MATLAB's best time divided by Sea's best time. W1 shaft design: whole process 14.7×, compute 18.2×; W2 truss FEM: whole process 1.9×, compute 1.9×; W3 quarter car: whole process 8.7×, compute 9.6×; W4 heat plate: whole process 1.8×, compute 1.8×; W5 tolerance MC: whole process 2.2×, compute 2.2×; W7 drivetrain: whole process 60.9×, compute 63.2×; W8 EV CAN: whole process 4.0×, compute 4.1×. MATLAB R2026a with 10 threads, in-session; Sea single-threaded, whole process. Mac14,9 (Apple M2 Pro), macOS 26.6.2 (Darwin 25.6.0) · Sea commit 669ca18 · session 20261105T180509Z-85cec080</desc>
+<text x="24" y="34" font-size="20" fill="#1f2328" font-weight="600">Sea vs MATLAB: times faster (higher is better)</text>
+<text x="24" y="57" font-size="13" fill="#52514e">MATLAB best time ÷ Sea best time, per workload (log scale)</text>
+<rect x="500.76" y="75" width="12" height="12" rx="2" fill="#2a78d6"/>
+<text x="518.76" y="85.5" font-size="12" fill="#52514e">Whole process</text>
+<rect x="622.28" y="75" width="12" height="12" rx="2" fill="#eb6834"/>
+<text x="640.28" y="85.5" font-size="12" fill="#52514e">Compute (timed region)</text>
+<text x="176" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">1×</text>
+<line x1="259.08" y1="112" x2="259.08" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="259.08" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">2×</text>
+<line x1="368.92" y1="112" x2="368.92" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="368.92" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">5×</text>
+<line x1="452" y1="112" x2="452" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="452" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">10×</text>
+<line x1="535.08" y1="112" x2="535.08" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="535.08" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">20×</text>
+<line x1="644.92" y1="112" x2="644.92" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="644.92" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">50×</text>
+<line x1="728" y1="112" x2="728" y2="434" stroke="#e1e0d9" stroke-width="1"/>
+<text x="728" y="452" font-size="12" fill="#6e6c66" text-anchor="middle">100×</text>
+<text x="24" y="139.5" font-size="13" fill="#1f2328">W1 shaft design</text>
+<path d="M176 120H494.14A4 4 0 0 1 498.14 124V130A4 4 0 0 1 494.14 134H176Z" fill="#2a78d6"/>
+<text x="504.14" y="131" font-size="12" fill="#1f2328">14.7×</text>
+<path d="M176 136H520.06A4 4 0 0 1 524.06 140V146A4 4 0 0 1 520.06 150H176Z" fill="#eb6834"/>
+<text x="530.06" y="147" font-size="12" fill="#1f2328">18.2×</text>
+<text x="24" y="185.5" font-size="13" fill="#1f2328">W2 truss FEM</text>
+<path d="M176 166H250.25A4 4 0 0 1 254.25 170V176A4 4 0 0 1 250.25 180H176Z" fill="#2a78d6"/>
+<text x="260.25" y="177" font-size="12" fill="#1f2328">1.9×</text>
+<path d="M176 182H248.81A4 4 0 0 1 252.81 186V192A4 4 0 0 1 248.81 196H176Z" fill="#eb6834"/>
+<text x="258.81" y="193" font-size="12" fill="#1f2328">1.9×</text>
+<text x="24" y="231.5" font-size="13" fill="#1f2328">W3 quarter car</text>
+<path d="M176 212H431.99A4 4 0 0 1 435.99 216V222A4 4 0 0 1 431.99 226H176Z" fill="#2a78d6"/>
+<text x="441.99" y="223" font-size="12" fill="#1f2328">8.7×</text>
+<path d="M176 228H442.6A4 4 0 0 1 446.6 232V238A4 4 0 0 1 442.6 242H176Z" fill="#eb6834"/>
+<text x="452.6" y="239" font-size="12" fill="#1f2328">9.6×</text>
+<text x="24" y="277.5" font-size="13" fill="#1f2328">W4 heat plate</text>
+<path d="M176 258H240.46A4 4 0 0 1 244.46 262V268A4 4 0 0 1 240.46 272H176Z" fill="#2a78d6"/>
+<text x="250.46" y="269" font-size="12" fill="#1f2328">1.8×</text>
+<path d="M176 274H240.4A4 4 0 0 1 244.4 278V284A4 4 0 0 1 240.4 288H176Z" fill="#eb6834"/>
+<text x="250.4" y="285" font-size="12" fill="#1f2328">1.8×</text>
+<text x="24" y="323.5" font-size="13" fill="#1f2328">W5 tolerance MC</text>
+<path d="M176 304H265.88A4 4 0 0 1 269.88 308V314A4 4 0 0 1 265.88 318H176Z" fill="#2a78d6"/>
+<text x="275.88" y="315" font-size="12" fill="#1f2328">2.2×</text>
+<path d="M176 320H267.3A4 4 0 0 1 271.3 324V330A4 4 0 0 1 267.3 334H176Z" fill="#eb6834"/>
+<text x="277.3" y="331" font-size="12" fill="#1f2328">2.2×</text>
+<text x="24" y="369.5" font-size="13" fill="#1f2328">W7 drivetrain</text>
+<path d="M176 350H664.47A4 4 0 0 1 668.47 354V360A4 4 0 0 1 664.47 364H176Z" fill="#2a78d6"/>
+<text x="674.47" y="361" font-size="12" fill="#1f2328">60.9×</text>
+<path d="M176 366H669.09A4 4 0 0 1 673.09 370V376A4 4 0 0 1 669.09 380H176Z" fill="#eb6834"/>
+<text x="679.09" y="377" font-size="12" fill="#1f2328">63.2×</text>
+<text x="24" y="415.5" font-size="13" fill="#1f2328">W8 EV CAN</text>
+<path d="M176 396H338.59A4 4 0 0 1 342.59 400V406A4 4 0 0 1 338.59 410H176Z" fill="#2a78d6"/>
+<text x="348.59" y="407" font-size="12" fill="#1f2328">4.0×</text>
+<path d="M176 412H339.95A4 4 0 0 1 343.95 416V422A4 4 0 0 1 339.95 426H176Z" fill="#eb6834"/>
+<text x="349.95" y="423" font-size="12" fill="#1f2328">4.1×</text>
+<line x1="176" y1="108" x2="176" y2="434" stroke="#52514e" stroke-width="1.5"/>
+<text x="176" y="102" font-size="12" fill="#52514e" text-anchor="middle" font-weight="600">MATLAB</text>
+<text x="24" y="484" font-size="12" fill="#52514e">MATLAB R2026a with 10 threads, in-session; Sea single-threaded, whole process.</text>
+<text x="24" y="502" font-size="12" fill="#52514e">Whole process: Sea's process vs MATLAB's in-session total. Compute: the same timed region in both. Best of 5 runs each.</text>
+<text x="24" y="520" font-size="11" fill="#6e6c66">Mac14,9 (Apple M2 Pro), macOS 26.6.2 (Darwin 25.6.0) · Sea commit 669ca18 · session 20261105T180509Z-85cec080</text>
+</svg>

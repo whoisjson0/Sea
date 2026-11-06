@@ -127,8 +127,11 @@ the user's agreement. Phase 0 (§8) did:
    CAN log that a Sea port reads, decodes and plots), is **done** (2026-11-04, revised after one
    independent review and agreed: §2.16, §8 rows W8a–W8d; Decisions 151–160 each decided by the
    user as option (a); lead decisions L-nf–L-ny of §9 agreed with the text); W8c done (2026-11-04);
-   W8d done (2026-11-04); **W8 is complete** (accepted on both targets); next phase 10 (benchmarks).
-   Every 0.y.z version is an alpha; 1.0.0 means v1 is done (Decision 79, §1.2).
+   W8d done (2026-11-04); **W8 is complete** (accepted on both targets); phase 10 (benchmarks):
+   10a, 10b and 10c are done (the pass check prints "PASS: 7 of 7"), and **10d is done**
+   (2026-11-05: version 1.0.0; the README's table and charts, L-qv): **phase 10 is complete and Sea
+   v1 is done**. Sea's version is 1.0.0 (`sea --version` prints `sea 1.0.0`); every 0.y.z version
+   was an alpha, and 1.0.0 means v1 is done (Decision 79, §1.2).
 
 **Settled by Decision 75** (found in 5b by WP-X64; the new rule lands with 5c-2, before 5d): under
 §4.9.2's first loop-extension rule a temporary first written inside an `if` part of a loop (not at the loop body's
@@ -627,7 +630,8 @@ a Sea port (§6.3):
 
 **Versions** (Decision 79): every Sea version 0.y.z is an alpha; 1.0.0 is the general-availability
 version and means v1 is done by the definition above (all seven workloads, phase 10 of §8). No git
-tag or release procedure is required, so the driver's `sea 0.1.0` (§2.2) already denotes an alpha.
+tag or release procedure is required, so the driver's `sea 0.1.0` (§2.2) denoted an alpha until
+sub-phase 10d (2026-11-05), when phase 10 was complete, v1 was done and the driver became `sea 1.0.0`.
 
 **The MATLAB baseline.** `reference/baseline_timings_matlab.json` (Decision 7, sea commit
 c1736f7) was written by `run_all.m` with MATLAB `26.1.0.3346908 (R2026a) Update 5`, `arch` =
@@ -888,7 +892,7 @@ builds into the temporary directory and runs the program with the arguments. The
 of `std.sea` holds its absolute installed path, that of the program the path as given (so
 diagnostics read as the user wrote the path). A pass's standard output is sent to the driver's
 standard error (a pass writes nothing there); its standard error passes through. `sea
---version` prints `sea 0.1.0`. The driver's own messages, each `sea: ` + text + LF on standard
+--version` prints `sea 1.0.0` (`sea 0.1.0` until sub-phase 10d, §1.2). The driver's own messages, each `sea: ` + text + LF on standard
 error: the usage text (`usage: sea build <file.sea> …`, after a message naming the bad option,
 status 2), which also follows `unknown command '%s'`, `unknown option '%s'`, `missing argument
 for '%s'`, `unexpected argument '%s'`, `missing input file`, `-S and --emit cannot be combined`
@@ -11670,6 +11674,16 @@ writes it `%.2f`); `--readme` prints the table and the one sentence after it, wi
 10d chooses where in `README.md` it goes (L-qf). Errors go to standard error as one `report: `
 line, exit 2.
 
+**The README charts** (added in 10d at the user's request, 2026-11-05; L-qv). Besides the table, the
+README shows two generated charts. `bench/charts.py DIR OUTDIR` (`make bench-charts`, with `DIR` =
+`$(BENCH_OUT)` and `OUTDIR` = `docs/img`) writes `speedup-light.svg` and `speedup-dark.svg` (per
+workload, MATLAB's best divided by Sea's best, for both measures, on a log axis) and
+`times-light.svg` and `times-dark.svg` (per workload, the whole-process seconds of Sea against
+MATLAB) into `docs/img/`. They are made from the same files as `report.py`, with no number typed by
+hand (as in L-pn), and are deterministic. The README embeds each with a `<picture>` element so GitHub
+shows the light or the dark file by the viewer's theme. `make bench-charts` is not part of `make
+test`.
+
 **`docs/BENCH.md`** (written in 10c by WP-DOC from this section and `report.py`'s output; normative
 for the methodology as Baysick BENCH.md is for Baysick's):
 
@@ -11738,7 +11752,7 @@ cross` passing; 10o ends with them before its 10c.
 | 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py` (to `spawn_time`'s interface of §2.17.4, so it can run in parallel with WP-SPAWN); **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (§2.17.6, the Sea programs verbatim); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (§2.17.7); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile`, `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | `make bench-selftest` passes; `uv run --no-project --with numpy==2.5.4 python -c 'import numpy; print(numpy.__version__)'` prints `2.5.4`; quick trial runs into a scratch directory (`make bench BENCH_QUICK=1 BENCH_OUT=<scratch>`, then `make bench-cross BENCH_QUICK=1 BENCH_OUT=<scratch>`) exit 0 and write every file of §2.17.9 with its header except `check.txt`, and then `make bench-check BENCH_OUT=<scratch>` exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses an existing output file and a non-empty session directory (exit 2, shown in a scratch directory with a fake session, measuring nothing); a validation failure is shown to stop each driver with exit 1 and no file written, through the overrides (`PORTS=<scratch ports>` with a copy of one port printing a changed number for `workloads.sh`; `KERNELS=<scratch kernels>` with a program printing a wrong `check` line, and one whose timed loop skips its call when `BATCH` > 1, for `kernels.sh`; both quick mode, by hand, not committed); for `gemm` and `axpby`, `expect`'s line equals the `sea`, `vendor` and `c-O2` lines at every size and both parities on both platforms; `solve`'s `E` ≤ 10⁻⁹ for `sea` and `vendor` at every size and both parities on both platforms; `bench/micro.sh` without `--current` is unchanged (its usage text and its 5d command line still work); nothing is written under `bench/results/`; `make test` and `make cross` pass unchanged. **The lead verifies** by running `make bench-selftest` and one quick Mac trial itself, and reads the diff. **Done** (2026-11-04) except the lead's verification, which the lead confirms before committing: the tools built and reviewed, with the review fixes C1–C6 (the build stamp `bench/stamp.sh`, the attempt markers `DIR/.attempt-<tool>-<target>` that `check.py` requires, §2.17.3), the kernel guard's reference batch (§2.17.6) and lead decisions L-qb – L-qu (§2.17.13) |
 | 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent; then **WP-DOC** `docs/BENCH.md` (§2.17.9; the generated sections pasted from `make bench-report` unchanged) | `bench/results/p10/` holds every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (§6.5 passes; go to 10d) or 1 (go to 10o); `BENCH.md` §2 and §4–§8 equal `report.py`'s output. **The lead verifies** by running `make bench-check` and `make bench-report` on the files and diffing them against `check.txt` and `BENCH.md`, then commits the results and `BENCH.md` (also when the check fails: a miss is recorded) |
 | 10o | **Targeted optimisation** (only after a 10c whose check exits 1; Decisions 164, 168). The lead finds the cause of each miss with a read-only investigation (profiles, the emitted code); a short specification (a subsection §2.17.15 "Optimisation attempt K", with its own decisions and lead decisions) is agreed with the user before any code; the work packages it names, in the scope Decision 168 allows; `make test` and `make cross` pass; then the lead moves `bench/results/p10/` to `p10-attempt-K/` (L-pk) and 10c is repeated in full | the agreed changes are built and `make test` and `make cross` pass; 10c's done criteria hold for the new measurement |
-| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md` (its version sentence and the results table of Decision 169 (a), from `report.py --readme`), `sea/CLAUDE.md` (status and the version line); the lead: §0, §1.2's versions paragraph, §2.2's `sea --version` text, row 10's status | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp). **Phase 10 is complete and Sea v1 is done** (§1.2) |
+| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md` (its version sentence and the results table of Decision 169 (a), from `report.py --readme`), `sea/CLAUDE.md` (status and the version line); the lead: §0, §1.2's versions paragraph, §2.2's `sea --version` text, row 10's status | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp). **Phase 10 is complete and Sea v1 is done** (§1.2). Status: **done (2026-11-05)**; at the user's request the README also shows two generated charts, from `bench/charts.py` (§2.17.9, L-qv) |
 
 #### 2.17.12 Decisions of phase 10
 
@@ -12002,6 +12016,13 @@ verification before committing:
 * **L-qu** (starting the final run) The final run is started in the foreground or through
   `/bin/sh -c '… &'`, because zsh's `BG_NICE` gives a background job nice 5 and final mode
   refuses it (§2.17.3).
+* **L-qv** (README charts) At the user's request (2026-11-05) the README also shows two generated
+  charts. `bench/charts.py DIR OUTDIR` (`make bench-charts`) writes `speedup-{light,dark}.svg`
+  (MATLAB best / Sea best per workload, both measures, log axis) and `times-{light,dark}.svg`
+  (whole-process seconds, Sea against MATLAB, per workload) into `docs/img/`. They come from the
+  same files as `report.py`, with no number typed by hand (as in L-pn), and they are
+  deterministic. The README embeds them with `<picture>` for GitHub's light and dark themes
+  (§2.17.9).
 
 #### 2.17.14 Sections amended with the agreement
 
@@ -20969,7 +20990,7 @@ half-built. Phases 0–2 build the skeleton end to end on the smallest real prog
 | 9 | **Plotting.** The runtime's `Figure`/`Axes` objects, SVG writer, contours, embedded PNG images (specified in sub-phase 9a; built in the sub-phases 9b–9d below, §2.14) | the plot tests pass; every port writes its figure with `--figures` and passes its structural check. **Complete** (2026-11-03): 9a–9d done, the plot tests pass, all six ports write their figures with `--figures` and pass their structural files on the Mac (`tests/accept.sh`) and on the Linux host (byte-identical SVGs for W1, W3, W4, W5 and W7 under both variants, W2 by Decision 138), the gate after phase 9 passed with no relief (§2.7, "Measured at the gate after phase 9"); next the library sub-phase and the W8 workload (to be specified), then phase 10 |
 | L | **Text library.** `read_lines`, `split`, `substr`, `parse_i64`, `parse_f64`, the i64 bitwise functions and `%x`/`%X` (LANGUAGE.md §10.9, §10.10, §10.14, §11.1; specified in sub-phase La; built in the sub-phases Lb–Lc below, §2.15) | the text-library tests pass on both targets; §2.15.3's decode runs as `lib_candump`. **Complete** (2026-11-04): La–Lc done, the text-library tests pass on both targets (`make test`; `make cross`: 2 391 passed, 0 failed, 4 deferred on the host under both variants) and `lib_candump` prints §2.15.3's output, the gate after phase L passed with no relief (§2.7, "Measured at the gate after phase L"); next the specification of the W8 workload, then phase 10 |
 | W8 | **The EV CAN workload W8.** An original ESP32 controller sketch simulated on the Mac against an Arduino/TWAI mock and a deterministic motor and vehicle model, its committed `candump -L` log, the MATLAB reference and the Sea port (specified in sub-phase W8a, agreed 2026-11-04; built in W8b–W8d below, §2.16). **Complete** (2026-11-04): W8a–W8d done, W8 accepted on both targets; next phase 10 | W8 accepted on both targets (§6.3 "W8 acceptance"); `make w8-log` reproduces the committed log |
-| 10 | **Benchmarks.** `sea/bench/` kernel and workload benchmarks, published methodology and results (specified in sub-phase 10a; built and measured in 10b–10d below, with the conditional 10o, §2.17) | §6.5 passes for all seven workloads on the baseline machine (`bench/check.py` exits 0 on the committed `bench/results/p10/`, §2.17.8); results and machine recorded in `sea/docs/BENCH.md` (§2.17.9); Sea's version is 1.0.0 (Decision 166). Status: **specified, agreed 2026-11-04** (10a done: §2.17 revised after one independent review and agreed, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed); next 10b |
+| 10 | **Benchmarks.** `sea/bench/` kernel and workload benchmarks, published methodology and results (specified in sub-phase 10a; built and measured in 10b–10d below, with the conditional 10o, §2.17) | §6.5 passes for all seven workloads on the baseline machine (`bench/check.py` exits 0 on the committed `bench/results/p10/`, §2.17.8); results and machine recorded in `sea/docs/BENCH.md` (§2.17.9); Sea's version is 1.0.0 (Decision 166). Status: **complete 2026-11-05: Sea v1 is done, version 1.0.0** (10a specified and agreed 2026-11-04: §2.17 revised after one independent review, Decisions 162–172 each decided by the user as option (a), lead decisions L-ow – L-qa agreed; 10b and 10c done, `bench/check.py` prints "PASS: 7 of 7 workloads faster than MATLAB on both measures"; 10o not needed; 10d done 2026-11-05, with the README charts of L-qv) |
 
 **Phase 4 sub-phases** (decided 2026-10-21, Decisions 17–24). They run in this order, because each
 touches the passes the next one extends; inside a sub-phase the passes are written in parallel
@@ -21027,7 +21048,7 @@ against hand-written goldens (stage.sh). Each starts from its specification text
 | 10b | **Tools and kernel benchmarks** (after 10a; Decisions 162, 165, 167, 170–172). **WP-SPAWN** `bench/spawn_time.c`, `bench/spawn_test.sh`; **WP-WORK** `bench/workloads.sh`, `bench/workloads/run.sh`, `bench/numpy.sh`, `bench/numpy_time.py`; **WP-KERN** `bench/kernels.sh`, `bench/kernels/*` (the Sea programs verbatim from §2.17.6); **WP-MICRO** `bench/micro.sh`, `bench/micro/run.sh` (`--current`, `--out`, `build`/`measure`); **WP-CHECK** `bench/check.py`, `bench/report.py` (with `--readme`); **WP-MAKE** `Makefile` (the `bench*` targets of §2.17.9, none in `make test`), `bench/session.sh`, `bench/settle.sh`, `sea/CLAUDE.md`'s command list; then one independent read-only review of the tools against §2.17 | as §2.17.11's row 10b: `make bench-selftest` passes; the NumPy pin resolves to 2.5.4; quick trials on the Mac and the host into a scratch directory exit 0 and write every file of §2.17.9 but `check.txt`, after which `make bench-check` on them exits 2 (`mode quick`) and leaves no `check.txt`; a final-mode driver refuses existing outputs; failures injected through `PORTS` and `KERNELS` stop the drivers with exit 1 and no file written; `expect`'s lines equal every implementation's for `gemm` and `axpby`, and `solve`'s `E` ≤ 10⁻⁹, at every size and both parities on both platforms; `micro.sh`'s 5d behaviour unchanged; nothing written under `bench/results/`; `make test` and `make cross` pass unchanged. **Done** (2026-11-04) except the lead's verification, which the lead confirms before committing: the tools built and reviewed, with the review fixes C1–C6 (the build stamp `bench/stamp.sh`, the attempt markers `DIR/.attempt-<tool>-<target>` that `check.py` requires, §2.17.3), the kernel guard's reference batch (§2.17.6) and lead decisions L-qb – L-qu (§2.17.13) |
 | 10c | **Final measurement, `BENCH.md`, the pass check** (after 10b is committed and the user says "go"; Decisions 163, 165, 167, 170, 172). The measurement of §2.17.10 by one agent (`make bench`, then `make bench-cross`); **WP-DOC** `docs/BENCH.md` (§2.17.9, its §2 and §4–§8 from `make bench-report` unchanged); the lead commits `bench/results/p10/` and `BENCH.md` | every file of §2.17.9 in final mode, one session, with `sea_dirty no` and `baysick_dirty no`; `check.py` exits 0 (next 10d) or 1 (next 10o, the miss committed and recorded); the lead's own `make bench-check` and `make bench-report` reproduce `check.txt` and `BENCH.md` §2 and §4–§8 |
 | 10o | **Targeted optimisation** (conditional: only after a 10c whose check exits 1; Decisions 164, 168). A read-only investigation of each miss; a specification §2.17.15 "Optimisation attempt K" agreed with the user before code, in the scope of Decision 168; its work packages; `make test` and `make cross`; `bench/results/p10/` moved to `p10-attempt-K/`; then 10c in full again | the agreed changes are built, `make test` and `make cross` pass, and 10c's done criteria hold for the new measurement |
-| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md`, `sea/CLAUDE.md`'s status and version line; the lead: §0, §1.2, §2.2, row 10 | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp); **phase 10 is complete and Sea v1 is done** (§1.2) |
+| 10d | **Version 1.0.0** (after a 10c whose check exits 0; Decisions 79, 166, 169). **WP-VERSION** `driver/sea` (`VERSION='sea 1.0.0'`), `README.md`, `sea/CLAUDE.md`'s status and version line; the lead: §0, §1.2, §2.2, row 10 | `build/sea --version` prints `sea 1.0.0`; `make test` and `make cross` pass; no re-measurement (L-pp); **phase 10 is complete and Sea v1 is done** (§1.2). Status: **done (2026-11-05)**; at the user's request the README also shows two generated charts, from `bench/charts.py` (§2.17.9, L-qv) |
 
 ## 9. Decisions (agreed)
 
@@ -21896,7 +21917,8 @@ living in its existing block tables; `sealoop` at most one, leaving at least 2) 
     an alpha after phase 8; (c) **version-based: every Sea version 0.y.z is an alpha, and 1.0.0
     is GA, given when v1 is done (§1.2: all six workloads, phase 10); no git tag or release
     procedure is required**. **Decided: (c)** (the user, 2026-10-25); (c) needs no milestone or
-    release step of its own, and the driver's `sea 0.1.0` (§2.2) already denotes an alpha; (a)
+    release step of its own, and the driver's `sea 0.1.0` (§2.2) denoted an alpha until 10d made it
+    `sea 1.0.0` (2026-11-05); (a)
     and (b) add a release step and a version suffix to maintain. Affects §1.2 (one sentence); no
     row of §8, no contract file, no code.
 
@@ -25017,3 +25039,10 @@ verification before committing:
 * **L-qu** (starting the final run) The final run is started in the foreground or through
   `/bin/sh -c '… &'`, because zsh's `BG_NICE` gives a background job nice 5 and final mode
   refuses it (§2.17.3).
+* **L-qv** (README charts) At the user's request (2026-11-05) the README also shows two generated
+  charts. `bench/charts.py DIR OUTDIR` (`make bench-charts`) writes `speedup-{light,dark}.svg`
+  (MATLAB best / Sea best per workload, both measures, log axis) and `times-{light,dark}.svg`
+  (whole-process seconds, Sea against MATLAB, per workload) into `docs/img/`. They come from the
+  same files as `report.py`, with no number typed by hand (as in L-pn), and they are
+  deterministic. The README embeds them with `<picture>` for GitHub's light and dark themes
+  (§2.17.9).

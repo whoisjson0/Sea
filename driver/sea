@@ -110,7 +110,7 @@ usage_error() { # usage_error [MESSAGE]
 }
 
 # ---- command line --------------------------------------------------------------------
-VERSION='sea 0.1.0'
+VERSION='sea 1.0.0'
 [ $# -ge 1 ] || usage_error ""
 case $1 in
 --version) echo "$VERSION"; exit "$EX_OK" ;;

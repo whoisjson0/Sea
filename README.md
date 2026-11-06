@@ -5,8 +5,30 @@ C/Rust-like syntax and is not MATLAB-compatible. It is the child project of
 [Baysick](https://github.com/frgmt0/Baysick), a rebuild of Dartmouth BASIC (1964) written in
 assembly, and the Sea compiler is itself written in Baysick.
 
-Sea is alpha software (versions 0.y.z; 1.0.0 is v1). The language is specified in
+Sea is version 1.0.0: v1 is done, and it is no longer alpha. The language is specified in
 docs/LANGUAGE.md. The compiler, runtime, tests and plan are in docs/DESIGN.md.
+
+## At a glance: why Sea
+
+The charts compare Sea with MATLAB on seven engineering workloads, best of 5 runs on the same Mac.
+The first shows how many times faster Sea is on each workload; the second shows the seconds each
+one takes.
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/img/speedup-dark.svg"><img alt="Bar chart of MATLAB's best time divided by Sea's best time for each of the seven workloads, on a log axis, for the whole process and for the timed region." src="docs/img/speedup-light.svg"></picture>
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/img/times-dark.svg"><img alt="Bar chart of the whole-process seconds Sea and MATLAB take on each of the seven workloads." src="docs/img/times-light.svg"></picture>
+
+| Workload | Sea wall (s) | MATLAB wall (s) | Sea compute (s) | MATLAB compute (s) |
+|:---|---:|---:|---:|---:|
+| w1_shaft_design | 0.039 | 0.573 | 0.028 | 0.511 |
+| w2_truss_fem | 0.498 | 0.956 | 0.493 | 0.936 |
+| w3_quarter_car | 0.082 | 0.720 | 0.066 | 0.631 |
+| w4_heat_plate | 0.513 | 0.907 | 0.510 | 0.902 |
+| w5_tolerance_mc | 0.351 | 0.768 | 0.345 | 0.764 |
+| w7_drivetrain | 0.142 | 8.625 | 0.136 | 8.602 |
+| w8_ev_can | 0.156 | 0.626 | 0.152 | 0.617 |
+
+Best of 5, seconds. Wall is the whole process for Sea and MATLAB's in-session `total_seconds`; compute is the timed region. Measured on Mac14,9 (Apple M2 Pro), macOS 26.6.2 (Darwin 25.6.0), Sea commit `669ca18`, session `20261105T180509Z-85cec080`; see [docs/BENCH.md](docs/BENCH.md).
 
 ## Goals
 
@@ -23,8 +45,9 @@ No performance claim goes in without a measurement behind it.
 
 ## Status
 
-Phases 0 to 8 are done; phase 8 (linear algebra) finished with the ports of W2 and W3. DESIGN.md
-§8 has the full milestone table.
+Phase 10 is done and v1 is complete (version 1.0.0): all seven workloads run faster than MATLAB on
+both measures, as the table above shows and docs/BENCH.md documents. DESIGN.md §8 has the full
+milestone table.
 
 - The compiler is a chain of passes: `seaparse`, `seaname`, `seacheck`, `seaexpand`, `seafuse`,
   `sealoop`, `sealower`, `seaopt`, `sealopt`, `seavec`, then a code generator per target
@@ -34,19 +57,20 @@ Phases 0 to 8 are done; phase 8 (linear algebra) finished with the ports of W2 a
 - The language covers scalars, dynamic and fixed-size arrays, structs, strings, functions with
   named and default arguments, formatted output, `write_json`, fusion and SIMD code
   generation, and the matrix product `@`.
-- Phase 8 added `lu`, `chol`, `solve`, `rcond` and `eig_sym`, with the `Lu` and `Chol` handle
-  types, and the ports of W2 and W3. Next is plotting (phase 9), starting with its specification.
-- Not done: plotting (phase 9). Benchmarks against Accelerate and OpenBLAS are phase 10.
+- Linear algebra: `lu`, `chol`, `solve`, `rcond` and `eig_sym`, with the `Lu` and `Chol` handle
+  types. Plotting writes SVG figures.
+- Phase 10 measured the seven workloads against MATLAB, and the matrix kernels, micro-benchmarks
+  and Linux x86_64 beside them; docs/BENCH.md has the methodology and every result.
 
 ## Workloads
 
-`workloads/` has seven MATLAB scripts that look like ordinary engineering work: shaft sizing,
+`workloads/` has eight MATLAB scripts that look like ordinary engineering work: shaft sizing,
 truss FEM, a quarter-car model, plate heat conduction, a Monte Carlo tolerance stack-up, topology
-optimisation and a buggy drivetrain. W1 to W5 and W7 are the acceptance targets for v1. A Sea port
-of each has to reproduce the MATLAB numbers and report, and run faster. W6 is an extra reference
-for later.
+optimisation, a buggy drivetrain and an EV controller whose CAN log is read, decoded and plotted.
+W1 to W5, W7 and W8 are the seven acceptance targets for v1. A Sea port of each has to reproduce
+the MATLAB numbers and report, and run faster. W6 is an extra reference for later.
 
-`ports/` has the Sea ports of W1, W2, W3, W4, W5 and W7. `tests/accept.sh` runs them and compares
+`ports/` has the Sea ports of W1, W2, W3, W4, W5, W7 and W8. `tests/accept.sh` runs them and compares
 every output key and the text report with the MATLAB reference. `workloads/README.md` describes
 the scripts and how the reference values are produced and compared.
 

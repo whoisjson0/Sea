@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="652" viewBox="0 0 800 652" role="img" aria-labelledby="times-light-title times-light-desc" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif">
+<title id="times-light-title">Whole-process time: Sea vs MATLAB (lower is better)</title>
+<desc id="times-light-desc">Whole-process seconds per workload, best of 5 runs, each workload on its own scale. W1 shaft design: Sea 0.039 s, MATLAB 0.573 s; W2 truss FEM: Sea 0.498 s, MATLAB 0.956 s; W3 quarter car: Sea 0.082 s, MATLAB 0.720 s; W4 heat plate: Sea 0.513 s, MATLAB 0.907 s; W5 tolerance MC: Sea 0.351 s, MATLAB 0.768 s; W7 drivetrain: Sea 0.142 s, MATLAB 8.625 s; W8 EV CAN: Sea 0.156 s, MATLAB 0.626 s. MATLAB R2026a with 10 threads, in-session; Sea single-threaded, whole process. Mac14,9 (Apple M2 Pro), macOS 26.6.2 (Darwin 25.6.0) · Sea commit 669ca18 · session 20261105T180509Z-85cec080</desc>
+<text x="24" y="34" font-size="20" fill="#1f2328" font-weight="600">Whole-process time: Sea vs MATLAB (lower is better)</text>
+<text x="24" y="57" font-size="13" fill="#52514e">Seconds, best of 5 runs. Each workload has its own scale.</text>
+<rect x="650.4" y="75" width="12" height="12" rx="2" fill="#2a78d6"/>
+<text x="668.4" y="85.5" font-size="12" fill="#52514e">Sea</text>
+<rect x="709.28" y="75" width="12" height="12" rx="2" fill="#eb6834"/>
+<text x="727.28" y="85.5" font-size="12" fill="#52514e">MATLAB</text>
+<text x="24" y="124" font-size="13" fill="#1f2328" font-weight="600">W1 shaft design</text>
+<line x1="88" y1="134" x2="88" y2="182" stroke="#c3c2b7" stroke-width="1"/>
+<text x="88" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="165.33" y1="134" x2="165.33" y2="182" stroke="#e1e0d9" stroke-width="1"/>
+<text x="165.33" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.2</text>
+<line x1="242.67" y1="134" x2="242.67" y2="182" stroke="#e1e0d9" stroke-width="1"/>
+<text x="242.67" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.4</text>
+<line x1="320" y1="134" x2="320" y2="182" stroke="#e1e0d9" stroke-width="1"/>
+<text x="320" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.6</text>
+<text x="24" y="150" font-size="12" fill="#52514e">Sea</text>
+<path d="M88 138H99.08A4 4 0 0 1 103.08 142V150A4 4 0 0 1 99.08 154H88Z" fill="#2a78d6"/>
+<text x="109.08" y="150" font-size="12" fill="#1f2328">0.039 s</text>
+<text x="24" y="174" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M88 162H305.62A4 4 0 0 1 309.62 166V174A4 4 0 0 1 305.62 178H88Z" fill="#eb6834"/>
+<text x="315.62" y="174" font-size="12" fill="#1f2328">0.573 s</text>
+<text x="416" y="124" font-size="13" fill="#1f2328" font-weight="600">W2 truss FEM</text>
+<line x1="480" y1="134" x2="480" y2="182" stroke="#c3c2b7" stroke-width="1"/>
+<text x="480" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="596" y1="134" x2="596" y2="182" stroke="#e1e0d9" stroke-width="1"/>
+<text x="596" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">0.5</text>
+<line x1="712" y1="134" x2="712" y2="182" stroke="#e1e0d9" stroke-width="1"/>
+<text x="712" y="197" font-size="11" fill="#6e6c66" text-anchor="middle">1.0</text>
+<text x="416" y="150" font-size="12" fill="#52514e">Sea</text>
+<path d="M480 138H591.52A4 4 0 0 1 595.52 142V150A4 4 0 0 1 591.52 154H480Z" fill="#2a78d6"/>
+<text x="601.52" y="150" font-size="12" fill="#1f2328">0.498 s</text>
+<text x="416" y="174" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M480 162H697.91A4 4 0 0 1 701.91 166V174A4 4 0 0 1 697.91 178H480Z" fill="#eb6834"/>
+<text x="707.91" y="174" font-size="12" fill="#1f2328">0.956 s</text>
+<text x="24" y="242" font-size="13" fill="#1f2328" font-weight="600">W3 quarter car</text>
+<line x1="88" y1="252" x2="88" y2="300" stroke="#c3c2b7" stroke-width="1"/>
+<text x="88" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="204" y1="252" x2="204" y2="300" stroke="#e1e0d9" stroke-width="1"/>
+<text x="204" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">0.5</text>
+<line x1="320" y1="252" x2="320" y2="300" stroke="#e1e0d9" stroke-width="1"/>
+<text x="320" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">1.0</text>
+<text x="24" y="268" font-size="12" fill="#52514e">Sea</text>
+<path d="M88 256H103.1A4 4 0 0 1 107.1 260V268A4 4 0 0 1 103.1 272H88Z" fill="#2a78d6"/>
+<text x="113.1" y="268" font-size="12" fill="#1f2328">0.082 s</text>
+<text x="24" y="292" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M88 280H251.12A4 4 0 0 1 255.12 284V292A4 4 0 0 1 251.12 296H88Z" fill="#eb6834"/>
+<text x="261.12" y="292" font-size="12" fill="#1f2328">0.720 s</text>
+<text x="416" y="242" font-size="13" fill="#1f2328" font-weight="600">W4 heat plate</text>
+<line x1="480" y1="252" x2="480" y2="300" stroke="#c3c2b7" stroke-width="1"/>
+<text x="480" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="596" y1="252" x2="596" y2="300" stroke="#e1e0d9" stroke-width="1"/>
+<text x="596" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">0.5</text>
+<line x1="712" y1="252" x2="712" y2="300" stroke="#e1e0d9" stroke-width="1"/>
+<text x="712" y="315" font-size="11" fill="#6e6c66" text-anchor="middle">1.0</text>
+<text x="416" y="268" font-size="12" fill="#52514e">Sea</text>
+<path d="M480 256H594.91A4 4 0 0 1 598.91 260V268A4 4 0 0 1 594.91 272H480Z" fill="#2a78d6"/>
+<text x="604.91" y="268" font-size="12" fill="#1f2328">0.513 s</text>
+<text x="416" y="292" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M480 280H686.52A4 4 0 0 1 690.52 284V292A4 4 0 0 1 686.52 296H480Z" fill="#eb6834"/>
+<text x="696.52" y="292" font-size="12" fill="#1f2328">0.907 s</text>
+<text x="24" y="360" font-size="13" fill="#1f2328" font-weight="600">W5 tolerance MC</text>
+<line x1="88" y1="370" x2="88" y2="418" stroke="#c3c2b7" stroke-width="1"/>
+<text x="88" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="204" y1="370" x2="204" y2="418" stroke="#e1e0d9" stroke-width="1"/>
+<text x="204" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">0.5</text>
+<line x1="320" y1="370" x2="320" y2="418" stroke="#e1e0d9" stroke-width="1"/>
+<text x="320" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">1.0</text>
+<text x="24" y="386" font-size="12" fill="#52514e">Sea</text>
+<path d="M88 374H165.42A4 4 0 0 1 169.42 378V386A4 4 0 0 1 165.42 390H88Z" fill="#2a78d6"/>
+<text x="175.42" y="386" font-size="12" fill="#1f2328">0.351 s</text>
+<text x="24" y="410" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M88 398H262.19A4 4 0 0 1 266.19 402V410A4 4 0 0 1 262.19 414H88Z" fill="#eb6834"/>
+<text x="272.19" y="410" font-size="12" fill="#1f2328">0.768 s</text>
+<text x="416" y="360" font-size="13" fill="#1f2328" font-weight="600">W7 drivetrain</text>
+<line x1="480" y1="370" x2="480" y2="418" stroke="#c3c2b7" stroke-width="1"/>
+<text x="480" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">0</text>
+<line x1="596" y1="370" x2="596" y2="418" stroke="#e1e0d9" stroke-width="1"/>
+<text x="596" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">5</text>
+<line x1="712" y1="370" x2="712" y2="418" stroke="#e1e0d9" stroke-width="1"/>
+<text x="712" y="433" font-size="11" fill="#6e6c66" text-anchor="middle">10</text>
+<text x="416" y="386" font-size="12" fill="#52514e">Sea</text>
+<path d="M480 374H480A3.29 3.29 0 0 1 483.29 377.29V386.71A3.29 3.29 0 0 1 480 390H480Z" fill="#2a78d6"/>
+<text x="489.29" y="386" font-size="12" fill="#1f2328">0.142 s</text>
+<text x="416" y="410" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M480 398H676.1A4 4 0 0 1 680.1 402V410A4 4 0 0 1 676.1 414H480Z" fill="#eb6834"/>
+<text x="686.1" y="410" font-size="12" fill="#1f2328">8.625 s</text>
+<text x="24" y="478" font-size="13" fill="#1f2328" font-weight="600">W8 EV CAN</text>
+<line x1="88" y1="488" x2="88" y2="536" stroke="#c3c2b7" stroke-width="1"/>
+<text x="88" y="551" font-size="11" fill="#6e6c66" text-anchor="middle">0.0</text>
+<line x1="204" y1="488" x2="204" y2="536" stroke="#e1e0d9" stroke-width="1"/>
+<text x="204" y="551" font-size="11" fill="#6e6c66" text-anchor="middle">0.5</text>
+<line x1="320" y1="488" x2="320" y2="536" stroke="#e1e0d9" stroke-width="1"/>
+<text x="320" y="551" font-size="11" fill="#6e6c66" text-anchor="middle">1.0</text>
+<text x="24" y="504" font-size="12" fill="#52514e">Sea</text>
+<path d="M88 492H120.18A4 4 0 0 1 124.18 496V504A4 4 0 0 1 120.18 508H88Z" fill="#2a78d6"/>
+<text x="130.18" y="504" font-size="12" fill="#1f2328">0.156 s</text>
+<text x="24" y="528" font-size="12" fill="#52514e">MATLAB</text>
+<path d="M88 516H229.22A4 4 0 0 1 233.22 520V528A4 4 0 0 1 229.22 532H88Z" fill="#eb6834"/>
+<text x="239.22" y="528" font-size="12" fill="#1f2328">0.626 s</text>
+<text x="24" y="598" font-size="12" fill="#52514e">MATLAB R2026a with 10 threads, in-session; Sea single-threaded, whole process.</text>
+<text x="24" y="616" font-size="12" fill="#52514e">MATLAB's time is its in-session total_seconds; Sea's includes process start-up and exit.</text>
+<text x="24" y="634" font-size="11" fill="#6e6c66">Mac14,9 (Apple M2 Pro), macOS 26.6.2 (Darwin 25.6.0) · Sea commit 669ca18 · session 20261105T180509Z-85cec080</text>
+</svg>

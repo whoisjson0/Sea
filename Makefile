@@ -89,6 +89,8 @@
 #   make bench-cross      sh bench/workloads.sh --cross, sh bench/kernels.sh --cross,
 #                         sh bench/micro.sh --current --cross, into the session of $(BENCH_OUT)
 #   make bench-report     uv run bench/report.py $(BENCH_OUT): the Markdown of docs/BENCH.md
+#   make bench-charts     uv run bench/charts.py $(BENCH_OUT) docs/img: the README's SVG charts,
+#                         speedup-{light,dark}.svg and times-{light,dark}.svg (deterministic)
 #   make bench-selftest   sh bench/spawn_test.sh and uv run bench/check.py --self-test
 #
 # BAYSICK is the Baysick checkout (default: the parent repository, Sea being its submodule
@@ -138,7 +140,7 @@ BAYSICK_INC := $(wildcard $(BAYSICK)/include/runtime.inc $(BAYSICK)/include/limi
         check-includes check-contracts cross-includes cross cross-pack \
         w8-sim w8-log w8-log-update w8-sketch \
         bench bench-session bench-build bench-workloads bench-kernels bench-micro bench-numpy \
-        bench-check bench-cross bench-report bench-selftest
+        bench-check bench-cross bench-report bench-charts bench-selftest
 .DEFAULT_GOAL := all
 
 all: install runtime tools passes
@@ -617,6 +619,9 @@ bench-cross: all
 
 bench-report: all
 	uv run --no-project python -I bench/report.py "$(BENCH_OUT)"
+
+bench-charts: all
+	uv run --no-project python -I bench/charts.py $(BENCH_OUT) docs/img
 
 bench-selftest: all
 	sh bench/spawn_test.sh
